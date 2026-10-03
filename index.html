@@ -243,6 +243,64 @@ button{font:inherit;color:inherit}
 .refs li{padding-inline-start:4px;overflow-wrap:anywhere}
 .refs a{color:var(--accent)}
 
+/* ---------- research question section ---------- */
+.rq{gap:16px!important}
+.rq h3{margin-top:14px;display:flex;align-items:center;gap:8px}
+.rq-src{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.rq-k{font:600 12px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-inline-end:4px}
+.rq-chip{padding:6px 12px;border-radius:99px;background:var(--surface);border:1px solid var(--line);font-size:14px}
+.rq-funnel{list-style:none;margin:0;padding:0;display:grid;gap:8px;justify-items:center}
+.rq-funnel li{width:var(--w);box-sizing:border-box;display:flex;gap:12px;align-items:center;padding:12px 16px;background:var(--surface);border:1px solid var(--line);border-inline-start:6px solid var(--c);border-radius:var(--r)}
+.rq-funnel li > div{display:grid;gap:2px;min-width:0}
+.rq-funnel b{font-size:15px}
+.rq-ex{font-size:14px;color:var(--muted)}
+.rq-n{flex:none;width:28px;height:28px;border-radius:50%;background:var(--c);color:var(--on-st);display:grid;place-items:center;font:700 13px var(--f-mono)}
+.rq-funnel .rq-final{background:var(--accent-soft);border-color:var(--c)}
+.rq-funnel .rq-final .rq-ex{color:var(--ink);font-weight:600;font-size:15px}
+.rq-finer{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:8px}
+.rq-finer > div{display:grid;gap:6px;align-content:start;padding:14px;background:var(--surface);border:1px solid var(--line);border-top:5px solid var(--accent);border-radius:var(--r)}
+.rq-big{font:800 34px/1 var(--f-display);color:var(--accent)}
+.rq-finer p{font-size:13.5px;color:var(--muted);margin:0}
+.rq-finer em{font-style:normal;font-size:13px;color:var(--good);background:var(--good-soft);padding:6px 8px;border-radius:6px}
+.rq-fix{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px}
+.rq-fix article{display:grid;gap:8px;align-content:start;padding:14px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.rq-bad,.rq-good{margin:0;padding:10px 12px;border-radius:8px;font-size:14.5px;display:grid;gap:4px}
+.rq-bad{background:var(--bad-soft);color:var(--ink);text-decoration:line-through;text-decoration-color:color-mix(in srgb,var(--bad) 45%,transparent)}
+.rq-good{background:var(--good-soft);font-weight:500}
+.rq-bad span,.rq-good span{font:700 11px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;display:inline-block}
+.rq-bad span{color:var(--bad)} .rq-good span{color:var(--good)}
+.rq-bad span::before{content:"✗ "} .rq-good span::before{content:"✓ "}
+.rq-tags{display:flex;flex-wrap:wrap;gap:6px}
+.rq-tags i{font-style:normal;font:500 12px var(--f-mono);padding:3px 8px;border-radius:99px;background:var(--sunk);color:var(--muted)}
+.rq-traps{display:grid;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--surface)}
+.rq-tr{display:grid;grid-template-columns:150px 1fr 1fr;gap:12px;padding:10px 14px;border-top:1px solid var(--line);font-size:14px;align-items:start}
+.rq-tr:first-child{border-top:0}
+.rq-th{background:var(--sunk);font:600 12px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.rq-tr:not(.rq-th) span:nth-child(2){color:var(--bad)}
+.rq-tr:not(.rq-th) span:nth-child(3){color:var(--good);font-weight:500}
+.rq-types{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px}
+.rq-types > div{display:grid;gap:6px;align-content:start;padding:14px;background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:var(--r)}
+.rq-types b{color:var(--c)}
+.rq-types code{font:500 12.5px var(--f-mono);background:var(--sunk);padding:4px 8px;border-radius:6px;justify-self:start}
+.rq-types p{margin:0;font-size:14px}
+.rq-try{border:2px dashed var(--accent);border-radius:var(--r);background:var(--surface)}
+.rq-try summary{cursor:pointer;padding:14px 16px;font-weight:600;list-style:none;display:flex;gap:10px;align-items:center}
+.rq-try summary::-webkit-details-marker{display:none}
+.rq-try summary span{font:700 11px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--on-st);padding:4px 8px;border-radius:6px;flex:none}
+.rq-try summary::after{content:"Show answer ▾";margin-inline-start:auto;font:500 12px var(--f-mono);color:var(--accent);flex:none}
+.rq[dir="rtl"] .rq-try summary::after{content:"أظهر الإجابة ▾"}
+.rq-try[open] summary::after{content:"Hide ▴"}
+.rq[dir="rtl"] .rq-try[open] summary::after{content:"إخفاء ▴"}
+.rq-try > div{display:grid;gap:10px;padding:0 16px 16px}
+.rq-try p{margin:0}
+[dir="rtl"] .rq-k,[dir="rtl"] .rq-th,[dir="rtl"] .rq-bad span,[dir="rtl"] .rq-good span,[dir="rtl"] .rq-try summary span{letter-spacing:0;font-family:var(--f-ar)}
+@media (max-width:760px){
+  .rq-funnel li{width:100%}
+  .rq-tr{grid-template-columns:1fr;gap:4px}
+  .rq-th{display:none}
+  .rq-tr b{font-size:15px}
+}
+
 /* ---------- courses on home ---------- */
 .course{display:grid;gap:12px;margin-top:26px}
 .course-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;border-top:2px solid var(--line);padding-top:14px}
@@ -845,34 +903,89 @@ button{font:inherit;color:inherit}
           <p><b>Pitfalls to avoid:</b> don't fall in love with your idea, don't pick a trivial project, don't try to do more than is possible, and try to do something (somewhat) new.</p>
         </section>
 
-        <section>
+        <section class="rq">
           <h2>Writing a good research question</h2>
-          <p>Research questions come from three sources: previous literature, professional experience and everyday life. Steps: choose a broad topic → do preliminary reading → narrow to a niche → identify a practical or theoretical problem → write the question.</p>
-          <h3>The FINER framework</h3>
-          <div class="terms">
-            <div class="term"><b>F · Feasible</b>Enough subjects, skills, time and money; manageable scope</div>
-            <div class="term"><b>I · Interesting</b>The answer matters to you, peers and the community</div>
-            <div class="term"><b>N · Novel</b>Confirms, refutes or extends previous findings</div>
-            <div class="term"><b>E · Ethical</b>An ethics review board would approve it</div>
-            <div class="term"><b>R · Relevant</b>To knowledge, policy and future research</div>
+          <p class="lead">A research question pinpoints exactly what you want to find out. It anchors the whole project: your method, your data and your argument all follow from it.</p>
+
+          <div class="rq-src" aria-label="Where research questions come from">
+            <span class="rq-k">Questions come from</span>
+            <span class="rq-chip">📚 Previous literature</span>
+            <span class="rq-chip">💼 Professional experience</span>
+            <span class="rq-chip">🏙️ Everyday life</span>
           </div>
-          <h3>Weak vs strong questions (from the slides)</h3>
-          <div class="terms">
-            <div class="term"><b>✗ What effect does social media have on people's minds?</b>✓ What effect does daily use of Twitter have on the attention span of under-16s?</div>
-            <div class="term"><b>✗ Why is there a housing crisis in the Netherlands?</b>✓ What impact have university internationalisation policies had on housing availability and affordability in the Netherlands?</div>
-            <div class="term"><b>✗ Does the US or the UK have a better healthcare system?</b>✓ How do the US and the UK compare in health outcomes and patient satisfaction among low-income people with chronic illnesses?</div>
-            <div class="term"><b>✗ Has homelessness in San Francisco increased in ten years?</b>✓ How have economic, political and social factors affected patterns of homelessness in San Francisco over ten years?</div>
+
+          <h3>1 · The funnel: from topic to question</h3>
+          <p>Narrow down in five steps. Follow the worked example from the slides through each step.</p>
+          <ol class="rq-funnel">
+            <li style="--w:100%;--c:var(--st1)"><span class="rq-n">1</span><div><b>Choose a broad topic</b><span class="rq-ex">Work and employment</span></div></li>
+            <li style="--w:93%;--c:var(--st1)"><span class="rq-n">2</span><div><b>Do preliminary reading</b><span class="rq-ex">Debates on the rise of the gig economy</span></div></li>
+            <li style="--w:86%;--c:var(--st2)"><span class="rq-n">3</span><div><b>Narrow to a niche</b><span class="rq-ex">Under-30s doing gig work instead of full-time jobs</span></div></li>
+            <li style="--w:79%;--c:var(--st3)"><span class="rq-n">4</span><div><b>Identify the problem</b><span class="rq-ex">Little research exists on young people's experience of this work</span></div></li>
+            <li style="--w:72%;--c:var(--st4)" class="rq-final"><span class="rq-n">5</span><div><b>Write the question</b><span class="rq-ex">"What are the main factors that influence young people's decisions to engage in the gig economy?"</span></div></li>
+          </ol>
+
+          <h3>2 · Test it with FINER</h3>
+          <p>Score the example question against each letter before you commit to it.</p>
+          <div class="rq-finer">
+            <div><span class="rq-big">F</span><b>Feasible</b><p>Can I get enough participants, skills, time and money?</p><em>✓ Under-30s are easy to reach online</em></div>
+            <div><span class="rq-big">I</span><b>Interesting</b><p>Does the answer matter to me, peers and the community?</p><em>✓ Policy makers and platforms care</em></div>
+            <div><span class="rq-big">N</span><b>Novel</b><p>Does it confirm, refute or extend earlier findings?</p><em>✓ Fills a known research gap</em></div>
+            <div><span class="rq-big">E</span><b>Ethical</b><p>Would an ethics review board approve it?</p><em>✓ Voluntary, anonymous survey</em></div>
+            <div><span class="rq-big">R</span><b>Relevant</b><p>Does it add to knowledge, policy or future research?</p><em>✓ Informs labour policy</em></div>
           </div>
-          <p class="callout"><b>Rules of thumb:</b> avoid "why" questions, yes/no questions, value words like "better", and "what should we do" questions. Use specific, well-defined concepts: what, who, where and when.</p>
-          <h3>Types of research questions</h3>
-          <div class="terms">
-            <div class="term"><b>Descriptive</b>What are the characteristics of X?</div>
-            <div class="term"><b>Comparative</b>What are the differences between X and Y?</div>
-            <div class="term"><b>Correlational</b>What is the relationship between X and Y?</div>
-            <div class="term"><b>Exploratory</b>What are the main factors in X?</div>
-            <div class="term"><b>Explanatory</b>Does X have an effect on Y?</div>
-            <div class="term"><b>Evaluation</b>How well does Y work?</div>
+
+          <h3>3 · Weak → strong: four makeovers from the slides</h3>
+          <div class="rq-fix">
+            <article>
+              <p class="rq-bad"><span>Weak</span>What effect does social media have on people's minds?</p>
+              <p class="rq-good"><span>Strong</span>What effect does daily use of Twitter have on the attention span of under-16s?</p>
+              <div class="rq-tags"><i>Which platform?</i><i>Which people?</i><i>Which effect?</i></div>
+            </article>
+            <article>
+              <p class="rq-bad"><span>Weak</span>Why is there a housing crisis in the Netherlands?</p>
+              <p class="rq-good"><span>Strong</span>What impact have university internationalisation policies had on housing availability and affordability in the Netherlands?</p>
+              <div class="rq-tags"><i>No "why"</i><i>One clear cause</i></div>
+            </article>
+            <article>
+              <p class="rq-bad"><span>Weak</span>Does the US or the UK have a better healthcare system?</p>
+              <p class="rq-good"><span>Strong</span>How do the US and the UK compare in health outcomes and patient satisfaction among low-income people with chronic illnesses?</p>
+              <div class="rq-tags"><i>No "better"</i><i>Measurable criteria</i><i>Specific group</i></div>
+            </article>
+            <article>
+              <p class="rq-bad"><span>Weak</span>Has homelessness in San Francisco increased in the past ten years?</p>
+              <p class="rq-good"><span>Strong</span>How have economic, political and social factors affected patterns of homelessness in San Francisco over the past ten years?</p>
+              <div class="rq-tags"><i>Not yes/no</i><i>Room for argument</i></div>
+            </article>
           </div>
+
+          <h3>4 · Five traps and how to fix them</h3>
+          <div class="rq-traps" role="table" aria-label="Research question traps">
+            <div class="rq-tr rq-th" role="row"><span role="columnheader">Trap</span><span role="columnheader">Looks like</span><span role="columnheader">Fix</span></div>
+            <div class="rq-tr" role="row"><b role="cell">"Why" question</b><span role="cell">Why does X happen?</span><span role="cell">What are the main factors contributing to X?</span></div>
+            <div class="rq-tr" role="row"><b role="cell">Yes / no</b><span role="cell">Has X increased?</span><span role="cell">How have factors A and B affected X?</span></div>
+            <div class="rq-tr" role="row"><b role="cell">Value word</b><span role="cell">Is X or Y better?</span><span role="cell">How effective are X and Y at reducing Z?</span></div>
+            <div class="rq-tr" role="row"><b role="cell">"What should we do"</b><span role="cell">What should the government do about low voter turnout?</span><span role="cell">What are the most effective communication strategies for increasing turnout among under-30s?</span></div>
+            <div class="rq-tr" role="row"><b role="cell">Easy fact</b><span role="cell">Answered by one Google search</span><span role="cell">Needs original data, several sources and interpretation</span></div>
+          </div>
+
+          <h3>5 · Six types of research question</h3>
+          <p>The type you pick shapes your research design. Examples below are mine, set in a transport app.</p>
+          <div class="rq-types">
+            <div style="--c:var(--st1)"><b>Descriptive</b><code>What are the characteristics of X?</code><p>What are the characteristics of nol card users who never top up online?</p></div>
+            <div style="--c:var(--st2)"><b>Comparative</b><code>What are the differences between X and Y?</code><p>How do metro and bus riders differ in their use of journey planners?</p></div>
+            <div style="--c:var(--st3)"><b>Correlational</b><code>What is the relationship between X and Y?</code><p>What is the relationship between app rating and weekly trips booked?</p></div>
+            <div style="--c:var(--st4)"><b>Exploratory</b><code>What are the main factors in X?</code><p>What are the main factors in commuters' choice of first-mile transport?</p></div>
+            <div style="--c:var(--st1)"><b>Explanatory</b><code>Does X have an effect on Y?</code><p>Does live crowding information have an effect on departure time?</p></div>
+            <div style="--c:var(--st2)"><b>Evaluation</b><code>How well does Y work?</code><p>How effective is the new QR ticket at reducing queues at gates?</p></div>
+          </div>
+
+          <details class="rq-try">
+            <summary><span>Try it</span> Fix this question: "Why don't people like our government app?"</summary>
+            <div>
+              <p><b>Problems:</b> it is a "why" question, "like" is vague, "people" has no group, and there is no context.</p>
+              <p class="rq-good"><span>Better</span>What are the main usability factors that reduce satisfaction with the Dubai government services app among residents aged 55 and over?</p>
+            </div>
+          </details>
         </section>
 
         <section>
@@ -971,34 +1084,89 @@ button{font:inherit;color:inherit}
           <p><b>أخطاء يجب تجنبها:</b> لا تتعلق بفكرتك أكثر من اللازم، ولا تختر مشروعًا تافهًا، ولا تحاول فعل أكثر من الممكن، وحاول أن تقدم شيئًا جديدًا (ولو قليلًا).</p>
         </section>
 
-        <section>
+        <section class="rq">
           <h2>كتابة سؤال بحث جيد</h2>
-          <p>أسئلة البحث تأتي من ثلاثة مصادر: الأدبيات السابقة، والخبرة المهنية، والحياة اليومية. الخطوات: اختر موضوعًا عامًا ← اقرأ قراءة أولية ← ضيّق إلى مجال محدد ← حدد مشكلة عملية أو نظرية ← اكتب السؤال.</p>
-          <h3>إطار FINER</h3>
-          <div class="terms">
-            <div class="term"><b>F · قابل للتنفيذ</b>مشاركون ومهارات ووقت ومال كافية، ونطاق يمكن إدارته</div>
-            <div class="term"><b>I · مثير للاهتمام</b>الإجابة تهمك وتهم زملاءك والمجتمع</div>
-            <div class="term"><b>N · جديد</b>يؤكد نتائج سابقة أو ينفيها أو يوسعها</div>
-            <div class="term"><b>E · أخلاقي</b>توافق عليه لجنة أخلاقيات البحث</div>
-            <div class="term"><b>R · ذو صلة</b>بالمعرفة والسياسات والبحوث المستقبلية</div>
+          <p class="lead">سؤال البحث يحدد بالضبط ما تريد معرفته. وهو مرساة المشروع كله: المنهج والبيانات والحجة كلها تنبع منه.</p>
+
+          <div class="rq-src" aria-label="مصادر أسئلة البحث">
+            <span class="rq-k">الأسئلة تأتي من</span>
+            <span class="rq-chip">📚 الأدبيات السابقة</span>
+            <span class="rq-chip">💼 الخبرة المهنية</span>
+            <span class="rq-chip">🏙️ الحياة اليومية</span>
           </div>
-          <h3>أسئلة ضعيفة وأسئلة قوية (من الشرائح)</h3>
-          <div class="terms">
-            <div class="term"><b>✗ ما أثر وسائل التواصل الاجتماعي على عقول الناس؟</b>✓ ما أثر الاستخدام اليومي لتويتر على مدى انتباه من هم دون 16 عامًا؟</div>
-            <div class="term"><b>✗ لماذا توجد أزمة سكن في هولندا؟</b>✓ ما أثر سياسات تدويل الجامعات على توفر السكن وتكلفته في هولندا؟</div>
-            <div class="term"><b>✗ هل النظام الصحي في أمريكا أفضل أم في بريطانيا؟</b>✓ كيف تقارن أمريكا وبريطانيا في النتائج الصحية ورضا المرضى بين ذوي الدخل المحدود المصابين بأمراض مزمنة؟</div>
-            <div class="term"><b>✗ هل زاد التشرد في سان فرانسيسكو خلال عشر سنوات؟</b>✓ كيف أثرت العوامل الاقتصادية والسياسية والاجتماعية على أنماط التشرد في سان فرانسيسكو خلال عشر سنوات؟</div>
+
+          <h3>1 · القمع: من الموضوع إلى السؤال</h3>
+          <p>ضيّق موضوعك في خمس خطوات. تابع المثال التطبيقي من الشرائح في كل خطوة.</p>
+          <ol class="rq-funnel">
+            <li style="--w:100%;--c:var(--st1)"><span class="rq-n">1</span><div><b>اختر موضوعًا عامًا</b><span class="rq-ex">العمل والتوظيف</span></div></li>
+            <li style="--w:93%;--c:var(--st1)"><span class="rq-n">2</span><div><b>اقرأ قراءة أولية</b><span class="rq-ex">النقاشات حول صعود اقتصاد العمل الحر (Gig Economy)</span></div></li>
+            <li style="--w:86%;--c:var(--st2)"><span class="rq-n">3</span><div><b>ضيّق إلى مجال محدد</b><span class="rq-ex">من هم دون 30 عامًا ويعملون عملًا حرًا بدل الوظيفة الدائمة</span></div></li>
+            <li style="--w:79%;--c:var(--st3)"><span class="rq-n">4</span><div><b>حدد المشكلة</b><span class="rq-ex">الأبحاث عن تجربة الشباب في هذا النوع من العمل قليلة</span></div></li>
+            <li style="--w:72%;--c:var(--st4)" class="rq-final"><span class="rq-n">5</span><div><b>اكتب السؤال</b><span class="rq-ex">"ما العوامل الرئيسية التي تؤثر في قرار الشباب الانخراط في اقتصاد العمل الحر؟"</span></div></li>
+          </ol>
+
+          <h3>2 · اختبره بإطار FINER</h3>
+          <p>قيّم سؤال المثال مقابل كل حرف قبل أن تعتمده.</p>
+          <div class="rq-finer">
+            <div><span class="rq-big">F</span><b>قابل للتنفيذ</b><p>هل لدي مشاركون ومهارات ووقت ومال كافية؟</p><em>✓ يسهل الوصول للشباب عبر الإنترنت</em></div>
+            <div><span class="rq-big">I</span><b>مثير للاهتمام</b><p>هل تهم الإجابة نفسي وزملائي والمجتمع؟</p><em>✓ يهم صناع القرار والمنصات</em></div>
+            <div><span class="rq-big">N</span><b>جديد</b><p>هل يؤكد نتائج سابقة أو ينفيها أو يوسعها؟</p><em>✓ يسد فجوة بحثية معروفة</em></div>
+            <div><span class="rq-big">E</span><b>أخلاقي</b><p>هل توافق عليه لجنة أخلاقيات البحث؟</p><em>✓ استبيان طوعي ومجهول الهوية</em></div>
+            <div><span class="rq-big">R</span><b>ذو صلة</b><p>هل يضيف للمعرفة أو السياسات أو البحوث القادمة؟</p><em>✓ يفيد سياسات سوق العمل</em></div>
           </div>
-          <p class="callout"><b>قواعد عملية:</b> تجنّب أسئلة "لماذا"، وأسئلة نعم/لا، وكلمات الحكم مثل "أفضل"، وأسئلة "ماذا يجب أن نفعل". استخدم مفاهيم محددة وواضحة: ماذا، ومن، وأين، ومتى.</p>
-          <h3>أنواع أسئلة البحث</h3>
-          <div class="terms">
-            <div class="term"><b>وصفي</b>ما خصائص X؟</div>
-            <div class="term"><b>مقارن</b>ما الفروق بين X وY؟</div>
-            <div class="term"><b>ارتباطي</b>ما العلاقة بين X وY؟</div>
-            <div class="term"><b>استكشافي</b>ما العوامل الرئيسية في X؟</div>
-            <div class="term"><b>تفسيري</b>هل لـ X أثر على Y؟</div>
-            <div class="term"><b>تقييمي</b>ما مدى نجاح Y؟</div>
+
+          <h3>3 · من ضعيف إلى قوي: أربعة تحسينات من الشرائح</h3>
+          <div class="rq-fix">
+            <article>
+              <p class="rq-bad"><span>ضعيف</span>ما أثر وسائل التواصل الاجتماعي على عقول الناس؟</p>
+              <p class="rq-good"><span>قوي</span>ما أثر الاستخدام اليومي لتويتر على مدى انتباه من هم دون 16 عامًا؟</p>
+              <div class="rq-tags"><i>أي منصة؟</i><i>أي فئة؟</i><i>أي أثر؟</i></div>
+            </article>
+            <article>
+              <p class="rq-bad"><span>ضعيف</span>لماذا توجد أزمة سكن في هولندا؟</p>
+              <p class="rq-good"><span>قوي</span>ما أثر سياسات تدويل الجامعات على توفر السكن وتكلفته في هولندا؟</p>
+              <div class="rq-tags"><i>بلا "لماذا"</i><i>سبب واحد واضح</i></div>
+            </article>
+            <article>
+              <p class="rq-bad"><span>ضعيف</span>هل النظام الصحي في أمريكا أفضل أم في بريطانيا؟</p>
+              <p class="rq-good"><span>قوي</span>كيف تقارن أمريكا وبريطانيا في النتائج الصحية ورضا المرضى بين ذوي الدخل المحدود المصابين بأمراض مزمنة؟</p>
+              <div class="rq-tags"><i>بلا "أفضل"</i><i>معايير قابلة للقياس</i><i>فئة محددة</i></div>
+            </article>
+            <article>
+              <p class="rq-bad"><span>ضعيف</span>هل زاد التشرد في سان فرانسيسكو خلال السنوات العشر الماضية؟</p>
+              <p class="rq-good"><span>قوي</span>كيف أثرت العوامل الاقتصادية والسياسية والاجتماعية على أنماط التشرد في سان فرانسيسكو خلال السنوات العشر الماضية؟</p>
+              <div class="rq-tags"><i>ليس نعم/لا</i><i>مساحة للنقاش</i></div>
+            </article>
           </div>
+
+          <h3>4 · خمسة أخطاء وطريقة إصلاحها</h3>
+          <div class="rq-traps" role="table" aria-label="أخطاء أسئلة البحث">
+            <div class="rq-tr rq-th" role="row"><span role="columnheader">الخطأ</span><span role="columnheader">شكله</span><span role="columnheader">الإصلاح</span></div>
+            <div class="rq-tr" role="row"><b role="cell">سؤال "لماذا"</b><span role="cell">لماذا يحدث X؟</span><span role="cell">ما العوامل الرئيسية التي تسهم في X؟</span></div>
+            <div class="rq-tr" role="row"><b role="cell">نعم / لا</b><span role="cell">هل زاد X؟</span><span role="cell">كيف أثرت العوامل A وB على X؟</span></div>
+            <div class="rq-tr" role="row"><b role="cell">كلمة حكم</b><span role="cell">هل X أفضل أم Y؟</span><span role="cell">ما مدى فاعلية X وY في تقليل Z؟</span></div>
+            <div class="rq-tr" role="row"><b role="cell">"ماذا يجب أن نفعل"</b><span role="cell">ماذا يجب أن تفعل الحكومة لضعف المشاركة في الانتخابات؟</span><span role="cell">ما أكثر استراتيجيات التواصل فاعلية لرفع مشاركة من هم دون 30 عامًا؟</span></div>
+            <div class="rq-tr" role="row"><b role="cell">معلومة سهلة</b><span role="cell">تجيب عنه بحثة واحدة في Google</span><span role="cell">يحتاج بيانات أصلية وعدة مصادر وتفسيرًا</span></div>
+          </div>
+
+          <h3>5 · ستة أنواع لأسئلة البحث</h3>
+          <p>النوع الذي تختاره يحدد تصميم بحثك. الأمثلة أدناه من عندي، في سياق تطبيق مواصلات.</p>
+          <div class="rq-types">
+            <div style="--c:var(--st1)"><b>وصفي</b><code>ما خصائص X؟</code><p>ما خصائص مستخدمي بطاقة نول الذين لا يشحنونها إلكترونيًا أبدًا؟</p></div>
+            <div style="--c:var(--st2)"><b>مقارن</b><code>ما الفروق بين X وY؟</code><p>كيف يختلف ركاب المترو عن ركاب الحافلات في استخدام مخطط الرحلات؟</p></div>
+            <div style="--c:var(--st3)"><b>ارتباطي</b><code>ما العلاقة بين X وY؟</code><p>ما العلاقة بين تقييم التطبيق وعدد الرحلات المحجوزة أسبوعيًا؟</p></div>
+            <div style="--c:var(--st4)"><b>استكشافي</b><code>ما العوامل الرئيسية في X؟</code><p>ما العوامل الرئيسية في اختيار المسافرين لوسيلة الميل الأول؟</p></div>
+            <div style="--c:var(--st1)"><b>تفسيري</b><code>هل لـ X أثر على Y؟</code><p>هل لمعلومات الازدحام المباشرة أثر على وقت مغادرة الركاب؟</p></div>
+            <div style="--c:var(--st2)"><b>تقييمي</b><code>ما مدى نجاح Y؟</code><p>ما مدى فاعلية تذكرة QR الجديدة في تقليل الطوابير عند البوابات؟</p></div>
+          </div>
+
+          <details class="rq-try">
+            <summary><span>جرّب</span> أصلح هذا السؤال: "لماذا لا يحب الناس تطبيقنا الحكومي؟"</summary>
+            <div>
+              <p><b>المشكلات:</b> سؤال "لماذا"، وكلمة "يحب" غامضة، و"الناس" بلا فئة محددة، ولا يوجد سياق.</p>
+              <p class="rq-good"><span>أفضل</span>ما العوامل الرئيسية المتعلقة بسهولة الاستخدام التي تقلل رضا المقيمين من عمر 55 عامًا فأكثر عن تطبيق خدمات حكومة دبي؟</p>
+            </div>
+          </details>
         </section>
 
         <section>
