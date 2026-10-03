@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="MDT 901 study hub: bilingual topic notes, infographic, self-scoring quiz and assignment for each session.">
+<meta name="description" content="UOWD study hub for MDT 901 and MDT 904: bilingual topic notes, infographics, self-scoring quizzes and assignments.">
 <style>html{color-scheme:light}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>MDT 901 Study Hub</title>
 
@@ -242,7 +242,28 @@ button{font:inherit;color:inherit}
 .refs li{padding-inline-start:4px;overflow-wrap:anywhere}
 .refs a{color:var(--accent)}
 
+/* ---------- courses on home ---------- */
+.course{display:grid;gap:12px;margin-top:26px}
+.course-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;border-top:2px solid var(--line);padding-top:14px}
+.course-head .code{font:600 13px var(--f-mono);color:var(--accent);letter-spacing:.06em}
+.course-head h2{font-size:22px}
+.soon-note{display:flex;gap:10px;align-items:flex-start;background:var(--accent-soft);border-radius:var(--r);padding:12px 14px;font-size:14.5px}
+.soon-note b{white-space:nowrap}
+.s-card.soon{cursor:default;border-style:dashed;background:transparent;color:var(--muted);gap:8px;align-content:start}
+.s-card.soon:hover{transform:none;border-color:var(--line)}
+.s-card.soon h2{font-size:17px;color:var(--ink)}
+.soon-tag{justify-self:start;font:600 11px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:99px;background:var(--sunk);color:var(--muted)}
+.route.r3{grid-template-columns:repeat(3,1fr)}
+.route.r3::before{left:16.6%;right:16.6%}
+.roadmap{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.roadmap div{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:8px;padding:12px;display:grid;gap:4px;font-size:14px}
+.roadmap b{color:var(--c);font-family:var(--f-mono);font-size:12.5px;letter-spacing:.04em}
+.abar{display:flex;height:30px;border-radius:8px;overflow:hidden;gap:2px}
+.abar i{font:600 12px var(--f-mono);font-style:normal;color:var(--on-st);background:var(--c);display:grid;place-items:center}
+.a-soon{display:grid;gap:10px;background:var(--surface);border:1px dashed var(--line);border-radius:var(--r);padding:22px;max-width:640px}
+
 @media (max-width:640px){
+  .route.r3{grid-template-columns:1fr}
   .route{grid-template-columns:1fr 1fr;row-gap:20px}
   .route::before{display:none}
   .report div{grid-template-columns:1fr;gap:2px}
@@ -255,23 +276,23 @@ button{font:inherit;color:inherit}
 <body>
 <div class="wrap">
   <header class="top">
-    <div class="brand"><span class="brand-dot" aria-hidden="true"></span>MDT 901 Study Hub</div>
+    <div class="brand"><span class="brand-dot" aria-hidden="true"></span>UOWD Study Hub</div>
     <span class="eyebrow">UOW Dubai · Master of Digital Transformation</span>
   </header>
 
   <!-- HOME -->
   <main id="home">
     <div class="hero">
-      <span class="eyebrow">Digital Transformation Strategy &amp; Industry 4.0</span>
+      <span class="eyebrow">Autumn 2026 · MDT 901 &amp; MDT 904</span>
       <h1>Pick a session to study</h1>
       <p>Each session opens with four tabs: the topic explained in English and Arabic with real examples, the one-page infographic, a quiz you can answer and score right away, and the assignment answer.</p>
     </div>
-    <div class="sessions" id="sessionList"></div>
+    <div id="courseList"></div>
   </main>
 
   <!-- SESSION -->
   <main id="session" hidden>
-    <button class="back" id="backBtn" type="button"><span aria-hidden="true">←</span> All sessions</button>
+    <button class="back" id="backBtn" type="button"><span aria-hidden="true">←</span> All courses</button>
     <div class="s-head">
       <span class="eyebrow" id="sEyebrow"></span>
       <h1 id="sTitle"></h1>
@@ -288,6 +309,7 @@ button{font:inherit;color:inherit}
     <section id="panel-topic" role="tabpanel" aria-labelledby="tab-topic">
       <p class="topic-hint">Each section has its own English / العربية switch, so you can read one part in Arabic and keep the rest in English.</p>
 
+      <div class="sv" data-s="s2">
       <article class="topic" id="topicEn" lang="en" dir="ltr">
         <section>
           <span class="eyebrow">Core idea</span>
@@ -529,10 +551,242 @@ button{font:inherit;color:inherit}
           <p class="note">المصدر: شرائح المحاضرة الثانية لمادة MDT 901، د. نكقوبيلا روكسوانا، جامعة ولونغونغ في دبي.</p>
         </section>
       </article>
+      </div>
+      <div class="sv" data-s="r1" hidden>
+      <article class="topic" id="topicEnR1" lang="en" dir="ltr">
+        <section>
+          <span class="eyebrow">Core idea</span>
+          <p class="lead">Research produces knowledge. Innovation turns knowledge and ideas into something people actually use. Digital transformation needs both: research tells you what is true and what users need, and innovation turns that into new services and ways of working.</p>
+          <p>The whole course answers two questions. The research part asks: how do we find answers in a systematic way? The innovation part asks: how do we turn findings into new products, services and operations? Design thinking is the method for the second question.</p>
+        </section>
+
+        <section>
+          <h2>What is digital transformation?</h2>
+          <p>The slides describe digital transformation as using digital technology to change how an organisation works and delivers value, not just putting old processes online. It rests on <b>three pillars</b>:</p>
+          <div class="terms">
+            <div class="term"><b>Customer experience</b>How people find, use and feel about the service</div>
+            <div class="term"><b>Strategy</b>Why we change and where we want to go</div>
+            <div class="term"><b>Technology</b>The tools that make the change possible</div>
+          </div>
+          <p><b>Key technologies named in the slides:</b> mobile, cloud, IoT, AI and machine learning, digital twins, augmented reality, robotics and additive manufacturing (3D printing).</p>
+          <p class="callout"><b>Remember:</b> technology is only one of the three pillars. A project that buys technology without changing strategy and customer experience is not transformation.</p>
+        </section>
+
+        <section>
+          <h2>Why study research?</h2>
+          <p><b>Research</b> is an organised, systematic way of finding answers to questions. "Systematic" is the key word: you follow a clear method, so someone else could check or repeat your work.</p>
+          <ul>
+            <li><b>Knowledge economy:</b> in modern economies, growth comes from knowledge and ideas, not only from oil, land or factories.</li>
+            <li><b>Impact:</b> the slides link research and development (R&amp;D) to growth and profitability. Countries and companies invest heavily in it.</li>
+            <li><b>UAE context:</b> the UAE is moving from a resource-based economy to a knowledge-based one, so research skills are in demand.</li>
+          </ul>
+          <p class="callout"><b>In plain words:</b> research is how you stop guessing. Instead of "I think users want this", you can say "we interviewed 20 users and 14 of them said this".</p>
+        </section>
+
+        <section>
+          <h2>What about innovation?</h2>
+          <p><b>Innovation</b> is applying creative ideas to introduce new products, services and operations that improve quality of life. The slides give three reasons to innovate: <b>economic growth</b>, <b>competitiveness</b> and <b>new jobs</b>.</p>
+          <p>The slides also cover the <b>UAE National Innovation Strategy</b> and its 7 priority sectors. <span class="note">(From general knowledge, check against the slide: renewable energy, transport, health, education, technology, water and space.)</span></p>
+          <h3>Success stories from the slides, and what they teach</h3>
+          <div class="terms">
+            <div class="term"><b>Uber</b>Phones, GPS and online payment already existed. The new part was the business model: matching riders and private drivers in real time.</div>
+            <div class="term"><b>Airbnb</b>No new science. A platform turned spare rooms into hotel capacity, built on trust through reviews.</div>
+            <div class="term"><b>Instacart</b>Grocery delivery by combining existing shops, shoppers and an app.</div>
+            <div class="term"><b>Myo armband</b>The one example closer to new technology: a band that reads muscle signals to control devices.</div>
+          </div>
+          <p class="callout"><b>The lesson:</b> innovation does not always need new research. Most of these combined existing technology in a new way. But innovation always needs <b>implementation</b> and <b>value</b>.</p>
+        </section>
+
+        <section>
+          <h2>Research vs innovation</h2>
+          <div class="terms">
+            <div class="term"><b>Research</b>Asks: how can a systematic approach find answers and push the boundaries of knowledge? Output: new knowledge.</div>
+            <div class="term"><b>Innovation</b>Asks: how can findings become creative ideas and new products, services and operations? Output: solutions people use.</div>
+          </div>
+          <h3>How they relate (3 points to memorise)</h3>
+          <div class="stage" style="--c:var(--st1)"><span class="stage-tag"><i>1</i>Research drives innovation</span><p>Discoveries become the base for new solutions. Slide example: solar energy research leads to more efficient solar panels.</p></div>
+          <div class="stage" style="--c:var(--st2)"><span class="stage-tag"><i>2</i>Innovation enhances research</span><p>New tools speed up research. Slide example: faster computing accelerated genomics and particle physics.</p></div>
+          <div class="stage" style="--c:var(--st3)"><span class="stage-tag"><i>3</i>Continuous feedback loop</span><p>Research finds a gap, innovation fills it, and using the solution raises new questions for research.</p></div>
+          <p><b>Healthcare example from the slides:</b> research identifies gene mutations linked to cancer → innovation creates gene therapies and precision medicine → clinical data on how well they work feeds back into new research.</p>
+          <h3>Role in digital transformation</h3>
+          <p>The slides list five roles: research <b>fuels</b> DT with insights, innovation <b>drives</b> progress with new technologies, collaboration <b>accelerates</b> change, <b>agility</b> is essential, and the benefits reach <b>all sectors</b>. Sector examples: BioTech, smart factories, FinTech, EdTech and autonomous vehicles.</p>
+        </section>
+
+        <section>
+          <h2>Innovation vs similar words</h2>
+          <p class="note">This section is general knowledge added to help, not from the slides.</p>
+          <div class="terms">
+            <div class="term"><b>Creativity</b>Having new ideas. Stops on the whiteboard.</div>
+            <div class="term"><b>Invention</b>Making something technically new. May never be used.</div>
+            <div class="term"><b>Improvement</b>Making an existing thing better.</div>
+            <div class="term"><b>Innovation</b>A new idea that is implemented, adopted and creates value.</div>
+          </div>
+          <p class="callout"><b>Formula:</b> innovation = idea + implementation + value.</p>
+        </section>
+
+        <section>
+          <h2>See it in a real project</h2>
+          <p class="note">My example, not from the slides: how research and innovation work together in a transport app.</p>
+          <div class="story">
+            <div class="story-step" style="--c:var(--st1)"><span class="stage-tag"><i>1</i>Research</span><p>Interviews and app data show that riders give up on the bus when they cannot tell how crowded it will be.</p><p class="logic">New knowledge: crowding uncertainty is the real problem, not the timetable.</p></div>
+            <div class="story-step" style="--c:var(--st2)"><span class="stage-tag"><i>2</i>Innovation</span><p>The team designs live occupancy levels in the journey planner, using data the vehicles already collect.</p></div>
+            <div class="story-step" style="--c:var(--st3)"><span class="stage-tag"><i>3</i>Feedback loop</span><p>After launch, usage data shows people change their departure time. That raises a new research question: can we predict crowding 30 minutes ahead?</p><p class="logic">↺ The loop starts again.</p></div>
+          </div>
+        </section>
+
+        <section>
+          <h2>The course at a glance</h2>
+          <div class="terms">
+            <div class="term"><b>Week 1 · Sessions 1–2</b>Research methods and ethics, research questions, qualitative and quantitative methods, study design, data analysis</div>
+            <div class="term"><b>Week 2 · Sessions 3–4</b>Mixed methods, ethics cases, design thinking as an innovation framework, empathy and user research, empathy interviews</div>
+            <div class="term"><b>Week 3 · Sessions 5–6</b>Problem framing, personas, ideation and creativity, prototyping and testing</div>
+            <div class="term"><b>Weeks 4–5 · Sessions 7–8</b>Scaling design thinking, design sprint, consultancy report presentations</div>
+          </div>
+          <p><b>Assessments:</b> workshop assignments 20% (ongoing) · literature review 30% (Session 3) · design challenge and consultancy report 50% (Session 8, group).</p>
+        </section>
+
+        <section>
+          <h2>Common mistakes</h2>
+          <ul>
+            <li>Thinking innovation always needs new science. Uber and Airbnb used existing technology.</li>
+            <li>Calling a good idea an innovation before anyone uses it. Without implementation it is only creativity.</li>
+            <li>Treating research and innovation as separate stages that happen once. They feed each other in a loop.</li>
+            <li>Reducing digital transformation to technology. Customer experience and strategy are the other two pillars.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Questions you should be able to answer</h2>
+          <ol>
+            <li>Define research and innovation in one sentence each. What does each one produce?</li>
+            <li>Give the three ways research and innovation relate, with an example for each.</li>
+            <li>Why do the slides use Uber and Airbnb as innovation examples if they needed no new research?</li>
+            <li>Name the three pillars of digital transformation.</li>
+            <li>Which part of this course answers "how do we turn findings into new services"?</li>
+          </ol>
+          <p class="note">Source: MDT 904 Session 1 slides, UOW Dubai. Extra notes marked as general knowledge or my example.</p>
+        </section>
+      </article>
+      <article class="topic" id="topicArR1" lang="ar" dir="rtl" hidden>
+        <section>
+          <span class="eyebrow">الفكرة الأساسية</span>
+          <p class="lead">البحث العلمي ينتج المعرفة، والابتكار يحوّل المعرفة والأفكار إلى شيء يستخدمه الناس فعلًا. والتحول الرقمي يحتاج الاثنين معًا: البحث يخبرك بما هو صحيح وبما يحتاجه المستخدمون، والابتكار يحوّل ذلك إلى خدمات وطرق عمل جديدة.</p>
+          <p>المادة كلها تجيب عن سؤالين. جزء البحث يسأل: كيف نجد الإجابات بطريقة منهجية؟ وجزء الابتكار يسأل: كيف نحوّل النتائج إلى منتجات وخدمات وعمليات جديدة؟ والتفكير التصميمي (Design Thinking) هو المنهج المستخدم للإجابة عن السؤال الثاني.</p>
+        </section>
+
+        <section>
+          <h2>ما هو التحول الرقمي؟</h2>
+          <p>تصف الشرائح التحول الرقمي بأنه استخدام التقنية الرقمية لتغيير طريقة عمل المؤسسة وطريقة تقديمها للقيمة، وليس مجرد نقل الإجراءات القديمة إلى الإنترنت. ويقوم على <b>ثلاث ركائز</b>:</p>
+          <div class="terms">
+            <div class="term"><b>تجربة العميل</b>كيف يجد الناس الخدمة ويستخدمونها وماذا يشعرون تجاهها</div>
+            <div class="term"><b>الاستراتيجية</b>لماذا نتغير وإلى أين نريد أن نصل</div>
+            <div class="term"><b>التقنية</b>الأدوات التي تجعل التغيير ممكنًا</div>
+          </div>
+          <p><b>التقنيات الرئيسية في الشرائح:</b> الجوال، والحوسبة السحابية، وإنترنت الأشياء، والذكاء الاصطناعي وتعلم الآلة، والتوائم الرقمية، والواقع المعزز، والروبوتات، والتصنيع بالإضافة (الطباعة ثلاثية الأبعاد).</p>
+          <p class="callout"><b>تذكّر:</b> التقنية ركيزة واحدة فقط من ثلاث. المشروع الذي يشتري تقنية دون أن يغيّر الاستراتيجية وتجربة العميل ليس تحولًا رقميًا.</p>
+        </section>
+
+        <section>
+          <h2>لماذا ندرس البحث العلمي؟</h2>
+          <p><b>البحث العلمي</b> طريقة منظمة ومنهجية لإيجاد إجابات عن الأسئلة. وكلمة "منهجية" هي الأهم: تتبع طريقة واضحة بحيث يستطيع شخص آخر مراجعة عملك أو تكراره.</p>
+          <ul>
+            <li><b>اقتصاد المعرفة:</b> في الاقتصادات الحديثة يأتي النمو من المعرفة والأفكار، وليس فقط من النفط أو الأرض أو المصانع.</li>
+            <li><b>الأثر:</b> تربط الشرائح البحث والتطوير (R&amp;D) بالنمو والربحية، لذلك تستثمر الدول والشركات فيه بقوة.</li>
+            <li><b>سياق الإمارات:</b> تنتقل الإمارات من اقتصاد قائم على الموارد إلى اقتصاد قائم على المعرفة، لذا مهارات البحث مطلوبة.</li>
+          </ul>
+          <p class="callout"><b>ببساطة:</b> البحث هو الطريقة التي تتوقف بها عن التخمين. بدلًا من "أظن أن المستخدمين يريدون هذا"، تقول "قابلنا 20 مستخدمًا وقال 14 منهم هذا".</p>
+        </section>
+
+        <section>
+          <h2>وماذا عن الابتكار؟</h2>
+          <p><b>الابتكار</b> هو تطبيق الأفكار الإبداعية لتقديم منتجات وخدمات وعمليات جديدة تحسّن جودة الحياة. وتذكر الشرائح ثلاثة أسباب للابتكار: <b>النمو الاقتصادي</b>، و<b>القدرة التنافسية</b>، و<b>خلق وظائف جديدة</b>.</p>
+          <p>وتتناول الشرائح أيضًا <b>الاستراتيجية الوطنية للابتكار في الإمارات</b> وقطاعاتها السبعة ذات الأولوية. <span class="note">(من المعرفة العامة، راجعها مع الشريحة: الطاقة المتجددة، والنقل، والصحة، والتعليم، والتكنولوجيا، والمياه، والفضاء.)</span></p>
+          <h3>قصص النجاح في الشرائح، وماذا نتعلم منها</h3>
+          <div class="terms">
+            <div class="term"><b>أوبر</b>الهواتف ونظام تحديد المواقع والدفع الإلكتروني كانت موجودة. الجديد هو نموذج العمل: ربط الركاب بالسائقين في الوقت الحقيقي.</div>
+            <div class="term"><b>إير بي إن بي</b>لا علم جديد. منصة حوّلت الغرف الفارغة إلى طاقة فندقية، مبنية على الثقة عبر التقييمات.</div>
+            <div class="term"><b>إنستاكارت</b>توصيل البقالة بالجمع بين متاجر موجودة ومتسوقين وتطبيق.</div>
+            <div class="term"><b>سوار Myo</b>المثال الأقرب إلى تقنية جديدة: سوار يقرأ إشارات العضلات للتحكم في الأجهزة.</div>
+          </div>
+          <p class="callout"><b>الدرس:</b> الابتكار لا يحتاج دائمًا إلى بحث علمي جديد، فمعظم هذه الأمثلة جمعت تقنيات موجودة بطريقة جديدة. لكن الابتكار يحتاج دائمًا إلى <b>تطبيق</b> و<b>قيمة</b>.</p>
+        </section>
+
+        <section>
+          <h2>البحث مقابل الابتكار</h2>
+          <div class="terms">
+            <div class="term"><b>البحث</b>يسأل: كيف يمكن لمنهج منظم أن يجد الإجابات ويوسّع حدود المعرفة؟ ناتجه: معرفة جديدة.</div>
+            <div class="term"><b>الابتكار</b>يسأل: كيف تتحول النتائج إلى أفكار إبداعية ومنتجات وخدمات وعمليات جديدة؟ ناتجه: حلول يستخدمها الناس.</div>
+          </div>
+          <h3>كيف يرتبطان (ثلاث نقاط للحفظ)</h3>
+          <div class="stage" style="--c:var(--st1)"><span class="stage-tag"><i>1</i>البحث يقود الابتكار</span><p>الاكتشافات تصبح أساسًا لحلول جديدة. مثال الشرائح: أبحاث الطاقة الشمسية أدت إلى ألواح شمسية أكثر كفاءة.</p></div>
+          <div class="stage" style="--c:var(--st2)"><span class="stage-tag"><i>2</i>الابتكار يعزز البحث</span><p>الأدوات الجديدة تسرّع البحث. مثال الشرائح: الحوسبة الأسرع سرّعت أبحاث الجينوم وفيزياء الجسيمات.</p></div>
+          <div class="stage" style="--c:var(--st3)"><span class="stage-tag"><i>3</i>حلقة تغذية راجعة مستمرة</span><p>البحث يكتشف فجوة، والابتكار يسدّها، واستخدام الحل يثير أسئلة جديدة للبحث.</p></div>
+          <p><b>مثال الرعاية الصحية في الشرائح:</b> البحث يحدد طفرات جينية مرتبطة بالسرطان ← الابتكار يصنع العلاج الجيني والطب الدقيق ← البيانات السريرية عن فعاليتها تعود لتغذي أبحاثًا جديدة.</p>
+          <h3>دورهما في التحول الرقمي</h3>
+          <p>تذكر الشرائح خمسة أدوار: البحث <b>يغذّي</b> التحول بالرؤى، والابتكار <b>يقود</b> التقدم بالتقنيات الجديدة، والتعاون <b>يسرّع</b> التغيير، و<b>المرونة</b> ضرورية، والفوائد تصل إلى <b>كل القطاعات</b>. أمثلة القطاعات: التقنية الحيوية، والمصانع الذكية، والتقنية المالية، وتقنية التعليم، والمركبات ذاتية القيادة.</p>
+        </section>
+
+        <section>
+          <h2>الابتكار مقابل كلمات قريبة منه</h2>
+          <p class="note">هذا القسم معرفة عامة أضفتها للمساعدة، وليس من الشرائح.</p>
+          <div class="terms">
+            <div class="term"><b>الإبداع</b>توليد أفكار جديدة. يتوقف عند السبورة.</div>
+            <div class="term"><b>الاختراع</b>صنع شيء جديد تقنيًا. قد لا يُستخدم أبدًا.</div>
+            <div class="term"><b>التحسين</b>جعل شيء موجود أفضل.</div>
+            <div class="term"><b>الابتكار</b>فكرة جديدة تُطبَّق وتُستخدم وتخلق قيمة.</div>
+          </div>
+          <p class="callout"><b>المعادلة:</b> الابتكار = فكرة + تطبيق + قيمة.</p>
+        </section>
+
+        <section>
+          <h2>شاهد ذلك في مشروع حقيقي</h2>
+          <p class="note">مثال مني وليس من الشرائح: كيف يعمل البحث والابتكار معًا في تطبيق نقل.</p>
+          <div class="story">
+            <div class="story-step" style="--c:var(--st1)"><span class="stage-tag"><i>1</i>البحث</span><p>المقابلات وبيانات التطبيق تُظهر أن الركاب يتركون الحافلة عندما لا يعرفون مدى ازدحامها.</p><p class="logic">معرفة جديدة: المشكلة الحقيقية هي عدم معرفة الازدحام، وليست الجدول.</p></div>
+            <div class="story-step" style="--c:var(--st2)"><span class="stage-tag"><i>2</i>الابتكار</span><p>يصمم الفريق مستوى الازدحام المباشر داخل مخطط الرحلات، باستخدام بيانات تجمعها المركبات أصلًا.</p></div>
+            <div class="story-step" style="--c:var(--st3)"><span class="stage-tag"><i>3</i>حلقة التغذية الراجعة</span><p>بعد الإطلاق تُظهر بيانات الاستخدام أن الناس يغيّرون موعد خروجهم. وهذا يثير سؤالًا بحثيًا جديدًا: هل يمكن التنبؤ بالازدحام قبل 30 دقيقة؟</p><p class="logic">↺ الحلقة تبدأ من جديد.</p></div>
+          </div>
+        </section>
+
+        <section>
+          <h2>نظرة سريعة على المادة</h2>
+          <div class="terms">
+            <div class="term"><b>الأسبوع 1 · المحاضرتان 1–2</b>مناهج البحث وأخلاقياته، وأسئلة البحث، والمناهج النوعية والكمية، وتصميم الدراسة، وتحليل البيانات</div>
+            <div class="term"><b>الأسبوع 2 · المحاضرتان 3–4</b>المناهج المختلطة، وحالات أخلاقية، والتفكير التصميمي كإطار للابتكار، والتعاطف وبحث المستخدم، ومقابلات التعاطف</div>
+            <div class="term"><b>الأسبوع 3 · المحاضرتان 5–6</b>تحديد المشكلة وصياغتها، والشخصيات الافتراضية، وتوليد الأفكار والإبداع، والنماذج الأولية والاختبار</div>
+            <div class="term"><b>الأسبوعان 4–5 · المحاضرتان 7–8</b>توسيع التفكير التصميمي، وسباق التصميم، وعروض تقرير الاستشارات</div>
+          </div>
+          <p><b>التقييمات:</b> مهام ورش العمل 20% (مستمرة) · مراجعة الأدبيات 30% (المحاضرة 3) · تحدي التصميم وتقرير الاستشارات 50% (المحاضرة 8، جماعي).</p>
+        </section>
+
+        <section>
+          <h2>أخطاء شائعة</h2>
+          <ul>
+            <li>الاعتقاد بأن الابتكار يحتاج دائمًا إلى علم جديد. أوبر وإير بي إن بي استخدمتا تقنيات موجودة.</li>
+            <li>تسمية الفكرة الجيدة ابتكارًا قبل أن يستخدمها أحد. بدون تطبيق هي مجرد إبداع.</li>
+            <li>التعامل مع البحث والابتكار كمرحلتين منفصلتين تحدثان مرة واحدة. كل منهما يغذّي الآخر في حلقة.</li>
+            <li>اختزال التحول الرقمي في التقنية. تجربة العميل والاستراتيجية هما الركيزتان الأخريان.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>أسئلة يجب أن تستطيع الإجابة عنها</h2>
+          <ol>
+            <li>عرّف البحث والابتكار في جملة واحدة لكل منهما. ماذا ينتج كل منهما؟</li>
+            <li>اذكر الطرق الثلاث التي يرتبط بها البحث والابتكار، مع مثال لكل منها.</li>
+            <li>لماذا تستخدم الشرائح أوبر وإير بي إن بي كأمثلة على الابتكار رغم أنهما لم تحتاجا إلى بحث جديد؟</li>
+            <li>اذكر الركائز الثلاث للتحول الرقمي.</li>
+            <li>أي جزء من المادة يجيب عن سؤال "كيف نحوّل النتائج إلى خدمات جديدة"؟</li>
+          </ol>
+          <p class="note">المصدر: شرائح المحاضرة الأولى لمادة MDT 904، جامعة ولونغونغ في دبي. الملاحظات الإضافية موضّح أنها معرفة عامة أو أمثلة مني.</p>
+        </section>
+      </article>
+      </div>
     </section>
 
     <!-- INFOGRAPHIC -->
     <section id="panel-info" role="tabpanel" aria-labelledby="tab-info" hidden>
+      <div class="sv" data-s="s2">
       <div class="ig-tools">
         <div class="seg" role="group" aria-label="Infographic size">
           <button type="button" id="igFit" aria-pressed="true">Fit to screen</button>
@@ -966,10 +1220,70 @@ button{font:inherit;color:inherit}
 
 </div>
       </div></div>
+      </div>
+      <div class="sv" data-s="r1" hidden>
+        <div class="route r3" aria-label="From research to digital transformation">
+          <div class="stop" style="--c:var(--st1)"><span class="dot">R</span><h3>Research</h3><p>A systematic way to find answers. Produces knowledge.</p></div>
+          <div class="stop" style="--c:var(--st2)"><span class="dot">I</span><h3>Innovation</h3><p>Applies ideas and findings. Produces solutions people use.</p></div>
+          <div class="stop" style="--c:var(--st3)"><span class="dot">DT</span><h3>Digital transformation</h3><p>Changes how the organisation works and creates value.</p></div>
+        </div>
+        <p class="loop-note">↺ Use of the solution raises new research questions</p>
+
+        <div class="ig-sec" style="--c:var(--st3)">
+          <div class="ig-head"><span class="n">01</span><div><h2>What is digital transformation?</h2><p>Three pillars, many technologies.</p></div></div>
+          <div class="grid">
+            <div class="card"><h3>Three pillars</h3><div class="pills"><span class="core">Customer experience</span><span class="core">Strategy</span><span class="core">Technology</span></div><p class="note">Technology alone is not transformation.</p></div>
+            <div class="card"><h3>Key technologies</h3><div class="pills"><span>Mobile</span><span>Cloud</span><span>IoT</span><span>AI / ML</span><span>Digital twin</span><span>AR</span><span>Robotics</span><span>3D printing</span></div></div>
+          </div>
+        </div>
+
+        <div class="ig-sec" style="--c:var(--st1)">
+          <div class="ig-head"><span class="n">02</span><div><h2>Research vs innovation</h2><p>Different outputs, one loop.</p></div></div>
+          <div class="grid">
+            <div class="card"><h3>Side by side</h3>
+              <div class="q2"><div><b>Research</b>Finds answers systematically. Output: knowledge.</div><div><b>Innovation</b>Applies ideas. Output: products, services, operations.</div><div><b>Asks</b>"What is true?"</div><div><b>Asks</b>"What can we build with it?"</div></div></div>
+            <div class="card"><h3>How they relate</h3><ol class="ol"><li><b>Research drives innovation</b> · solar research → better panels</li><li><b>Innovation enhances research</b> · faster computing → genomics</li><li><b>Feedback loop</b> · solutions raise new questions</li></ol></div>
+            <div class="card"><h3>Healthcare example</h3><div class="flow"><span>Gene mutations found</span><em>→</em><span>Gene therapy, precision medicine</span><em>→</em><span>Clinical data</span><em>↺</em></div></div>
+          </div>
+        </div>
+
+        <div class="ig-sec" style="--c:var(--st2)">
+          <div class="ig-head"><span class="n">03</span><div><h2>Why innovate?</h2><p>Growth, competitiveness, jobs.</p></div></div>
+          <div class="grid">
+            <div class="card"><h3>Innovation formula</h3><div class="flow"><span>Idea</span><em>+</em><span>Implementation</span><em>+</em><span>Value</span></div><p class="note">An idea nobody uses is creativity, not innovation.</p></div>
+            <div class="card"><h3>Success stories</h3>
+              <div class="q2"><div><b>Uber</b>New business model, existing tech</div><div><b>Airbnb</b>Platform + trust, no new science</div><div><b>Instacart</b>Shops + shoppers + app</div><div><b>Myo</b>Closest to new technology</div></div></div>
+            <div class="card"><h3>UAE context</h3><p>Moving to a knowledge-based economy, with a National Innovation Strategy covering 7 priority sectors.</p></div>
+          </div>
+        </div>
+
+        <div class="ig-sec" style="--c:var(--st4)">
+          <div class="ig-head"><span class="n">04</span><div><h2>Role in digital transformation</h2><p>Five roles from the slides.</p></div></div>
+          <div class="grid">
+            <div class="card"><h3>Five roles</h3><div class="pills"><span>Research fuels insights</span><span>Innovation drives progress</span><span>Collaboration accelerates</span><span>Agility is essential</span><span>Benefits reach all sectors</span></div></div>
+            <div class="card"><h3>Sector examples</h3><div class="pills"><span>BioTech</span><span>Smart factories</span><span>FinTech</span><span>EdTech</span><span>Autonomous vehicles</span></div></div>
+          </div>
+        </div>
+
+        <div class="ig-sec" style="--c:var(--accent)">
+          <div class="ig-head"><span class="n">→</span><div><h2>The course route</h2><p>Research part first, then design thinking.</p></div></div>
+          <div class="roadmap">
+            <div style="--c:var(--st1)"><b>Week 1</b><span>Research methods, ethics, questions, qualitative &amp; quantitative</span></div>
+            <div style="--c:var(--st2)"><b>Week 2</b><span>Mixed methods, design thinking, empathy &amp; interviews</span></div>
+            <div style="--c:var(--st3)"><b>Week 3</b><span>Problem framing, personas, ideation, prototyping &amp; testing</span></div>
+            <div style="--c:var(--st4)"><b>Weeks 4–5</b><span>Scaling, design sprint, consultancy presentations</span></div>
+          </div>
+          <div class="card"><h3>Assessments</h3>
+            <div class="abar" role="img" aria-label="Workshops 20 percent, literature review 30 percent, consultancy report 50 percent"><i style="flex:20;--c:var(--st1)">20%</i><i style="flex:30;--c:var(--st2)">30%</i><i style="flex:50;--c:var(--st3)">50%</i></div>
+            <div class="report"><div><b>Workshops</b><span>20% · ongoing</span></div><div><b>Literature review</b><span>30% · Session 3</span></div><div><b>Design challenge &amp; consultancy report</b><span>50% · Session 8 · group</span></div></div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ASSIGNMENT -->
     <section id="panel-assign" role="tabpanel" aria-labelledby="tab-assign" hidden>
+      <div class="sv" data-s="s2">
       <div class="a-brief">
         <div class="a-facts">
           <div><span class="eyebrow">Task</span><b>Assessment 2 · Review Article</b></div>
@@ -1174,6 +1488,15 @@ button{font:inherit;color:inherit}
           <li>Add the GenAI acknowledgement statement required by the course.</li>
         </ul>
       </div>
+      </div>
+      <div class="sv" data-s="r1" hidden>
+        <div class="a-soon">
+          <span class="eyebrow">Next assessment</span>
+          <h2>Literature review · 30% · due Session 3</h2>
+          <p>The model answer for this assessment will be added here once the brief is shared, with the same English and Arabic versions and a Word download.</p>
+          <p class="note">Coming soon</p>
+        </div>
+      </div>
     </section>
 
     <!-- QUIZ -->
@@ -1199,7 +1522,7 @@ button{font:inherit;color:inherit}
 const STAGES={0:{n:"Foundations",c:"var(--accent)"},1:{n:"Plan & analyse",c:"var(--st1)"},2:{n:"Formulate",c:"var(--st2)"},3:{n:"Execute",c:"var(--st3)"},4:{n:"Evaluate & control",c:"var(--st4)"}};
 
 const SESSIONS=[{
-  id:"s2", num:"02", title:"Intro to Strategic Management",
+  id:"s2", num:"02", courseKey:"901", title:"Intro to Strategic Management",
   course:"MDT 901 · Session 2", sub:"One route, four stations: analyse, formulate, execute, evaluate.",
   quiz:[
     {s:0,q:"What makes an objective different from a goal?",o:["An objective is long term; a goal is short term","An objective is precise and measurable, with a deadline","A goal is set by managers; an objective by the board","There is no difference"],a:1,e:"A goal is a general statement of aim. An objective adds a number and a deadline, so you can measure it."},
@@ -1221,28 +1544,66 @@ const SESSIONS=[{
     {s:4,q:"Which control is a broad, general watch for anything changing around the organisation?",o:["Premise control","Implementation control","Strategic surveillance","Special alert control"],a:2,e:"Strategic surveillance is unfocused and broad. Premise control checks specific assumptions."},
     {s:4,q:"Which set lists the four Balanced Scorecard perspectives?",o:["Financial, customer, internal process, learning & growth","Strengths, weaknesses, opportunities, threats","Financial, marketing, HR, operations","Vision, mission, goals, targets"],a:0,e:"The Balanced Scorecard balances financial and non-financial results across these four perspectives."}
   ]
-}];
+},{
+  id:"r1", num:"01", courseKey:"904", title:"Research, Innovation & Digital Transformation",
+  course:"MDT 904 · Session 1", sub:"Research finds answers, innovation puts them to use, and DT needs both.",
+  stages:{0:{n:"Digital transformation",c:"var(--st3)"},1:{n:"Research",c:"var(--st1)"},2:{n:"Innovation",c:"var(--st2)"},3:{n:"Research + innovation",c:"var(--st4)"},4:{n:"The course",c:"var(--accent)"}},
+  quiz:[
+    {s:0,q:"Which set lists the three pillars of digital transformation in the slides?",o:["Cloud, mobile and AI","Customer experience, strategy and technology","People, process and profit","Research, innovation and agility"],a:1,e:"The slides name customer experience, strategy and technology. Technology is only one of the three."},
+    {s:0,q:"A ministry buys a new IT system but keeps the same services and the same goals. Is this digital transformation?",o:["Yes, because new technology was bought","No, because strategy and customer experience did not change","Yes, if the system uses AI","No, because ministries cannot transform"],a:1,e:"Transformation changes how value is created. Technology without changes to strategy and customer experience is just an IT upgrade."},
+    {s:1,q:"How do the slides define research?",o:["Any search on the internet","An organised, systematic way of finding answers to questions","Writing a long report","Testing a prototype with users"],a:1,e:"Research is organised and systematic. That is what lets others check or repeat it."},
+    {s:1,q:"Why does the UAE invest in research, according to the slides?",o:["To replace all industries with universities","To move from a resource-based to a knowledge-based economy","Because oil prices are fixed","Only to rank higher in league tables"],a:1,e:"The slides frame research as the cornerstone of the knowledge economy and the UAE's shift towards it."},
+    {s:2,q:"Which definition of innovation matches the slides?",o:["Having a creative idea","Applying creative ideas to introduce new products, services and operations that improve quality of life","Inventing a patented device","Any change in an organisation"],a:1,e:"Innovation is about applying ideas so that people actually benefit."},
+    {s:2,q:"Which three reasons to innovate do the slides give?",o:["Growth, competitiveness and jobs","Fame, awards and patents","Cost cutting, layoffs and outsourcing","Research, ethics and publication"],a:0,e:"Economic growth, competitiveness and new jobs."},
+    {s:2,q:"Uber and Airbnb needed almost no new scientific research. Why are they still innovations?",o:["Because they are large companies","Because they combined existing technology into a new business model that people adopted","Because they hold many patents","They are not innovations"],a:1,e:"Innovation needs implementation and value, not necessarily new science."},
+    {s:2,q:"A team brainstorms 40 ideas, but none is ever built. What is this?",o:["Innovation","Creativity","Implementation","Digital transformation"],a:1,e:"Ideas without implementation are creativity. Innovation = idea + implementation + value."},
+    {s:3,q:"\"Solar energy research led to more efficient solar panels.\" Which relationship is this?",o:["Research drives innovation","Innovation enhances research","Feedback loop","Collaboration accelerates change"],a:0,e:"A research discovery became the base for a new solution."},
+    {s:3,q:"\"Faster computing accelerated genomics research.\" Which relationship is this?",o:["Research drives innovation","Innovation enhances research","Agility is essential","None of these"],a:1,e:"A new tool (innovation) made research faster."},
+    {s:3,q:"In the healthcare example, what closes the feedback loop?",o:["Identifying gene mutations","Building gene therapies","Clinical data on how well treatments work, feeding new research","Publishing a press release"],a:2,e:"Results from using the innovation create new questions for research, so the loop continues."},
+    {s:3,q:"Which is the best summary of research vs innovation?",o:["They are the same thing","Research produces knowledge; innovation applies it to create practical solutions","Innovation always comes before research","Research is only for universities, innovation only for companies"],a:1,e:"This is the slides' own conclusion: research gives the foundation, innovation applies it."},
+    {s:4,q:"Which part of this course answers \"how do we turn findings into new products and services\"?",o:["Quantitative data analysis","Research ethics","Design thinking (the innovation part)","The literature review"],a:2,e:"The research part finds answers; the design thinking part turns them into innovations."},
+    {s:4,q:"When is the literature review (30%) due?",o:["Session 1","Session 3","Session 6","Session 8"],a:1,e:"Literature review is due Session 3. The group design challenge and consultancy report (50%) is Session 8."}
+  ]
+}
+];
 
+const COURSES=[
+  {key:"901",code:"MDT 901",name:"Digital Transformation Strategy & Industry 4.0",note:"Next sessions are added here as their slides arrive.",soon:[]},
+  {key:"904",code:"MDT 904",name:"Research Methods & Design Thinking",note:"This course has 8 sessions. More sessions are coming soon.",soon:[
+    {n:"Session 2",t:"Research questions, qualitative & quantitative methods",d:"Designing a research study and quantitative data analysis"},
+    {n:"Sessions 3–4",t:"Mixed methods, ethics & design thinking",d:"Design thinking as an innovation framework, empathy and user research, empathy interviews"},
+    {n:"Sessions 5–6",t:"Define, ideate, prototype & test",d:"Problem framing, personas, ideation and creativity, prototyping and testing"},
+    {n:"Session 7",t:"Scaling design thinking",d:"Implementing at scale and running a design sprint"},
+    {n:"Session 8",t:"Consultancy report presentations",d:"Group design challenge presentations"}
+  ]}
+];
 const $=s=>document.querySelector(s);
+const SG=()=> (cur&&cur.stages)||STAGES;
 const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
 let cur=null, answers={}, filter="all";
 
 /* ---- home ---- */
 function renderHome(){
-  const list=$("#sessionList"); list.innerHTML="";
-  SESSIONS.forEach(s=>{
-    const b=document.createElement("button");
-    b.className="s-card"; b.type="button";
-    b.innerHTML=`<span class="s-num">${s.num}</span><span class="eyebrow">${s.course}</span><h2>${s.title}</h2><p class="muted">${s.sub}</p>
-      <div class="mini-route" aria-hidden="true"><i style="background:var(--st1)"></i><b></b><i style="background:var(--st2)"></i><b></b><i style="background:var(--st3)"></i><b></b><i style="background:var(--st4)"></i></div>
-      <div class="s-meta"><span class="chip">Topic EN · AR</span><span class="chip">Infographic</span><span class="chip">${s.quiz.length} questions</span><span class="chip">Assignment</span></div>`;
-    b.onclick=()=>openSession(s.id,"topic");
-    list.appendChild(b);
+  const box=$("#courseList"); box.innerHTML="";
+  COURSES.forEach(c=>{
+    const sec=document.createElement("section"); sec.className="course";
+    sec.innerHTML=`<div class="course-head"><span class="code">${c.code}</span><h2>${c.name}</h2></div>
+      <p class="soon-note"><b>Coming soon</b><span>${c.note}</span></p>`;
+    const grid=document.createElement("div"); grid.className="sessions";
+    SESSIONS.filter(x=>x.courseKey===c.key).forEach(x=>{
+      const b=document.createElement("button"); b.className="s-card"; b.type="button";
+      b.innerHTML=`<span class="s-num">${x.num}</span><span class="eyebrow">${x.course}</span><h2>${x.title}</h2><p class="muted">${x.sub}</p>
+        <div class="mini-route" aria-hidden="true"><i style="background:var(--st1)"></i><b></b><i style="background:var(--st2)"></i><b></b><i style="background:var(--st3)"></i><b></b><i style="background:var(--st4)"></i></div>
+        <div class="s-meta"><span class="chip">Topic EN · AR</span><span class="chip">Infographic</span><span class="chip">${x.quiz.length} questions</span><span class="chip">Assignment</span></div>`;
+      b.onclick=()=>openSession(x.id,"topic"); grid.appendChild(b);
+    });
+    c.soon.forEach(n=>{
+      const d=document.createElement("div"); d.className="s-card soon";
+      d.innerHTML=`<span class="soon-tag">Coming soon</span><span class="eyebrow">${c.code} · ${n.n}</span><h2>${n.t}</h2><p>${n.d}</p>`;
+      grid.appendChild(d);
+    });
+    sec.appendChild(grid); box.appendChild(sec);
   });
-  const e=document.createElement("div");
-  e.className="s-card empty";
-  e.innerHTML=`<span class="eyebrow">Next session</span><p>Share the next session's slides or NotebookLM source and it gets added here with the same three tabs.</p>`;
-  list.appendChild(e);
 }
 
 /* ---- session ---- */
@@ -1251,6 +1612,8 @@ function openSession(id,tab){
   $("#home").hidden=true; $("#session").hidden=false;
   $("#sEyebrow").textContent=cur.course; $("#sTitle").textContent=cur.title; $("#sSub").textContent=cur.sub;
   $("#quizCount").textContent=cur.quiz.length;
+  document.querySelectorAll(".sv").forEach(v=>v.hidden=v.dataset.s!==id);
+  $("#resultBox").hidden=true;
   try{answers=JSON.parse(store.get("ans-"+id)||"{}")}catch(e){answers={}}
   renderQuiz(); setTab(tab||"topic"); window.scrollTo(0,0);
 }
@@ -1270,8 +1633,9 @@ TABS.forEach((t,i)=>{
 });
 
 /* ---- language, per section ---- */
-(function(){
-  const en=[...$("#topicEn").children], ar=[...$("#topicAr").children];
+[["topicEn","topicAr"],["topicEnR1","topicArR1"]].forEach(([eid,aid])=>{
+  const E=document.getElementById(eid), A=document.getElementById(aid); if(!E||!A) return;
+  const en=[...E.children], ar=[...A.children];
   const out=document.createElement("article"); out.className="topic"; out.lang="en"; out.dir="ltr";
   en.forEach((sec,i)=>{
     const a=ar[i]; a.lang="ar"; a.dir="rtl"; a.hidden=true;
@@ -1283,15 +1647,15 @@ TABS.forEach((t,i)=>{
     bEn.onclick=()=>set("en"); bAr.onclick=()=>set("ar");
     w.append(bar,sec,a); out.append(w);
   });
-  $("#topicEn").replaceWith(out); $("#topicAr").remove();
-})();
+  E.replaceWith(out); A.remove();
+});
 
 /* ---- quiz ---- */
 const L="ABCD";
 function renderQuiz(){
   const box=$("#qlist"); box.innerHTML="";
   cur.quiz.forEach((it,i)=>{
-    const st=STAGES[it.s]; const ans=answers[i];
+    const st=SG()[it.s]; const ans=answers[i];
     const done=ans!==undefined, ok=done&&ans===it.a;
     if(filter==="open"&&done) return;
     if(filter==="wrong"&&!(done&&!ok)) return;
@@ -1332,7 +1696,7 @@ $("#showResult").onclick=()=>{
     pct>=85?"Strong. You can explain this session; try teaching the four controls to someone.":
     pct>=60?"Good base. Use \"Wrong only\" to review the gaps, then retry.":"Re-read the Topic tab stage by stage, then retry the quiz.";
   let h=`<span class="eyebrow">Your result</span><div class="big">${r}/${t} · ${pct}%</div><p>${msg}</p><div class="bystage">`;
-  Object.keys(by).forEach(k=>{ h+=`<div style="--c:${STAGES[k].c}"><b>${by[k].r}/${by[k].t}</b>${STAGES[k].n}</div>`; });
+  Object.keys(by).forEach(k=>{ h+=`<div style="--c:${SG()[k].c}"><b>${by[k].r}/${by[k].t}</b>${SG()[k].n}</div>`; });
   h+=`</div>`;
   const rb=$("#resultBox"); rb.className="result"; rb.innerHTML=h; rb.hidden=false;
   rb.scrollIntoView({block:"start",behavior:"smooth"});
@@ -1345,7 +1709,7 @@ document.querySelectorAll(".filters button").forEach(b=>b.onclick=()=>setFilter(
 /* ---- infographic fit ---- */
 let igMode="fit";
 function fitIg(){
-  const f=$("#igFrame"), sc=$("#igScale"); if(!f||$("#panel-info").hidden) return;
+  const f=$("#igFrame"), sc=$("#igScale"); if(!f||$("#panel-info").hidden||f.closest(".sv").hidden) return;
   if(igMode==="fit"){ const k=Math.min(1,f.clientWidth/1240); sc.style.transform=`scale(${k})`; f.style.height=(sc.offsetHeight*k)+"px"; f.classList.remove("actual"); }
   else { sc.style.transform="none"; f.style.height=""; f.classList.add("actual"); }
 }
@@ -1390,7 +1754,7 @@ if(document.fonts&&document.fonts.ready) document.fonts.ready.then(fitIg);
 /* ---- boot ---- */
 renderHome();
 (function(){
-  const h=location.hash.slice(1); const m=h.match(/^(s\d+)-(topic|info|quiz|assign)$/);
+  const h=location.hash.slice(1); const m=h.match(/^([a-z]\d+)-(topic|info|quiz|assign)$/);
   if(m) openSession(m[1],m[2]);
 })();
 </script>

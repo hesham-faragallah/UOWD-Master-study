@@ -1,6 +1,9 @@
 # UOWD Master Study Hub
 
-Study site for **MDT 901 – Digital Transformation Strategy & Industry 4.0** (University of Wollongong in Dubai).
+Study site for the University of Wollongong in Dubai Master of Digital Transformation:
+
+- **MDT 901 – Digital Transformation Strategy & Industry 4.0** (Session 2)
+- **MDT 904 – Research Methods & Design Thinking** (Session 1; more sessions coming soon)
 
 Each session has four tabs:
 
