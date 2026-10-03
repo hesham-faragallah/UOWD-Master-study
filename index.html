@@ -1,0 +1,1157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="MDT 901 study hub: bilingual topic notes, infographic and self-scoring quiz for each session.">
+<style>html{color-scheme:light}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>MDT 901 Study Hub</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: a transit-style study hub. Session list → session page with three tabs (Topic · Infographic · Quiz). Four "stations" colour-code the strategy route everywhere. */
+:root{
+  --bg:#EDF1F2; --surface:#FFFFFF; --sunk:#E3E9EB; --ink:#13232A; --muted:#52646C; --line:#CBD5D9;
+  --accent:#0B6B6B; --accent-soft:#D7ECEA;
+  --st1:#0B6B6B; --st2:#A85A08; --st3:#3949A0; --st4:#8C2C58; --on-st:#FFFFFF;
+  --good:#1D7445; --good-soft:#DCF0E3; --bad:#B0281F; --bad-soft:#F8E0DD;
+  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-ar:"IBM Plex Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --r:10px; color-scheme:light;
+}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 var(--f-body);padding-inline:16px;padding-block:0 64px}
+.wrap{max-width:1040px;margin:0 auto}
+h1,h2,h3,h4{font-family:var(--f-display);line-height:1.15;text-wrap:balance;margin:0}
+p{margin:0}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+.eyebrow{font:500 12px/1.2 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.muted{color:var(--muted)}
+
+/* ---------- top bar ---------- */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:20px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font:800 18px var(--f-display)}
+.brand-dot{width:14px;height:14px;border-radius:50%;border:4px solid var(--accent);background:var(--surface)}
+
+/* ---------- home ---------- */
+.hero{padding-block:28px 24px;display:grid;gap:10px}
+.hero h1{font-size:clamp(32px,6vw,52px);font-weight:800;letter-spacing:-.02em}
+.hero p{max-width:60ch;color:var(--muted)}
+.sessions{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));margin-top:8px}
+.s-card{all:unset;box-sizing:border-box;cursor:pointer;display:grid;gap:12px;padding:20px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);transition:transform .15s,border-color .15s}
+.s-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.s-card:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.s-num{font:800 44px/1 var(--f-display);color:var(--accent)}
+.s-card h2{font-size:22px}
+.mini-route{display:flex;align-items:center;gap:0;margin-top:4px}
+.mini-route i{width:12px;height:12px;border-radius:50%;flex:none}
+.mini-route b{flex:1;height:3px;background:var(--line)}
+.s-meta{display:flex;gap:8px;flex-wrap:wrap}
+.chip{font:500 12px var(--f-mono);padding:3px 8px;border-radius:99px;background:var(--sunk);color:var(--muted)}
+.s-card.empty{cursor:default;border-style:dashed;background:transparent;align-content:center;color:var(--muted)}
+.s-card.empty:hover{transform:none;border-color:var(--line)}
+
+/* ---------- session header + tabs ---------- */
+.back{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-weight:600;color:var(--accent);padding:6px 0}
+.s-head{display:grid;gap:8px;padding-block:8px 18px}
+.s-head h1{font-size:clamp(28px,5vw,42px);font-weight:800;letter-spacing:-.015em}
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;gap:4px;border-bottom:2px solid var(--line);margin-bottom:24px;overflow-x:auto}
+.tab{all:unset;cursor:pointer;padding:12px 16px;font-weight:600;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;display:flex;gap:8px;align-items:center}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+.tab:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
+.tab .count{font:500 11px var(--f-mono);background:var(--sunk);padding:2px 6px;border-radius:99px}
+
+/* ---------- topic ---------- */
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:99px;padding:3px;background:var(--surface);margin-bottom:22px}
+.lang button{all:unset;cursor:pointer;padding:6px 16px;border-radius:99px;font-weight:600;font-size:14px;color:var(--muted)}
+.lang button[aria-pressed="true"]{background:var(--accent);color:var(--on-st)}
+.lang button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.topic{display:grid;gap:30px;max-width:760px}
+.topic section[dir="rtl"]{font-family:var(--f-ar);line-height:1.85}
+.topic section[dir="rtl"] h2,.topic section[dir="rtl"] h3{font-family:var(--f-ar);font-weight:700}
+.sw{display:grid;gap:10px}
+.sw + .sw{border-top:1px solid var(--line);padding-top:26px}
+.sw .lang{justify-self:end;margin-bottom:0}
+.sw .lang button{padding:4px 12px;font-size:13px}
+.topic-hint{font-size:14px;color:var(--muted);margin-bottom:18px}
+.topic section{display:grid;gap:12px}
+.topic h2{font-size:24px}
+.topic h3{font-size:18px}
+.topic ul,.topic ol{margin:0;padding-inline-start:22px;display:grid;gap:6px}
+.lead{font-size:19px;line-height:1.55}
+.callout{background:var(--accent-soft);padding:16px 18px;border-radius:var(--r)}
+.stage{display:grid;gap:10px;padding:18px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.stage-tag{display:inline-flex;align-items:center;gap:8px;font:600 13px var(--f-mono);color:var(--c)}
+.stage-tag i{width:22px;height:22px;border-radius:50%;background:var(--c);color:var(--on-st);font-style:normal;display:grid;place-items:center;font-size:12px}
+.terms{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}
+.term{padding:10px 12px;background:var(--surface);border:1px solid var(--line);border-radius:8px}
+.term b{display:block}
+.note{font-size:13px;color:var(--muted)}
+
+/* ---------- infographic ---------- */
+.route{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;margin-bottom:28px}
+.route::before{content:"";position:absolute;top:22px;left:12.5%;right:12.5%;height:5px;background:linear-gradient(90deg,var(--st1),var(--st2),var(--st3),var(--st4));border-radius:3px}
+.stop{display:grid;justify-items:center;text-align:center;gap:6px;padding-inline:6px;position:relative}
+.stop .dot{width:48px;height:48px;border-radius:50%;background:var(--surface);border:5px solid var(--c);display:grid;place-items:center;font:800 18px var(--f-display);color:var(--c)}
+.stop h3{font-size:16px}
+.stop p{font-size:13px;color:var(--muted)}
+.loop-note{text-align:center;font:500 12px var(--f-mono);color:var(--muted);margin-top:-14px;margin-bottom:28px}
+.ig-sec{display:grid;gap:14px;margin-bottom:34px}
+.ig-head{display:flex;gap:12px;align-items:baseline;border-top:4px solid var(--c);padding-top:12px}
+.ig-head .n{font:800 30px/1 var(--f-display);color:var(--c)}
+.ig-head h2{font-size:22px}
+.ig-head p{color:var(--muted);font-size:14px}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:10px;align-content:start;min-width:0}
+.card h3{font-size:16px}
+.card .q{font-size:13px;color:var(--muted)}
+.def{font-size:17px;line-height:1.6}
+.def mark{background:none;color:var(--accent);font-weight:600}
+
+.forces{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;font-size:12px;text-align:center}
+.forces span{padding:6px 2px;border-radius:6px;background:var(--sunk)}
+.forces .mid{background:var(--c);color:var(--on-st);font-weight:600}
+.q2{display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:12.5px}
+.q2 div{padding:8px;border-radius:6px;background:var(--sunk);min-width:0}
+.q2 b{display:block;color:var(--c);font-family:var(--f-mono)}
+.vrio{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;text-align:center}
+.vrio div{background:var(--sunk);border-radius:6px;padding:6px 2px;font-size:11px}
+.vrio b{display:block;font:800 22px var(--f-display);color:var(--c)}
+.chain{display:grid;grid-template-columns:repeat(5,1fr) 30px;gap:3px;font-size:10.5px;text-align:center}
+.chain .sup{grid-column:1/6;background:var(--sunk);padding:5px;border-radius:5px}
+.chain span{background:var(--c);color:var(--on-st);padding:6px 1px;border-radius:5px;min-width:0;overflow-wrap:anywhere}
+.chain .m{grid-row:1/3;grid-column:6;writing-mode:vertical-rl;background:var(--sunk);color:var(--muted);display:grid;place-items:center}
+.pills{display:flex;flex-wrap:wrap;gap:5px}
+.pills span{font-size:12px;padding:3px 9px;border-radius:99px;border:1px solid var(--line)}
+.pills .core{background:var(--c);color:var(--on-st);border-color:var(--c)}
+.gen{display:grid;grid-template-columns:auto 1fr 1fr;gap:4px;font-size:12px}
+.gen .ax{color:var(--muted);font:500 10.5px var(--f-mono);display:grid;place-items:center;text-align:center}
+.gen .cell{background:var(--sunk);border-radius:6px;padding:10px 6px;text-align:center;font-weight:600}
+.pyr{display:grid;gap:3px;justify-items:center;font-size:12px}
+.pyr div{background:var(--c);color:var(--on-st);padding:4px 6px;border-radius:4px;text-align:center}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px}
+.flow span{background:var(--sunk);padding:6px 10px;border-radius:6px}
+.flow em{font-style:normal;color:var(--muted)}
+.ol{margin:0;padding-inline-start:20px;display:grid;gap:3px;font-size:14px}
+.bsc{display:grid;grid-template-columns:1fr 1fr;gap:4px;position:relative;font-size:12px}
+.bsc div{background:var(--sunk);border-radius:6px;padding:10px 8px;min-width:0}
+.bsc b{display:block;color:var(--c)}
+.bsc .ctr{position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-50%);background:var(--c);color:var(--on-st);border-radius:50%;width:66px;height:66px;display:grid;place-items:center;text-align:center;font-size:10.5px;font-weight:600;padding:4px}
+.report{display:grid;gap:6px}
+.report div{display:grid;grid-template-columns:150px 1fr;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
+.report div b{font-weight:600}
+.canvas-link{display:inline-flex;gap:6px;color:var(--accent);font-weight:600}
+
+/* ---------- quiz ---------- */
+.qbar{position:sticky;top:calc(env(safe-area-inset-top,0px) + 48px);z-index:4;background:var(--bg);padding-block:10px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;border-bottom:1px solid var(--line);margin-bottom:18px}
+.meter{flex:1 1 180px;height:8px;background:var(--sunk);border-radius:99px;overflow:hidden;display:flex}
+.meter i{display:block;height:100%;transition:width .25s}
+.meter .g{background:var(--good)} .meter .b{background:var(--bad)}
+.score{font:600 15px var(--f-mono);font-variant-numeric:tabular-nums}
+.btn{cursor:pointer;border:1px solid var(--line);background:var(--surface);padding:9px 16px;border-radius:8px;font-weight:600;font-size:14px}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-st)}
+.btn:hover{border-color:var(--accent)}
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.filters button{all:unset;cursor:pointer;font-size:13px;padding:5px 12px;border-radius:99px;border:1px solid var(--line);background:var(--surface)}
+.filters button[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--bg)}
+.filters button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.qlist{display:grid;gap:14px;counter-reset:q}
+.qc{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:grid;gap:12px}
+.qc.right{border-color:var(--good)} .qc.wrong{border-color:var(--bad)}
+.qtop{display:flex;gap:10px;align-items:flex-start}
+.qn{font:600 13px var(--f-mono);color:var(--muted);padding-top:3px;min-width:28px}
+.qtext{font-weight:600;font-size:16.5px}
+.qstage{font:500 11px var(--f-mono);color:var(--c);margin-bottom:2px;text-transform:uppercase;letter-spacing:.06em}
+.opts{display:grid;gap:8px}
+.opt{all:unset;box-sizing:border-box;cursor:pointer;display:flex;gap:10px;align-items:flex-start;padding:11px 14px;border:1px solid var(--line);border-radius:8px;font-size:15px;min-height:44px}
+.opt:hover:not([disabled]){border-color:var(--accent);background:var(--accent-soft)}
+.opt:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.opt .k{font:600 13px var(--f-mono);color:var(--muted);flex:none;width:18px}
+.opt[disabled]{cursor:default}
+.opt.is-right{border-color:var(--good);background:var(--good-soft)}
+.opt.is-wrong{border-color:var(--bad);background:var(--bad-soft)}
+.opt.is-right .k,.opt.is-wrong .k{color:var(--ink)}
+.fb{font-size:14.5px;padding:10px 14px;border-radius:8px;background:var(--sunk)}
+.fb b{margin-inline-end:6px}
+.fb.r b{color:var(--good)} .fb.w b{color:var(--bad)}
+.result{background:var(--surface);border:2px solid var(--accent);border-radius:var(--r);padding:22px;display:grid;gap:12px;margin-bottom:18px}
+.result .big{font:800 46px/1 var(--f-display);color:var(--accent);font-variant-numeric:tabular-nums}
+.bystage{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.bystage div{padding:10px;border-radius:8px;background:var(--sunk);font-size:13px}
+.bystage b{display:block;font:700 18px var(--f-display);color:var(--c)}
+
+
+/* ---------- topic examples ---------- */
+.story{display:grid;gap:10px}
+.story-step{display:grid;gap:8px;padding:16px 18px;background:var(--surface);border:1px solid var(--line);border-inline-start:5px solid var(--c);border-radius:var(--r)}
+.logic{font-size:14px;color:var(--c);font-weight:600}
+.ex-grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.ex{display:grid;gap:8px;align-content:start;padding:16px;background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:var(--r);font-size:15px;min-width:0}
+.ex h3{font-size:17px}
+.tag{display:inline-block;font:600 11px var(--f-mono);letter-spacing:.04em;padding:2px 7px;border-radius:5px;margin-inline-end:4px;vertical-align:1px}
+.tag.real{background:var(--good-soft);color:var(--good)}
+.tag.ill{background:var(--sunk);color:var(--muted)}
+.topic section[dir="rtl"] .tag{font-family:var(--f-ar)}
+
+/* ---------- infographic (exact canvas) ---------- */
+.ig-tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+.ig-tools .seg{display:inline-flex;border:1px solid var(--line);border-radius:99px;padding:3px;background:var(--surface)}
+.ig-tools .seg button{all:unset;cursor:pointer;padding:6px 14px;border-radius:99px;font-weight:600;font-size:14px;color:var(--muted)}
+.ig-tools .seg button[aria-pressed="true"]{background:var(--accent);color:var(--on-st)}
+.ig-tools .seg button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.ig-frame{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:#FBFBF8}
+.ig-frame.actual{overflow-x:auto}
+.ig-scale{width:1240px;transform-origin:top left}
+
+/* ---------- assignment ---------- */
+.a-brief{display:grid;gap:12px;margin-bottom:16px}
+.a-facts{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+.a-facts div{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px;display:grid;gap:2px}
+.a-rubric{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow-x:auto}
+.a-rrow{display:grid;grid-template-columns:minmax(150px,1.2fr) 60px minmax(200px,2fr);gap:12px;padding:9px 14px;border-top:1px solid var(--line);font-size:14px;min-width:460px}
+.a-rrow span:nth-child(2){font:600 14px var(--f-mono);font-variant-numeric:tabular-nums}
+.a-rhead{border-top:0;font:500 11px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.a-rhead span:nth-child(2){font:inherit}
+.a-warn{background:var(--accent-soft);border-radius:var(--r);padding:14px 16px;font-size:15px;margin-bottom:16px}
+.a-check ul{margin:8px 0 0;padding-inline-start:20px;display:grid;gap:4px}
+.a-tools{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+.essay{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:clamp(18px,4vw,40px);display:grid;gap:28px;max-width:820px;margin-bottom:16px}
+.e-title{display:grid;gap:8px;padding-bottom:20px;border-bottom:1px solid var(--line)}
+.e-title h2{font-size:clamp(22px,3.4vw,30px)}
+.e-sec{display:grid;gap:12px}
+.e-sec h3{font-size:20px;display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}
+.e-sec h4{font:600 15px var(--f-body);color:var(--accent);margin:4px 0 -4px}
+.e-sec ol{margin:0;padding-inline-start:22px;display:grid;gap:6px}
+.e-pair{display:grid;gap:10px}
+.e-pair + .e-pair{border-top:1px solid var(--line);padding-top:22px}
+.e-pair .e-lang{justify-self:end;margin:0}
+.e-pair .e-lang button{padding:4px 12px;font-size:13px}
+.e-sub{font-size:16px;color:var(--muted)}
+.essay [dir="rtl"]{font-family:var(--f-ar);line-height:1.9}
+.essay [dir="rtl"] h2,.essay [dir="rtl"] h3,.essay [dir="rtl"] h4{font-family:var(--f-ar);font-weight:700}
+.e-title{border-bottom:0;padding-bottom:0}
+#essayLang{margin:0}
+.wc{font:500 12px var(--f-mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.wc.ok{color:var(--good)}
+.refs{margin:0;padding-inline-start:22px;display:grid;gap:8px;font-size:14.5px}
+.refs li{padding-inline-start:4px;overflow-wrap:anywhere}
+.refs a{color:var(--accent)}
+
+@media (max-width:640px){
+  .route{grid-template-columns:1fr 1fr;row-gap:20px}
+  .route::before{display:none}
+  .report div{grid-template-columns:1fr;gap:2px}
+  .qbar{top:calc(env(safe-area-inset-top,0px) + 46px)}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><span class="brand-dot" aria-hidden="true"></span>MDT 901 Study Hub</div>
+    <span class="eyebrow">UOW Dubai · Master of Digital Transformation</span>
+  </header>
+
+  <!-- HOME -->
+  <main id="home">
+    <div class="hero">
+      <span class="eyebrow">Digital Transformation Strategy &amp; Industry 4.0</span>
+      <h1>Pick a session to study</h1>
+      <p>Each session opens with three tabs: the topic explained in English and Arabic with real examples, the one-page infographic, and a quiz you can answer and score right away.</p>
+    </div>
+    <div class="sessions" id="sessionList"></div>
+  </main>
+
+  <!-- SESSION -->
+  <main id="session" hidden>
+    <button class="back" id="backBtn" type="button"><span aria-hidden="true">←</span> All sessions</button>
+    <div class="s-head">
+      <span class="eyebrow" id="sEyebrow"></span>
+      <h1 id="sTitle"></h1>
+      <p class="muted" id="sSub"></p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Session sections">
+      <button class="tab" role="tab" id="tab-topic" aria-controls="panel-topic" aria-selected="true" type="button">Topic <span class="count">EN · عربي</span></button>
+      <button class="tab" role="tab" id="tab-info" aria-controls="panel-info" aria-selected="false" type="button">Infographic</button>
+      <button class="tab" role="tab" id="tab-quiz" aria-controls="panel-quiz" aria-selected="false" type="button">Quiz <span class="count" id="quizCount"></span></button>
+    </div>
+
+    <!-- TOPIC -->
+    <section id="panel-topic" role="tabpanel" aria-labelledby="tab-topic">
+      <p class="topic-hint">Each section has its own English / العربية switch, so you can read one part in Arabic and keep the rest in English.</p>
+
+      <article class="topic" id="topicEn" lang="en" dir="ltr">
+        <section>
+          <span class="eyebrow">Core idea</span>
+          <p class="lead">Strategy is the long-term direction of an organisation. Strategic management is the full loop that creates it and keeps it working: analyse, formulate, execute, then evaluate and feed back.</p>
+          <p>Every tool in this session answers one of four questions. Learn the question first; the tool is just the way to answer it.</p>
+        </section>
+
+        <section>
+          <h2>What is strategy?</h2>
+          <div class="callout">The direction and scope of an organisation over the long term, which achieves advantage in a changing environment through its configuration of resources and competences, with the aim of fulfilling stakeholder expectations.</div>
+          <p>A good strategy exploits core competencies, achieves synergy, creates value and targets customers. The result is <b>competitive advantage</b>: your distinctive edge in meeting customer needs.</p>
+          <h3>Three levels of strategy</h3>
+          <div class="terms">
+            <div class="term"><b>Corporate</b>Which businesses are we in?</div>
+            <div class="term"><b>Business</b>How do we compete in this business?</div>
+            <div class="term"><b>Functional</b>How does each department (finance, R&amp;D, ops, marketing) support it?</div>
+          </div>
+          <h3>The vocabulary</h3>
+          <div class="terms">
+            <div class="term"><b>Mission</b>Why we exist</div>
+            <div class="term"><b>Vision</b>The future we want</div>
+            <div class="term"><b>Goal</b>A general statement of aim</div>
+            <div class="term"><b>Objective</b>A precise, measurable goal with a deadline</div>
+            <div class="term"><b>Capability</b>Resources, activities and processes</div>
+            <div class="term"><b>Control</b>Monitoring the action steps</div>
+          </div>
+          <p class="callout"><b>Remember:</b> a goal gives direction; an objective adds a number and a deadline.</p>
+        </section>
+
+        <section>
+          <h2>The strategic management loop (Wheelen)</h2>
+          <p>Strategic management is the set of decisions and actions used to formulate and execute strategies that give a competitively superior fit between the organisation and its environment. It runs as four stages, and feedback goes back to every stage.</p>
+
+          <div class="stage" style="--c:var(--st1)">
+            <span class="stage-tag"><i>1</i>Plan &amp; analyse · Where are we now?</span>
+            <p><b>Look outside</b> for opportunities and threats: Porter's Five Forces (new entrants, suppliers, buyers, substitutes, rivalry; the slides add other stakeholders as a sixth) and environmental scanning (societal and task environment).</p>
+            <p><b>Look inside</b> for strengths and weaknesses: resources and capabilities, VRIO (Valuable, Rare, Inimitable, Organised), Porter's value chain, and McKinsey 7S.</p>
+            <p><b>Put it together</b> with the SWOT matrix (SO, WO, ST, WT strategies), the sweet spot (our capabilities meet customer needs where rivals don't), and gap analysis (actual vs desired performance).</p>
+          </div>
+          <div class="stage" style="--c:var(--st2)">
+            <span class="stage-tag"><i>2</i>Formulate · How will we close the gap?</span>
+            <p>Choose a strategy at each level. Corporate: related or unrelated diversification, or vertical integration. Business: Porter's generic strategies (cost leadership, differentiation, cost focus, differentiation focus). Functional: department action plans.</p>
+            <p>Write the strategic plan, top to bottom: mission → vision → goals → objectives → initiatives → measures → targets.</p>
+          </div>
+          <div class="stage" style="--c:var(--st3)">
+            <span class="stage-tag"><i>3</i>Execute · How do we make it happen?</span>
+            <p>Implementation turns the plan into programs, budgets and procedures. Build an organisation that can deliver, put enough resources on key activities, set supportive policies, link rewards to results and lead strategically.</p>
+            <p>Six steps: communicate goals, engage the team, execute, stay flexible, close out, reflect and learn.</p>
+          </div>
+          <div class="stage" style="--c:var(--st4)">
+            <span class="stage-tag"><i>4</i>Evaluate &amp; control · Is it working?</span>
+            <p>Four strategic controls: <b>premise</b> (are our assumptions still true?), <b>implementation</b> (are we executing as planned?), <b>strategic surveillance</b> (broad watch for any change), and <b>special alert</b> (a crisis hit, rethink now).</p>
+            <p>The <b>Balanced Scorecard</b> turns strategy into measures from four perspectives: financial, customer, internal process, and learning &amp; growth.</p>
+          </div>
+        </section>
+
+                <section>
+          <h2>See the logic in one real story: Netflix</h2>
+          <p>Follow one real company through the four stations. Each tool answers a real question Netflix had to face.</p>
+          <div class="story">
+            <div class="story-step" style="--c:var(--st1)"><span class="stage-tag"><i>1</i>Plan &amp; analyse</span><p>In 2007 Netflix rented DVDs by post. <b>Scanning outside</b> showed home broadband growing fast (an opportunity) and the risk that a rival would stream films first (a threat). <b>Looking inside</b> showed a strength, detailed data on what each customer liked, and a weakness, total dependence on postal delivery.</p><p class="logic">SWOT move: <b>SO</b>. Use the customer data and brand to seize the broadband opportunity.</p></div>
+            <div class="story-step" style="--c:var(--st2)"><span class="stage-tag"><i>2</i>Formulate</span><p>Netflix launched streaming in 2007, then started making its own series in 2013 with <i>House of Cards</i>. That is <b>differentiation</b>: content you cannot watch anywhere else.</p></div>
+            <div class="story-step" style="--c:var(--st3)"><span class="stage-tag"><i>3</i>Execute</span><p>Money moved from DVD warehouses to servers and to content. The company hired new skills, such as software engineers and producers, and launched in country after country.</p></div>
+            <div class="story-step" style="--c:var(--st4)"><span class="stage-tag"><i>4</i>Evaluate &amp; control</span><p>For years Netflix assumed password sharing did not hurt growth. In 2022 it lost subscribers for the first time in about a decade. <b>Premise control</b> caught the broken assumption, and in 2023 it introduced paid sharing.</p><p class="logic">↺ That finding fed back into stage 1. This is the loop.</p></div>
+          </div>
+          <p class="callout"><b>The logic in one line:</b> something changes outside → you ask "are we still right?" → you choose a new strategy → you move resources → you measure → you learn and start again.</p>
+        </section>
+
+        <section>
+          <h2>Every tool, in plain words, with a live example</h2>
+          <p class="note"><span class="tag real">Real case</span> is a real company. <span class="tag ill">Illustration</span> is a made-up example to show the logic.</p>
+          <div class="ex-grid">
+            <div class="ex" style="--c:var(--accent)"><h3>Goal vs objective</h3><p><b>In plain words:</b> a goal is where you are heading. An objective is the exact point and the date you will reach it.</p><p><span class="tag ill">Illustration</span> Goal: "Make our app easier to use." Objective: "Raise the app store rating from 3.9 to 4.5 by December 2027."</p></div>
+            <div class="ex" style="--c:var(--accent)"><h3>Three levels of strategy</h3><p><b>In plain words:</b> what businesses we own, how each one wins, and how each department helps.</p><p><span class="tag real">Real case</span> Emirates Group. Corporate: it owns both the airline Emirates and dnata, a travel and airport services company. Business: Emirates competes on premium service through its Dubai hub. Functional: marketing builds the brand with global sports sponsorships.</p></div>
+            <div class="ex" style="--c:var(--st1)"><h3>Porter's Five Forces</h3><p><b>In plain words:</b> five pressures that decide how hard it is to make money in an industry.</p><p><span class="tag ill">Illustration</span> Ride-hailing in Dubai. Riders can switch apps in seconds (strong buyers). Drivers can work for several apps (strong suppliers). The metro and buses are substitutes. Several apps compete for the same riders. Result: profits are hard, so companies add food delivery and payments to keep users.</p></div>
+            <div class="ex" style="--c:var(--st1)"><h3>Environmental scanning</h3><p><b>In plain words:</b> keep watching the world around you so change does not surprise you.</p><p><span class="tag ill">Illustration</span> An airline watches fuel prices, new visa rules and AI booking tools (societal), plus rival airlines, airports and travel agents (task).</p></div>
+            <div class="ex" style="--c:var(--st1)"><h3>VRIO</h3><p><b>In plain words:</b> is this resource worth something, rare, hard to copy, and are we organised to use it? Four yeses mean a lasting advantage.</p><p><span class="tag real">Real case</span> Apple's ecosystem. iPhone, Mac, Watch and iCloud work together (valuable). Few rivals control both the hardware and the software (rare). Years of design and integration are hard to copy (inimitable). Its design teams and stores are built around it (organised).</p></div>
+            <div class="ex" style="--c:var(--st1)"><h3>Value chain</h3><p><b>In plain words:</b> break the business into steps and find where value or cost is created.</p><p><span class="tag real">Real case</span> IKEA. Flat-pack design (operations) means smaller boxes, so transport and storage cost less (outbound logistics). Customers collect and assemble the furniture themselves. Each step cuts cost, so IKEA can keep prices low and still make a margin.</p></div>
+            <div class="ex" style="--c:var(--st1)"><h3>McKinsey 7S</h3><p><b>In plain words:</b> seven parts of the organisation must fit together. Change one and the others must follow.</p><p><span class="tag ill">Illustration</span> A company buys new AI software (systems) but keeps a culture that punishes mistakes (shared values) and gives no training (skills). Staff avoid the tool, so the strategy fails even though the technology works.</p></div>
+            <div class="ex" style="--c:var(--st1)"><h3>SWOT → four strategies</h3><p><b>In plain words:</b> match what is inside with what is outside to find moves.</p><p><span class="tag ill">Illustration</span> A café next to a metro station. <b>SO:</b> great coffee + a new office tower → offer office delivery. <b>WO:</b> weak online presence + delivery apps → join an app. <b>ST:</b> loyal regulars + a chain opening nearby → launch a loyalty card. <b>WT:</b> high rent + falling footfall → move to a smaller site.</p></div>
+            <div class="ex" style="--c:var(--st1)"><h3>Sweet spot</h3><p><b>In plain words:</b> what you do well, that customers need, and rivals do not offer.</p><p><span class="tag real">Real case</span> Careem started in Dubai in 2012. Many riders in the region preferred to pay in cash, which global apps did not focus on. Careem accepted cash and offered local language support, which was its sweet spot.</p></div>
+            <div class="ex" style="--c:var(--st1)"><h3>Gap analysis</h3><p><b>In plain words:</b> where we are, where we must be, and the distance between them.</p><p><span class="tag ill">Illustration</span> Now 70% of buses arrive on time; the target is 90% by 2027. The 20-point gap leads to actions such as bus lanes and AI-based scheduling.</p></div>
+            <div class="ex" style="--c:var(--st2)"><h3>Generic strategies</h3><p><b>In plain words:</b> win on price or on uniqueness, for everyone or for a niche.</p><p><span class="tag real">Real case</span> Ryanair: cost leadership. Apple: differentiation. Rolex: differentiation focus (unique, for a small luxury segment). <span class="tag ill">Illustration</span> A low-price gym only for university students: cost focus.</p></div>
+            <div class="ex" style="--c:var(--st2)"><h3>Corporate choices</h3><p><b>In plain words:</b> grow into nearby businesses, into very different ones, or take over steps of your own supply chain.</p><p><span class="tag real">Real case</span> Related: Careem added food delivery to rides, using the same app and customers. Unrelated: Virgin Group runs airlines, gyms and mobile services. Vertical integration: Tesla sells cars through its own stores instead of dealers.</p></div>
+            <div class="ex" style="--c:var(--st2)"><h3>Strategic plan pyramid</h3><p><b>In plain words:</b> each level makes the one above it concrete.</p><p><span class="tag ill">Illustration</span> A metro operator. Mission: move people safely. Vision: the first choice for city travel. Goal: more reliable trips. Objective: 98% on-time trips by 2027. Initiative: AI predictive maintenance. Measure: on-time %. Target: 98% by Dec 2027.</p></div>
+            <div class="ex" style="--c:var(--st3)"><h3>Execution and resources</h3><p><b>In plain words:</b> money, people and time go to the priorities, not spread evenly.</p><p><span class="tag ill">Illustration</span> If the priority is "cut waiting times", the budget goes to more buses at peak hours and drivers' shifts, not to a new logo.</p></div>
+            <div class="ex" style="--c:var(--st4)"><h3>Four strategic controls</h3><p><b>In plain words:</b> four different "alarms", each watching something different.</p><p><span class="tag real">Real case</span> Premise: Netflix's password-sharing assumption (above). Surveillance: Kodak built an early digital camera in 1975 but did not act on the shift to digital, and filed for bankruptcy in 2012. Special alert: in March 2020 Emirates suspended most passenger flights as COVID-19 spread. <span class="tag ill">Illustration</span> Implementation: monthly reviews of whether an app launch is on schedule and on budget.</p></div>
+            <div class="ex" style="--c:var(--st4)"><h3>Balanced Scorecard</h3><p><b>In plain words:</b> don't judge success by money only; check four views at once.</p><p><span class="tag ill">Illustration</span> A ride-hailing app. Financial: revenue per trip. Customer: rating and repeat riders. Internal process: average driver arrival time. Learning &amp; growth: driver training hours.</p></div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Real-world example</h2>
+          <p><b>From the slides:</b> a for-profit technical college wants more new students and higher graduation rates within three years, to become the "best buy" among five regional rivals. Strategic management here means funding high-tech classrooms, hiring top instructors, investing in marketing and retention, then checking progress regularly.</p>
+          <p><b>Applied to your work</b> <span class="note">(my example, not from the slides)</span>: for a transport super-app, premise control would ask whether the assumption "most users plan trips on mobile" still holds, while the Balanced Scorecard's customer perspective could track app ratings and trip completion.</p>
+        </section>
+
+        <section>
+          <h2>Common mistakes</h2>
+          <ul>
+            <li>Calling a goal an objective. "Grow ridership" is a goal; "grow ridership 10% by 2027" is an objective.</li>
+            <li>Running SWOT first. SWOT puts together the internal and external analysis, so it comes after them.</li>
+            <li>Treating strategy as a one-off document. It is a loop; evaluation feeds back into analysis.</li>
+            <li>Confusing premise control (our assumptions) with strategic surveillance (anything changing around us).</li>
+            <li>Mixing up focus and differentiation. Focus means a narrow segment; differentiation means winning on uniqueness.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Questions you should be able to answer</h2>
+          <ol>
+            <li>Which four questions does the strategy route answer, and in what order?</li>
+            <li>Which tools look outside, and which look inside?</li>
+            <li>When do you use vertical integration rather than diversification?</li>
+            <li>Which control catches a broken assumption?</li>
+            <li>How would you pick 4+ KPIs for your group report using the Balanced Scorecard?</li>
+          </ol>
+          <p class="note">Source: MDT 901 Session 2 slides, Dr. Nkqubela Ruxwana, UOW Dubai.</p>
+        </section>
+      </article>
+
+      <article class="topic" id="topicAr" lang="ar" dir="rtl" hidden>
+        <section>
+          <span class="eyebrow">الفكرة الأساسية</span>
+          <p class="lead">الاستراتيجية هي الاتجاه طويل المدى للمؤسسة. أما الإدارة الاستراتيجية فهي الدورة الكاملة التي تصنع هذه الاستراتيجية وتحافظ على نجاحها: التحليل، ثم الصياغة، ثم التنفيذ، ثم التقييم والعودة بالنتائج إلى البداية.</p>
+          <p>كل أداة في هذه المحاضرة تجيب عن سؤال واحد من أربعة أسئلة. تعلّم السؤال أولًا، فالأداة مجرد طريقة للإجابة عنه.</p>
+        </section>
+
+        <section>
+          <h2>ما هي الاستراتيجية؟</h2>
+          <div class="callout">هي اتجاه المؤسسة ونطاق عملها على المدى الطويل، بما يحقق لها ميزة في بيئة متغيرة، من خلال طريقة تنظيم مواردها وكفاءاتها، بهدف تلبية توقعات أصحاب المصلحة.</div>
+          <p>الاستراتيجية الجيدة تستثمر الكفاءات الجوهرية، وتحقق التكامل (Synergy)، وتخلق قيمة، وتستهدف العملاء بوضوح. ونتيجتها هي <b>الميزة التنافسية</b> (Competitive Advantage): تفوّقك المميّز في تلبية احتياجات العملاء.</p>
+          <h3>المستويات الثلاثة للاستراتيجية</h3>
+          <div class="terms">
+            <div class="term"><b>المؤسسي (Corporate)</b>في أي مجالات أعمال نعمل؟</div>
+            <div class="term"><b>مستوى الأعمال (Business)</b>كيف ننافس في هذا المجال؟</div>
+            <div class="term"><b>الوظيفي (Functional)</b>كيف تدعم كل إدارة (المالية، البحث والتطوير، العمليات، التسويق) هذه الاستراتيجية؟</div>
+          </div>
+          <h3>المصطلحات الأساسية</h3>
+          <div class="terms">
+            <div class="term"><b>الرسالة (Mission)</b>لماذا نوجد</div>
+            <div class="term"><b>الرؤية (Vision)</b>المستقبل الذي نريده</div>
+            <div class="term"><b>الغاية (Goal)</b>بيان عام بما نريد تحقيقه</div>
+            <div class="term"><b>الهدف (Objective)</b>غاية دقيقة قابلة للقياس ولها موعد محدد</div>
+            <div class="term"><b>القدرة (Capability)</b>الموارد والأنشطة والعمليات</div>
+            <div class="term"><b>الرقابة (Control)</b>متابعة خطوات التنفيذ</div>
+          </div>
+          <p class="callout"><b>تذكّر:</b> الغاية تحدد الاتجاه، والهدف يضيف رقمًا وموعدًا نهائيًا.</p>
+        </section>
+
+        <section>
+          <h2>دورة الإدارة الاستراتيجية (نموذج Wheelen)</h2>
+          <p>الإدارة الاستراتيجية هي مجموعة القرارات والإجراءات المستخدمة لصياغة الاستراتيجيات وتنفيذها، بحيث يتحقق توافق متفوق تنافسيًا بين المؤسسة وبيئتها. وتعمل على أربع مراحل، وتعود التغذية الراجعة إلى كل مرحلة.</p>
+
+          <div class="stage" style="--c:var(--st1)">
+            <span class="stage-tag"><i>1</i>التخطيط والتحليل · أين نحن الآن؟</span>
+            <p><b>انظر إلى الخارج</b> لاكتشاف الفرص والتهديدات: قوى بورتر الخمس (الداخلون الجدد، الموردون، المشترون، البدائل، شدة المنافسة، وتضيف الشرائح قوة سادسة هي أصحاب المصلحة الآخرون)، والمسح البيئي (البيئة المجتمعية وبيئة المهام).</p>
+            <p><b>انظر إلى الداخل</b> لمعرفة نقاط القوة والضعف: الموارد والقدرات، وإطار VRIO (قيّمة، نادرة، صعبة التقليد، منظّمة)، وسلسلة القيمة لبورتر، ونموذج ماكنزي 7S.</p>
+            <p><b>اجمع الصورة</b> باستخدام مصفوفة SWOT (استراتيجيات SO وWO وST وWT)، و"النقطة المثالية" (حيث تلتقي قدراتنا مع احتياجات العملاء ولا يغطيها المنافسون)، وتحليل الفجوة (الأداء الفعلي مقابل المطلوب).</p>
+          </div>
+          <div class="stage" style="--c:var(--st2)">
+            <span class="stage-tag"><i>2</i>الصياغة · كيف نسد الفجوة؟</span>
+            <p>اختر استراتيجية لكل مستوى. المؤسسي: تنويع مرتبط أو غير مرتبط، أو تكامل رأسي. مستوى الأعمال: استراتيجيات بورتر العامة (قيادة التكلفة، التمايز، التركيز على التكلفة، التركيز على التمايز). الوظيفي: خطط عمل الإدارات.</p>
+            <p>اكتب الخطة الاستراتيجية من الأعلى إلى الأسفل: الرسالة ← الرؤية ← الغايات ← الأهداف ← المبادرات ← المقاييس ← المستهدفات.</p>
+          </div>
+          <div class="stage" style="--c:var(--st3)">
+            <span class="stage-tag"><i>3</i>التنفيذ · كيف نحقق ذلك؟</span>
+            <p>التنفيذ يحوّل الخطة إلى برامج وميزانيات وإجراءات. ابنِ مؤسسة قادرة على التنفيذ، ووفّر موارد كافية للأنشطة الرئيسية، وضع سياسات داعمة، واربط المكافآت بالنتائج، وقدّم قيادة استراتيجية.</p>
+            <p>ست خطوات: إيصال الأهداف، إشراك الفريق، التنفيذ، المرونة، الإغلاق، ثم المراجعة والتعلّم.</p>
+          </div>
+          <div class="stage" style="--c:var(--st4)">
+            <span class="stage-tag"><i>4</i>التقييم والرقابة · هل الاستراتيجية تنجح؟</span>
+            <p>أربعة أنواع من الرقابة الاستراتيجية: <b>رقابة الافتراضات</b> (Premise: هل افتراضاتنا ما زالت صحيحة؟)، <b>رقابة التنفيذ</b> (هل ننفذ حسب الخطة؟)، <b>المراقبة الاستراتيجية</b> (Surveillance: متابعة واسعة لأي تغيير)، و<b>رقابة التنبيه الخاص</b> (Special Alert: أزمة مفاجئة تتطلب إعادة التفكير فورًا).</p>
+            <p><b>بطاقة الأداء المتوازن</b> (Balanced Scorecard) تحوّل الاستراتيجية إلى مقاييس من أربعة منظورات: المالي، العملاء، العمليات الداخلية، والتعلّم والنمو.</p>
+          </div>
+        </section>
+
+                <section>
+          <h2>افهم المنطق من قصة حقيقية واحدة: نتفليكس</h2>
+          <p>تابع شركة حقيقية واحدة عبر المحطات الأربع. كل أداة هنا تجيب عن سؤال حقيقي واجهته نتفليكس.</p>
+          <div class="story">
+            <div class="story-step" style="--c:var(--st1)"><span class="stage-tag"><i>1</i>التخطيط والتحليل</span><p>في عام 2007 كانت نتفليكس تؤجر أقراص DVD عبر البريد. <b>المسح الخارجي</b> أظهر انتشار الإنترنت السريع في المنازل (فرصة)، وخطر أن يسبقها منافس إلى بث الأفلام (تهديد). و<b>النظر إلى الداخل</b> أظهر نقطة قوة، وهي بيانات دقيقة عمّا يحبه كل عميل، ونقطة ضعف، وهي الاعتماد الكامل على البريد.</p><p class="logic">حركة SWOT: <b>SO</b>. استخدام بيانات العملاء والعلامة التجارية لاغتنام فرصة الإنترنت السريع.</p></div>
+            <div class="story-step" style="--c:var(--st2)"><span class="stage-tag"><i>2</i>الصياغة</span><p>أطلقت نتفليكس خدمة البث في 2007، ثم بدأت إنتاج مسلسلاتها الخاصة في 2013 بمسلسل <i>House of Cards</i>. هذا هو <b>التمايز</b>: محتوى لا تجده في أي مكان آخر.</p></div>
+            <div class="story-step" style="--c:var(--st3)"><span class="stage-tag"><i>3</i>التنفيذ</span><p>انتقلت الأموال من مستودعات الأقراص إلى الخوادم والمحتوى. ووظّفت الشركة مهارات جديدة مثل مهندسي البرمجيات والمنتجين، وتوسعت من دولة إلى أخرى.</p></div>
+            <div class="story-step" style="--c:var(--st4)"><span class="stage-tag"><i>4</i>التقييم والرقابة</span><p>لسنوات افترضت نتفليكس أن مشاركة كلمات المرور لا تضر النمو. وفي 2022 خسرت مشتركين لأول مرة منذ نحو عشر سنوات. <b>رقابة الافتراضات</b> كشفت أن الافتراض لم يعد صحيحًا، فأطلقت في 2023 نظام المشاركة المدفوعة.</p><p class="logic">↺ هذه النتيجة عادت إلى المرحلة الأولى. هذه هي الدورة.</p></div>
+          </div>
+          <p class="callout"><b>المنطق في سطر واحد:</b> شيء يتغير في الخارج ← تسأل "هل ما زلنا على صواب؟" ← تختار استراتيجية جديدة ← تنقل الموارد ← تقيس ← تتعلم وتبدأ من جديد.</p>
+        </section>
+
+        <section>
+          <h2>كل أداة بكلمات بسيطة ومع مثال حي</h2>
+          <p class="note"><span class="tag real">حالة حقيقية</span> تعني شركة حقيقية. <span class="tag ill">مثال توضيحي</span> يعني مثالًا مفترضًا لشرح المنطق.</p>
+          <div class="ex-grid">
+            <div class="ex" style="--c:var(--accent)"><h3>الغاية مقابل الهدف</h3><p><b>ببساطة:</b> الغاية هي الاتجاه الذي تسير فيه، والهدف هو النقطة الدقيقة والموعد الذي ستصل فيه.</p><p><span class="tag ill">مثال توضيحي</span> الغاية: "جعل تطبيقنا أسهل في الاستخدام". الهدف: "رفع تقييم التطبيق في المتجر من 3.9 إلى 4.5 بحلول ديسمبر 2027".</p></div>
+            <div class="ex" style="--c:var(--accent)"><h3>المستويات الثلاثة للاستراتيجية</h3><p><b>ببساطة:</b> ما الأعمال التي نملكها، وكيف يفوز كل منها، وكيف تساعد كل إدارة.</p><p><span class="tag real">حالة حقيقية</span> مجموعة الإمارات. المستوى المؤسسي: تملك طيران الإمارات وشركة دناتا لخدمات السفر والمطارات. مستوى الأعمال: طيران الإمارات تنافس بالخدمة الفاخرة عبر مركزها في دبي. المستوى الوظيفي: التسويق يبني العلامة عبر رعايات رياضية عالمية.</p></div>
+            <div class="ex" style="--c:var(--st1)"><h3>قوى بورتر الخمس</h3><p><b>ببساطة:</b> خمسة ضغوط تحدد مدى صعوبة تحقيق الربح في صناعة ما.</p><p><span class="tag ill">مثال توضيحي</span> تطبيقات طلب السيارات في دبي. الراكب يغيّر التطبيق في ثوانٍ (قوة المشترين عالية). السائق يعمل مع أكثر من تطبيق (قوة الموردين عالية). المترو والحافلات بدائل. وعدة تطبيقات تتنافس على الركاب أنفسهم. النتيجة: الربح صعب، لذلك تضيف الشركات توصيل الطعام والمدفوعات للحفاظ على المستخدمين.</p></div>
+            <div class="ex" style="--c:var(--st1)"><h3>المسح البيئي</h3><p><b>ببساطة:</b> راقب العالم من حولك باستمرار حتى لا يفاجئك التغيير.</p><p><span class="tag ill">مثال توضيحي</span> شركة طيران تراقب أسعار الوقود وقوانين التأشيرات الجديدة وأدوات الحجز بالذكاء الاصطناعي (البيئة المجتمعية)، وتراقب شركات الطيران المنافسة والمطارات ووكلاء السفر (بيئة المهام).</p></div>
+            <div class="ex" style="--c:var(--st1)"><h3>إطار VRIO</h3><p><b>ببساطة:</b> هل هذا المورد ذو قيمة، ونادر، وصعب التقليد، وهل نحن منظمون لاستخدامه؟ أربع إجابات بنعم تعني ميزة دائمة.</p><p><span class="tag real">حالة حقيقية</span> منظومة أبل. الآيفون والماك والساعة وiCloud تعمل معًا (قيّمة). قلة من المنافسين يتحكمون في الجهاز والبرنامج معًا (نادرة). سنوات من التصميم والتكامل يصعب نسخها (صعبة التقليد). وفرق التصميم والمتاجر مبنية حولها (منظّمة).</p></div>
+            <div class="ex" style="--c:var(--st1)"><h3>سلسلة القيمة</h3><p><b>ببساطة:</b> قسّم العمل إلى خطوات واكتشف أين تُصنع القيمة أو التكلفة.</p><p><span class="tag real">حالة حقيقية</span> إيكيا. تصميم الأثاث المفكك (العمليات) يعني صناديق أصغر، فتقل تكلفة النقل والتخزين (الإمداد الخارجي). والعميل يستلم الأثاث ويركّبه بنفسه. كل خطوة تخفض التكلفة، فتبقى الأسعار منخفضة مع تحقيق هامش ربح.</p></div>
+            <div class="ex" style="--c:var(--st1)"><h3>نموذج ماكنزي 7S</h3><p><b>ببساطة:</b> سبعة أجزاء في المؤسسة يجب أن تتوافق. إذا غيّرت جزءًا يجب أن تتبعه البقية.</p><p><span class="tag ill">مثال توضيحي</span> شركة تشتري برنامج ذكاء اصطناعي جديدًا (الأنظمة) لكنها تحتفظ بثقافة تعاقب على الأخطاء (القيم المشتركة) ولا تقدّم تدريبًا (المهارات). فيتجنب الموظفون الأداة، وتفشل الاستراتيجية رغم أن التقنية تعمل.</p></div>
+            <div class="ex" style="--c:var(--st1)"><h3>SWOT ← أربع استراتيجيات</h3><p><b>ببساطة:</b> اربط ما في الداخل بما في الخارج لتجد التحركات المناسبة.</p><p><span class="tag ill">مثال توضيحي</span> مقهى بجوار محطة مترو. <b>SO:</b> قهوة ممتازة + برج مكاتب جديد ← خدمة توصيل للمكاتب. <b>WO:</b> حضور ضعيف على الإنترنت + تطبيقات التوصيل ← الانضمام إلى تطبيق. <b>ST:</b> زبائن دائمون + سلسلة منافسة تفتح بالقرب ← بطاقة ولاء. <b>WT:</b> إيجار مرتفع + تراجع عدد المارة ← الانتقال إلى موقع أصغر.</p></div>
+            <div class="ex" style="--c:var(--st1)"><h3>النقطة المثالية</h3><p><b>ببساطة:</b> ما تجيده، ويحتاجه العملاء، ولا يقدمه المنافسون.</p><p><span class="tag real">حالة حقيقية</span> بدأت كريم في دبي عام 2012. كثير من الركاب في المنطقة فضّلوا الدفع نقدًا، ولم تركز التطبيقات العالمية على ذلك. فقبلت كريم الدفع النقدي وقدمت دعمًا باللغة المحلية، وكانت هذه نقطتها المثالية.</p></div>
+            <div class="ex" style="--c:var(--st1)"><h3>تحليل الفجوة</h3><p><b>ببساطة:</b> أين نحن، وأين يجب أن نكون، والمسافة بينهما.</p><p><span class="tag ill">مثال توضيحي</span> الآن تصل 70% من الحافلات في موعدها، والمستهدف 90% بحلول 2027. فجوة العشرين نقطة تقود إلى إجراءات مثل مسارات الحافلات والجدولة بالذكاء الاصطناعي.</p></div>
+            <div class="ex" style="--c:var(--st2)"><h3>الاستراتيجيات العامة</h3><p><b>ببساطة:</b> تفوز بالسعر أو بالتفرّد، للجميع أو لشريحة محددة.</p><p><span class="tag real">حالة حقيقية</span> رايان إير: قيادة التكلفة. أبل: التمايز. رولكس: التركيز على التمايز (منتج فريد لشريحة فاخرة صغيرة). <span class="tag ill">مثال توضيحي</span> نادٍ رياضي منخفض السعر لطلاب الجامعات فقط: التركيز على التكلفة.</p></div>
+            <div class="ex" style="--c:var(--st2)"><h3>خيارات المستوى المؤسسي</h3><p><b>ببساطة:</b> التوسع في أعمال قريبة، أو في أعمال مختلفة تمامًا، أو امتلاك خطوات من سلسلة الإمداد الخاصة بك.</p><p><span class="tag real">حالة حقيقية</span> تنويع مرتبط: أضافت كريم توصيل الطعام إلى خدمة الرحلات بالتطبيق والعملاء أنفسهم. تنويع غير مرتبط: مجموعة فيرجن تدير شركات طيران ونوادي رياضية وخدمات اتصالات. تكامل رأسي: تسلا تبيع سياراتها عبر متاجرها الخاصة بدلًا من الوكلاء.</p></div>
+            <div class="ex" style="--c:var(--st2)"><h3>هرم الخطة الاستراتيجية</h3><p><b>ببساطة:</b> كل مستوى يجعل المستوى الذي فوقه ملموسًا.</p><p><span class="tag ill">مثال توضيحي</span> مشغّل مترو. الرسالة: نقل الناس بأمان. الرؤية: الخيار الأول للتنقل في المدينة. الغاية: رحلات أكثر انتظامًا. الهدف: 98% من الرحلات في موعدها بحلول 2027. المبادرة: صيانة تنبؤية بالذكاء الاصطناعي. المقياس: نسبة الالتزام بالموعد. المستهدف: 98% بحلول ديسمبر 2027.</p></div>
+            <div class="ex" style="--c:var(--st3)"><h3>التنفيذ والموارد</h3><p><b>ببساطة:</b> المال والناس والوقت تذهب إلى الأولويات، ولا تُوزع بالتساوي.</p><p><span class="tag ill">مثال توضيحي</span> إذا كانت الأولوية "تقليل وقت الانتظار"، تذهب الميزانية إلى حافلات إضافية في أوقات الذروة ونوبات السائقين، وليس إلى شعار جديد.</p></div>
+            <div class="ex" style="--c:var(--st4)"><h3>أنواع الرقابة الأربعة</h3><p><b>ببساطة:</b> أربعة "أجهزة إنذار"، كل منها يراقب شيئًا مختلفًا.</p><p><span class="tag real">حالة حقيقية</span> رقابة الافتراضات: افتراض نتفليكس عن مشاركة كلمات المرور (أعلاه). المراقبة الاستراتيجية: صنعت كوداك كاميرا رقمية مبكرة عام 1975 لكنها لم تتحرك مع التحول الرقمي، وأعلنت إفلاسها في 2012. رقابة التنبيه الخاص: في مارس 2020 علّقت طيران الإمارات معظم رحلات الركاب مع انتشار كوفيد-19. <span class="tag ill">مثال توضيحي</span> رقابة التنفيذ: مراجعة شهرية لمعرفة هل إطلاق التطبيق يسير حسب الجدول والميزانية.</p></div>
+            <div class="ex" style="--c:var(--st4)"><h3>بطاقة الأداء المتوازن</h3><p><b>ببساطة:</b> لا تحكم على النجاح بالمال فقط، بل افحص أربعة منظورات معًا.</p><p><span class="tag ill">مثال توضيحي</span> تطبيق لطلب السيارات. المالي: الإيراد لكل رحلة. العملاء: التقييم وعدد الركاب العائدين. العمليات الداخلية: متوسط وقت وصول السائق. التعلم والنمو: ساعات تدريب السائقين.</p></div>
+          </div>
+        </section>
+
+        <section>
+          <h2>مثال من الواقع</h2>
+          <p><b>من الشرائح:</b> كلية تقنية ربحية تريد زيادة عدد الطلاب الجدد ورفع معدلات التخرج خلال ثلاث سنوات، لتصبح "الخيار الأفضل قيمة" بين خمس كليات منافسة في المنطقة. الإدارة الاستراتيجية هنا تعني تمويل فصول عالية التقنية، وتعيين أفضل المدرّسين، والاستثمار في التسويق والاحتفاظ بالطلاب، ثم متابعة التقدم بانتظام.</p>
+          <p><b>تطبيق على عملك</b> <span class="note">(مثال مني، ليس من الشرائح)</span>: في تطبيق نقل شامل، تسأل رقابة الافتراضات هل ما زال صحيحًا أن معظم المستخدمين يخططون رحلاتهم عبر الجوال، بينما يتابع منظور العملاء في بطاقة الأداء المتوازن تقييمات التطبيق ونسبة إكمال الرحلات.</p>
+        </section>
+
+        <section>
+          <h2>أخطاء شائعة</h2>
+          <ul>
+            <li>الخلط بين الغاية والهدف. "زيادة عدد الركاب" غاية، أما "زيادة عدد الركاب ١٠٪ بحلول ٢٠٢٧" فهو هدف.</li>
+            <li>البدء بتحليل SWOT. فهو يجمع نتائج التحليل الداخلي والخارجي، لذلك يأتي بعدهما.</li>
+            <li>اعتبار الاستراتيجية وثيقة تُكتب مرة واحدة. هي دورة، والتقييم يعود ليغذي التحليل.</li>
+            <li>الخلط بين رقابة الافتراضات (افتراضاتنا نحن) والمراقبة الاستراتيجية (أي تغيير حولنا).</li>
+            <li>الخلط بين التركيز والتمايز. التركيز يعني شريحة ضيقة، والتمايز يعني الفوز بالتفرّد.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>أسئلة يجب أن تستطيع الإجابة عنها</h2>
+          <ol>
+            <li>ما الأسئلة الأربعة التي يجيب عنها مسار الاستراتيجية، وبأي ترتيب؟</li>
+            <li>أي الأدوات تنظر إلى الخارج، وأيها تنظر إلى الداخل؟</li>
+            <li>متى تختار التكامل الرأسي بدلًا من التنويع؟</li>
+            <li>أي نوع من الرقابة يكتشف افتراضًا لم يعد صحيحًا؟</li>
+            <li>كيف تختار ٤ مؤشرات أداء أو أكثر لتقرير المجموعة باستخدام بطاقة الأداء المتوازن؟</li>
+          </ol>
+          <p class="note">المصدر: شرائح المحاضرة الثانية لمادة MDT 901، د. نكقوبيلا روكسوانا، جامعة ولونغونغ في دبي.</p>
+        </section>
+      </article>
+    </section>
+
+    <!-- INFOGRAPHIC -->
+    <section id="panel-info" role="tabpanel" aria-labelledby="tab-info" hidden>
+      <div class="ig-tools">
+        <div class="seg" role="group" aria-label="Infographic size">
+          <button type="button" id="igFit" aria-pressed="true">Fit to screen</button>
+          <button type="button" id="igFull" aria-pressed="false">Actual size</button>
+        </div>
+        <a class="canvas-link" href="https://claude.ai/artifact/W2URue7QnEJrjmDCzcPAGJ" target="_blank" rel="noopener">Open the original canvas ↗</a>
+      </div>
+      <div class="ig-frame" id="igFrame"><div class="ig-scale" id="igScale">
+<div style="width: 1240px; min-height: 4700px; box-sizing: border-box; background: #FBFBF8; color: #16181D; font-family: 'IBM Plex Sans', sans-serif; font-size: 15px; line-height: 1.5; display: flex; flex-direction: column">
+
+<!-- HEADER -->
+<div style="padding: 64px 72px 40px; display: flex; flex-direction: column; gap: 16px; border-bottom: 1px solid #DCDDD6">
+<div style="display: flex; gap: 12px; align-items: center; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #4A4D55">
+<span>MDT 901 · Digital Transformation Strategy &amp; Industry 4.0</span>
+<span style="color: #B5B7AE">/</span>
+<span>Session 2</span>
+</div>
+<h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 64px; line-height: 1.02; font-weight: 700; letter-spacing: -0.02em">Intro to Strategic Management</h1>
+<p style="margin: 0; max-width: 820px; font-size: 19px; color: #3A3D44">One route, four stations. Every tool in this session answers one of four questions — learn the question first, then the tools that answer it.</p>
+</div>
+
+<!-- ROUTE MAP -->
+<div style="padding: 44px 72px 48px; background: #16181D; color: #FBFBF8; display: flex; flex-direction: column; gap: 28px">
+<div style="font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #A9ACB4">The strategy route — the big picture</div>
+<div style="position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px">
+<div style="position: absolute; left: 22px; right: 22px; top: 21px; height: 6px; background: #3A3D44; border-radius: 3px"></div>
+<div style="position: relative; display: flex; flex-direction: column; gap: 12px">
+<div style="width: 48px; height: 48px; border-radius: 50%; background: #1F5FBF; border: 5px solid #16181D; box-sizing: border-box; display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: #FFFFFF">1</div>
+<div style="font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; color: #8FB4F2">Plan &amp; analyse</div>
+<div style="font-size: 17px; font-weight: 600">Where are we now?</div>
+<div style="font-size: 14px; color: #C5C7CD">+ Where do we need to be? Assessment and gap.</div>
+</div>
+<div style="position: relative; display: flex; flex-direction: column; gap: 12px">
+<div style="width: 48px; height: 48px; border-radius: 50%; background: #B4501A; border: 5px solid #16181D; box-sizing: border-box; display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: #FFFFFF">2</div>
+<div style="font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; color: #F2A774">Formulate</div>
+<div style="font-size: 17px; font-weight: 600">How will we close the gap?</div>
+<div style="font-size: 14px; color: #C5C7CD">Choose the strategy and write the strategic plan.</div>
+</div>
+<div style="position: relative; display: flex; flex-direction: column; gap: 12px">
+<div style="width: 48px; height: 48px; border-radius: 50%; background: #0F7C7A; border: 5px solid #16181D; box-sizing: border-box; display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: #FFFFFF">3</div>
+<div style="font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; color: #6FD1CD">Execute</div>
+<div style="font-size: 17px; font-weight: 600">How do we make it happen?</div>
+<div style="font-size: 14px; color: #C5C7CD">Programs, budgets, procedures, resources, people.</div>
+</div>
+<div style="position: relative; display: flex; flex-direction: column; gap: 12px">
+<div style="width: 48px; height: 48px; border-radius: 50%; background: #6B3FA0; border: 5px solid #16181D; box-sizing: border-box; display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: #FFFFFF">4</div>
+<div style="font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; color: #C3A6EA">Evaluate &amp; control</div>
+<div style="font-size: 17px; font-weight: 600">How will we monitor progress?</div>
+<div style="font-size: 14px; color: #C5C7CD">Measures, controls, Balanced Scorecard — then feed back to step 1.</div>
+</div>
+</div>
+</div>
+
+<!-- SECTION 0: STRATEGY CONCEPTS -->
+<div style="padding: 56px 72px 48px; display: flex; flex-direction: column; gap: 28px; border-bottom: 1px solid #DCDDD6">
+<div style="display: flex; align-items: baseline; gap: 16px">
+<span style="font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.1em; color: #4A4D55">00</span>
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 700">What is strategy?</h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<p style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 23px; line-height: 1.35; font-weight: 500">“The <span style="background: #DCE7FA">direction and scope</span> of an organisation <span style="background: #DCE7FA">over the long term</span>, which achieves <span style="background: #FBE1CF">advantage in a changing environment</span> through its configuration of <span style="background: #D3F0EE">resources and competences</span> with the aim of fulfilling <span style="background: #E9DEF7">stakeholder expectations</span>.”</p>
+<div style="font-size: 13px; color: #4A4D55">Definition from the Session 2 slides (Johnson, Scholes &amp; Whittington tradition).</div>
+<div style="display: flex; flex-direction: column; gap: 8px; padding: 18px 20px; background: #F0F1EB; border-radius: 10px">
+<div style="font-weight: 600">A good strategy should…</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 20px; font-size: 15px">
+<div>① Exploit core competencies</div>
+<div>② Achieve synergy</div>
+<div>③ Create value</div>
+<div>④ Target customers</div>
+</div>
+<div style="font-size: 14px; color: #3A3D44">Its result: <b>competitive advantage</b> — your distinctive edge in meeting customer needs.</div>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div style="font-weight: 600; font-size: 16px">Three levels of strategy</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="padding: 14px 18px; background: #16181D; color: #FBFBF8; border-radius: 10px; display: flex; justify-content: space-between; gap: 16px; align-items: center">
+<span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px">Corporate</span>
+<span style="font-size: 15px">Which businesses are we in?</span>
+</div>
+<div style="margin-left: 28px; padding: 14px 18px; background: #3A3D44; color: #FBFBF8; border-radius: 10px; display: flex; justify-content: space-between; gap: 16px; align-items: center">
+<span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px">Business</span>
+<span style="font-size: 15px">How do we compete?</span>
+</div>
+<div style="margin-left: 56px; padding: 14px 18px; background: #DCDDD6; color: #16181D; border-radius: 10px; display: flex; justify-content: space-between; gap: 16px; align-items: center">
+<span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px">Functional</span>
+<span style="font-size: 15px">How do we support it? (finance, R&amp;D, ops, marketing)</span>
+</div>
+</div>
+<div style="font-weight: 600; font-size: 16px; margin-top: 12px">The vocabulary (VMOSA+)</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<div style="padding: 10px 14px; border: 1px solid #DCDDD6; border-radius: 8px; background: #FFFFFF"><b>Mission</b> — why we exist</div>
+<div style="padding: 10px 14px; border: 1px solid #DCDDD6; border-radius: 8px; background: #FFFFFF"><b>Vision</b> — desired future state</div>
+<div style="padding: 10px 14px; border: 1px solid #DCDDD6; border-radius: 8px; background: #FFFFFF"><b>Goal</b> — general statement of aim</div>
+<div style="padding: 10px 14px; border: 1px solid #DCDDD6; border-radius: 8px; background: #FFFFFF"><b>Objective</b> — precise, measurable goal</div>
+<div style="padding: 10px 14px; border: 1px solid #DCDDD6; border-radius: 8px; background: #FFFFFF"><b>Capability</b> — resources, activities, processes</div>
+<div style="padding: 10px 14px; border: 1px solid #DCDDD6; border-radius: 8px; background: #FFFFFF"><b>Business model</b> — how product, service &amp; info flow</div>
+<div style="padding: 10px 14px; border: 1px solid #DCDDD6; border-radius: 8px; background: #FFFFFF"><b>Control</b> — monitoring the action steps</div>
+<div style="padding: 10px 14px; border-radius: 8px; background: #FBE1CF; font-size: 14px"><b>Remember:</b> goal = direction, objective = number + deadline.</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- SECTION: THE PROCESS -->
+<div style="padding: 56px 72px 48px; display: flex; flex-direction: column; gap: 24px; background: #F0F1EB">
+<div style="display: flex; align-items: baseline; gap: 16px">
+<span style="font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.1em; color: #4A4D55">01</span>
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 700">Strategic management = the whole loop</h2>
+</div>
+<p style="margin: 0; max-width: 900px; font-size: 17px">The decisions and actions used to <b>formulate and execute</b> strategies that give a <b>competitively superior fit</b> between the organisation and its environment. Wheelen's model makes it a loop of four stages:</p>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px">
+<div style="background: #FFFFFF; border-radius: 12px; border-top: 6px solid #1F5FBF; padding: 18px; display: flex; flex-direction: column; gap: 8px">
+<div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 19px; color: #1F5FBF">Environmental scanning</div>
+<div style="font-size: 14px"><b>External</b> → opportunities &amp; threats (societal + task environment)</div>
+<div style="font-size: 14px"><b>Internal</b> → strengths &amp; weaknesses (structure, culture, resources)</div>
+</div>
+<div style="background: #FFFFFF; border-radius: 12px; border-top: 6px solid #B4501A; padding: 18px; display: flex; flex-direction: column; gap: 8px">
+<div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 19px; color: #B4501A">Strategy formulation</div>
+<div style="font-size: 14px">Mission → Objectives → Strategies → Policies</div>
+</div>
+<div style="background: #FFFFFF; border-radius: 12px; border-top: 6px solid #0F7C7A; padding: 18px; display: flex; flex-direction: column; gap: 8px">
+<div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 19px; color: #0F7C7A">Strategy implementation</div>
+<div style="font-size: 14px">Programs → Budgets → Procedures</div>
+</div>
+<div style="background: #FFFFFF; border-radius: 12px; border-top: 6px solid #6B3FA0; padding: 18px; display: flex; flex-direction: column; gap: 8px">
+<div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 19px; color: #6B3FA0">Evaluation &amp; control</div>
+<div style="font-size: 14px">Compare actual performance with plan</div>
+</div>
+</div>
+<div style="display: flex; align-items: center; gap: 12px; font-size: 14px; color: #3A3D44">
+<div style="flex-grow: 1; height: 2px; background: repeating-linear-gradient(90deg, #6B3FA0 0 10px, transparent 10px 18px)"></div>
+<span style="font-weight: 600; color: #6B3FA0">↺ Feedback / learning goes back to every stage</span>
+<div style="flex-grow: 1; height: 2px; background: repeating-linear-gradient(90deg, #6B3FA0 0 10px, transparent 10px 18px)"></div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
+<div style="background: #FFFFFF; border-radius: 12px; padding: 18px 20px; display: flex; flex-direction: column; gap: 6px">
+<div style="font-weight: 600">The same loop as 7 steps</div>
+<div style="font-size: 14px">1 Define current business &amp; mission · 2 External &amp; internal audit · 3 New business &amp; mission · 4 Mission → objectives · 5 Formulate strategies · 6 Implement · 7 Evaluate performance</div>
+<div style="font-size: 13px; color: #4A4D55">Steps 1–5 = planning · 6 = implementation · 7 = evaluation</div>
+</div>
+<div style="background: #FFFFFF; border-radius: 12px; padding: 18px 20px; display: flex; flex-direction: column; gap: 6px">
+<div style="font-weight: 600">Example from the slides</div>
+<div style="font-size: 14px">A for-profit technical college wants more new students and higher graduation rates in 3 years — to be the “best buy” among 5 regional rivals. Strategic management = funding high-tech classrooms, hiring top instructors, investing in marketing &amp; retention, then checking progress periodically.</div>
+</div>
+</div>
+</div>
+
+<!-- SECTION 1: PLAN & ANALYSE -->
+<div style="padding: 56px 72px 48px; display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; align-items: center; gap: 16px">
+<div style="width: 44px; height: 44px; border-radius: 50%; background: #1F5FBF; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 20px">1</div>
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 700">Plan &amp; analyse — the toolkit</h2>
+</div>
+<p style="margin: 0; max-width: 900px; font-size: 17px">A good strategic plan addresses critical performance issues, balances what we <i>can</i> do with what we <i>want</i> to do, is visionary, flexible, and guides decisions at lower levels. To build it, look <b>outside</b>, look <b>inside</b>, then <b>put it together</b>.</p>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: start">
+
+<!-- col outside -->
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div style="padding: 10px 14px; background: #1F5FBF; color: #FFFFFF; border-radius: 8px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 17px">Look outside → O &amp; T</div>
+<div style="background: #FFFFFF; border: 1px solid #DCDDD6; border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 10px">
+<div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px">Porter's Five Forces</div>
+<div style="font-size: 14px; color: #3A3D44">How attractive is the industry?</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; font-size: 12px; text-align: center">
+<div></div>
+<div style="padding: 6px 4px; background: #DCE7FA; border-radius: 6px">New entrants</div>
+<div></div>
+<div style="padding: 6px 4px; background: #DCE7FA; border-radius: 6px">Suppliers</div>
+<div style="padding: 6px 4px; background: #1F5FBF; color: #FFFFFF; border-radius: 6px; font-weight: 600">Rivalry</div>
+<div style="padding: 6px 4px; background: #DCE7FA; border-radius: 6px">Buyers</div>
+<div></div>
+<div style="padding: 6px 4px; background: #DCE7FA; border-radius: 6px">Substitutes</div>
+<div></div>
+</div>
+<div style="font-size: 13px; color: #4A4D55">Slides add a 6th: other stakeholders (government, unions…)</div>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #DCDDD6; border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 10px">
+<div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px">Environmental scanning</div>
+<div style="font-size: 14px; color: #3A3D44">Monitor, evaluate and share information with key people. Three rings:</div>
+<div style="padding: 10px; border: 2px solid #8FB4F2; border-radius: 50%/30%; text-align: center; font-size: 12px; display: flex; flex-direction: column; gap: 6px; align-items: center">
+<div style="font-weight: 600">Societal: economic · social · tech · political-legal</div>
+<div style="padding: 8px 10px; border: 2px solid #1F5FBF; border-radius: 50%/35%; width: 78%; box-sizing: border-box; display: flex; flex-direction: column; gap: 4px; align-items: center">
+<div style="font-weight: 600">Task: customers · rivals · suppliers · gov.</div>
+<div style="padding: 6px 10px; background: #16181D; color: #FFFFFF; border-radius: 999px">Internal</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- col inside -->
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div style="padding: 10px 14px; background: #3A3D44; color: #FFFFFF; border-radius: 8px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 17px">Look inside → S &amp; W</div>
+<div style="background: #FFFFFF; border: 1px solid #DCDDD6; border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 10px">
+<div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px">Resources &amp; capabilities</div>
+<div style="font-size: 14px"><b>Resources</b> = assets: tangible (plant, money, location), human (skills, motivation), intangible (patents, culture, reputation).</div>
+<div style="font-size: 14px"><b>Capabilities</b> = the ability to <i>exploit</i> those resources.</div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; text-align: center">
+<div style="padding: 8px 2px; background: #16181D; color: #FFFFFF; border-radius: 6px"><div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px">V</div><div style="font-size: 11px">Valuable</div></div>
+<div style="padding: 8px 2px; background: #16181D; color: #FFFFFF; border-radius: 6px"><div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px">R</div><div style="font-size: 11px">Rare</div></div>
+<div style="padding: 8px 2px; background: #16181D; color: #FFFFFF; border-radius: 6px"><div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px">I</div><div style="font-size: 11px">Inimitable</div></div>
+<div style="padding: 8px 2px; background: #16181D; color: #FFFFFF; border-radius: 6px"><div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px">O</div><div style="font-size: 11px">Organised</div></div>
+</div>
+<div style="font-size: 13px; color: #4A4D55">All four = sustainable competitive advantage.</div>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #DCDDD6; border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 10px">
+<div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px">Value chain (Porter)</div>
+<div style="font-size: 14px; color: #3A3D44">Break the business into activities to see where value is created.</div>
+<div style="font-size: 12px; padding: 8px 10px; background: #F0F1EB; border-radius: 6px"><b>Support:</b> infrastructure · HR · technology · procurement</div>
+<div style="display: flex; gap: 3px; font-size: 11px; text-align: center">
+<div style="flex-grow: 1; padding: 8px 2px; background: #3A3D44; color: #FFFFFF; border-radius: 4px">Inbound</div>
+<div style="flex-grow: 1; padding: 8px 2px; background: #3A3D44; color: #FFFFFF; border-radius: 4px">Ops</div>
+<div style="flex-grow: 1; padding: 8px 2px; background: #3A3D44; color: #FFFFFF; border-radius: 4px">Outbound</div>
+<div style="flex-grow: 1; padding: 8px 2px; background: #3A3D44; color: #FFFFFF; border-radius: 4px">Mkt &amp; sales</div>
+<div style="flex-grow: 1; padding: 8px 2px; background: #3A3D44; color: #FFFFFF; border-radius: 4px">Service</div>
+<div style="padding: 8px 6px; background: #0F7C7A; color: #FFFFFF; border-radius: 4px 14px 14px 4px">Margin</div>
+</div>
+<div style="font-size: 12px; color: #4A4D55">Primary activities (bottom row)</div>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #DCDDD6; border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 10px">
+<div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px">McKinsey 7S</div>
+<div style="font-size: 14px; color: #3A3D44">Seven elements must be aligned and reinforce each other.</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; font-size: 12px; text-align: center">
+<div style="padding: 7px 2px; border: 1px solid #3A3D44; border-radius: 999px">Strategy</div>
+<div style="padding: 7px 2px; border: 1px solid #3A3D44; border-radius: 999px">Structure</div>
+<div style="padding: 7px 2px; border: 1px solid #3A3D44; border-radius: 999px">Systems</div>
+<div style="padding: 7px 2px; border: 1px solid #3A3D44; border-radius: 999px">Style</div>
+<div style="padding: 7px 2px; background: #16181D; color: #FFFFFF; border-radius: 999px; font-weight: 600">Shared values</div>
+<div style="padding: 7px 2px; border: 1px solid #3A3D44; border-radius: 999px">Staff</div>
+<div></div>
+<div style="padding: 7px 2px; border: 1px solid #3A3D44; border-radius: 999px">Skills</div>
+<div></div>
+</div>
+</div>
+</div>
+
+<!-- col synthesis -->
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div style="padding: 10px 14px; background: #0F7C7A; color: #FFFFFF; border-radius: 8px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 17px">Put it together</div>
+<div style="background: #FFFFFF; border: 1px solid #DCDDD6; border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 10px">
+<div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px">SWOT matrix → strategies</div>
+<div style="font-size: 14px; color: #3A3D44">Use it <i>after</i> the internal &amp; external analysis.</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; font-size: 13px">
+<div style="padding: 10px; background: #D3F0EE; border-radius: 8px"><b>SO</b> — use strengths to seize opportunities</div>
+<div style="padding: 10px; background: #DCE7FA; border-radius: 8px"><b>WO</b> — use opportunities to fix weaknesses</div>
+<div style="padding: 10px; background: #FBE1CF; border-radius: 8px"><b>ST</b> — use strengths to avoid threats</div>
+<div style="padding: 10px; background: #E9DEF7; border-radius: 8px"><b>WT</b> — reduce weaknesses, avoid threats</div>
+</div>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #DCDDD6; border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 10px">
+<div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px">The sweet spot</div>
+<div style="font-size: 14px; color: #3A3D44">A “propitious niche”: where <b>our capabilities</b> meet <b>customer needs</b> — and <b>competitors</b> don't.</div>
+<div style="position: relative; height: 150px">
+<div style="position: absolute; left: 6px; top: 6px; width: 120px; height: 120px; border-radius: 50%; background: rgba(15,124,122,0.28); display: flex; align-items: flex-start; justify-content: flex-start; padding: 22px 0 0 14px; box-sizing: border-box; font-size: 12px; font-weight: 600">Us</div>
+<div style="position: absolute; left: 82px; top: 6px; width: 120px; height: 120px; border-radius: 50%; background: rgba(31,95,191,0.25); display: flex; align-items: flex-start; justify-content: flex-end; padding: 22px 14px 0 0; box-sizing: border-box; font-size: 12px; font-weight: 600">Customers</div>
+<div style="position: absolute; left: 186px; top: 26px; width: 110px; height: 110px; border-radius: 50%; background: rgba(180,80,26,0.18); display: flex; align-items: flex-end; justify-content: flex-end; padding: 0 12px 20px 0; box-sizing: border-box; font-size: 12px; font-weight: 600">Rivals</div>
+<div style="position: absolute; left: 96px; top: 56px; padding: 3px 8px; background: #16181D; color: #FFFFFF; border-radius: 999px; font-size: 11px; font-weight: 600">Sweet spot</div>
+</div>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #DCDDD6; border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 10px">
+<div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px">Gap analysis</div>
+<div style="font-size: 14px; color: #3A3D44">Compare actual vs. desired performance, then decide the steps to close the gap (time, performance, budget).</div>
+<div style="display: flex; align-items: center; gap: 8px; font-size: 13px">
+<div style="padding: 10px 12px; background: #DCDDD6; border-radius: 8px; font-weight: 600">Now</div>
+<div style="flex-grow: 1; border-top: 2px dashed #0F7C7A; position: relative; text-align: center"><span style="position: relative; top: -11px; background: #FFFFFF; padding: 0 6px; color: #0F7C7A; font-weight: 600">the gap</span></div>
+<div style="padding: 10px 12px; background: #0F7C7A; color: #FFFFFF; border-radius: 8px; font-weight: 600">Target</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- SECTION 2: FORMULATE -->
+<div style="padding: 56px 72px 48px; display: flex; flex-direction: column; gap: 24px; background: #FDF3EC">
+<div style="display: flex; align-items: center; gap: 16px">
+<div style="width: 44px; height: 44px; border-radius: 50%; background: #B4501A; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 20px">2</div>
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 700">Formulate — choose &amp; write it down</h2>
+</div>
+<p style="margin: 0; max-width: 900px; font-size: 17px">Formulation documents the intended direction and the actionable steps to reach it. It drives <b>resource allocation, prioritisation, alignment</b> and <b>KPIs</b>. Tips: start with purpose · consider current events · use data, cases &amp; trends · set and communicate goals · treat strategy as ongoing.</p>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: start">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div style="background: #FFFFFF; border-radius: 12px; padding: 18px 20px; display: flex; flex-direction: column; gap: 10px">
+<div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px">Choices at each level</div>
+<div style="font-size: 14px"><b style="color: #B4501A">Corporate</b> — diversify? <i>Related</i> (near current business) · <i>Unrelated</i> (new lines) · <i>Vertical integration</i> (own suppliers or distributors)</div>
+<div style="font-size: 14px"><b style="color: #B4501A">Business</b> — how do we compete? Built on Five Forces; technology affects every industry.</div>
+<div style="font-size: 14px"><b style="color: #B4501A">Functional</b> — department action plans.</div>
+</div>
+<div style="background: #FFFFFF; border-radius: 12px; padding: 18px 20px; display: flex; flex-direction: column; gap: 10px">
+<div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px">Porter's generic competitive strategies</div>
+<div style="display: grid; grid-template-columns: 90px minmax(0, 1fr) minmax(0, 1fr); gap: 6px; font-size: 13px; text-align: center">
+<div></div>
+<div style="font-weight: 600; padding: 4px">Win on lower cost</div>
+<div style="font-weight: 600; padding: 4px">Win on uniqueness</div>
+<div style="font-weight: 600; display: flex; align-items: center; justify-content: flex-end; padding-right: 6px">Broad market</div>
+<div style="padding: 16px 8px; background: #B4501A; color: #FFFFFF; border-radius: 8px; font-weight: 600">Cost leadership</div>
+<div style="padding: 16px 8px; background: #B4501A; color: #FFFFFF; border-radius: 8px; font-weight: 600">Differentiation</div>
+<div style="font-weight: 600; display: flex; align-items: center; justify-content: flex-end; padding-right: 6px">Narrow niche</div>
+<div style="padding: 16px 8px; background: #FBE1CF; border-radius: 8px; font-weight: 600">Cost focus</div>
+<div style="padding: 16px 8px; background: #FBE1CF; border-radius: 8px; font-weight: 600">Differentiation focus</div>
+</div>
+</div>
+</div>
+<div style="background: #FFFFFF; border-radius: 12px; padding: 18px 20px; display: flex; flex-direction: column; gap: 10px">
+<div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px">The strategic plan — top to bottom</div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 13px">
+<div style="width: 44%; padding: 9px; background: #16181D; color: #FFFFFF; border-radius: 6px; text-align: center"><b>Mission</b> · why we exist</div>
+<div style="width: 54%; padding: 9px; background: #16181D; color: #FFFFFF; border-radius: 6px; text-align: center"><b>Vision</b> · what we want to be</div>
+<div style="width: 64%; padding: 9px; background: #16181D; color: #FFFFFF; border-radius: 6px; text-align: center"><b>Goals</b> · what we must achieve</div>
+<div style="width: 74%; padding: 9px; background: #B4501A; color: #FFFFFF; border-radius: 6px; text-align: center"><b>Objectives</b> · measurable outcomes, not activities</div>
+<div style="width: 82%; padding: 9px; background: #B4501A; color: #FFFFFF; border-radius: 6px; text-align: center"><b>Initiatives</b> · planned actions</div>
+<div style="width: 90%; padding: 9px; background: #6B3FA0; color: #FFFFFF; border-radius: 6px; text-align: center"><b>Measures</b> · indicators of success</div>
+<div style="width: 100%; box-sizing: border-box; padding: 9px; background: #6B3FA0; color: #FFFFFF; border-radius: 6px; text-align: center"><b>Targets</b> · desired level + timeline</div>
+</div>
+<div style="display: flex; gap: 14px; font-size: 12px; color: #3A3D44; justify-content: center">
+<span><span style="display: inline-block; width: 10px; height: 10px; background: #16181D; border-radius: 2px"></span> Strategic plan</span>
+<span><span style="display: inline-block; width: 10px; height: 10px; background: #B4501A; border-radius: 2px"></span> Action plans</span>
+<span><span style="display: inline-block; width: 10px; height: 10px; background: #6B3FA0; border-radius: 2px"></span> Evaluate progress</span>
+</div>
+</div>
+</div>
+</div>
+
+<!-- SECTION 3: EXECUTE -->
+<div style="padding: 56px 72px 48px; display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; align-items: center; gap: 16px">
+<div style="width: 44px; height: 44px; border-radius: 50%; background: #0F7C7A; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 20px">3</div>
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 700">Execute — turn the plan into action</h2>
+</div>
+<div style="display: flex; align-items: stretch; gap: 8px; font-size: 14px">
+<div style="padding: 16px; background: #16181D; color: #FFFFFF; border-radius: 10px; display: flex; align-items: center; font-weight: 600">Strategic plan</div>
+<div style="display: flex; align-items: center; color: #0F7C7A; font-weight: 700; font-size: 20px">→</div>
+<div style="flex: 1; padding: 16px; background: #D3F0EE; border-radius: 10px"><b>Strategy realisation</b><br>projects, procedures, resource allocation</div>
+<div style="display: flex; align-items: center; color: #0F7C7A; font-weight: 700; font-size: 20px">→</div>
+<div style="flex: 1; padding: 16px; background: #D3F0EE; border-radius: 10px"><b>Change management</b><br>structural &amp; leadership implementation</div>
+<div style="display: flex; align-items: center; color: #0F7C7A; font-weight: 700; font-size: 20px">→</div>
+<div style="flex: 1; padding: 16px; background: #D3F0EE; border-radius: 10px"><b>Effectiveness</b><br>functional &amp; operational implementation</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px">
+<div style="background: #FFFFFF; border: 1px solid #DCDDD6; border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 8px">
+<div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px">The implementation process</div>
+<div style="font-size: 14px">• Build an organisation able to deliver<br>• Supply enough resources to key activities<br>• Policies that encourage the strategy<br>• Programs for continuous improvement<br>• Link rewards to results<br>• Strategic leadership</div>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #DCDDD6; border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 8px">
+<div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px">6 steps to execute well</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; font-size: 13px">
+<div style="padding: 8px; background: #F0F1EB; border-radius: 6px">1 Communicate goals</div>
+<div style="padding: 8px; background: #F0F1EB; border-radius: 6px">2 Engage the team</div>
+<div style="padding: 8px; background: #F0F1EB; border-radius: 6px">3 Execute the plan</div>
+<div style="padding: 8px; background: #F0F1EB; border-radius: 6px">4 Stay flexible</div>
+<div style="padding: 8px; background: #F0F1EB; border-radius: 6px">5 Close out</div>
+<div style="padding: 8px; background: #F0F1EB; border-radius: 6px">6 Reflect &amp; learn</div>
+</div>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #DCDDD6; border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 8px">
+<div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px">Resource allocation</div>
+<div style="font-size: 14px">Right <b>people, time and budget</b> on the strategic priorities.</div>
+<div style="font-size: 13px"><span style="color: #0F7C7A; font-weight: 700">▲ more available:</span> knowledge of the activity · budget · coordination · project priority</div>
+<div style="font-size: 13px"><span style="color: #B4501A; font-weight: 700">▼ less available:</span> resource constraints → schedule uncertainty</div>
+</div>
+</div>
+</div>
+
+<!-- SECTION 4: EVALUATE -->
+<div style="padding: 56px 72px 48px; display: flex; flex-direction: column; gap: 24px; background: #F4EFFA">
+<div style="display: flex; align-items: center; gap: 16px">
+<div style="width: 44px; height: 44px; border-radius: 50%; background: #6B3FA0; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 20px">4</div>
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 700">Evaluate &amp; control — is it working?</h2>
+</div>
+<p style="margin: 0; max-width: 900px; font-size: 17px">Evaluation checks the strategy is effective and aligned, spots problems or changes in the environment, and guides adjustments.</p>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: start">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px">Four types of strategic control</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<div style="background: #FFFFFF; border-radius: 10px; padding: 14px; display: flex; flex-direction: column; gap: 4px">
+<div style="font-weight: 700; color: #6B3FA0">Premise control</div>
+<div style="font-size: 14px">“Are our assumptions still true?”</div>
+</div>
+<div style="background: #FFFFFF; border-radius: 10px; padding: 14px; display: flex; flex-direction: column; gap: 4px">
+<div style="font-weight: 700; color: #6B3FA0">Implementation control</div>
+<div style="font-size: 14px">“Are we executing as planned?”</div>
+</div>
+<div style="background: #FFFFFF; border-radius: 10px; padding: 14px; display: flex; flex-direction: column; gap: 4px">
+<div style="font-weight: 700; color: #6B3FA0">Strategic surveillance</div>
+<div style="font-size: 14px">“What's changing anywhere around us?” — broad watch</div>
+</div>
+<div style="background: #FFFFFF; border-radius: 10px; padding: 14px; display: flex; flex-direction: column; gap: 4px">
+<div style="font-weight: 700; color: #6B3FA0">Special alert control</div>
+<div style="font-size: 14px">“A crisis just hit — rethink now.”</div>
+</div>
+</div>
+<div style="background: #FFFFFF; border-radius: 10px; padding: 14px; font-size: 14px"><b>Performance measures</b> — quantitative indicators (sales growth, market share, ROI), linked to the objectives set in formulation.</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px">The Balanced Scorecard</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; position: relative">
+<div style="background: #FFFFFF; border-radius: 10px; padding: 14px 14px 26px; font-size: 13px"><div style="font-weight: 700; font-size: 15px">Financial</div>ROI · cash flow · asset value</div>
+<div style="background: #FFFFFF; border-radius: 10px; padding: 14px 14px 26px; font-size: 13px; text-align: right"><div style="font-weight: 700; font-size: 15px">Customer</div>ratings · lifetime value · delivery quality</div>
+<div style="background: #FFFFFF; border-radius: 10px; padding: 26px 14px 14px; font-size: 13px"><div style="font-weight: 700; font-size: 15px">Internal process</div>inventory · resource allocation</div>
+<div style="background: #FFFFFF; border-radius: 10px; padding: 26px 14px 14px; font-size: 13px; text-align: right"><div style="font-weight: 700; font-size: 15px">Learning &amp; growth</div>turnover · satisfaction · skills</div>
+<div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); padding: 12px 18px; background: #6B3FA0; color: #FFFFFF; border-radius: 999px; font-weight: 700; font-size: 14px; text-align: center; border: 4px solid #F4EFFA">Vision &amp; strategy</div>
+</div>
+<div style="font-size: 14px">Translates strategy into measurable objectives and balances <b>financial and non-financial</b> results.</div>
+</div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<div style="flex-grow: 1; padding: 56px 72px 64px; background: #16181D; color: #FBFBF8; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; align-content: start">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div style="font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700">Use it in your group report</div>
+<div style="display: flex; flex-direction: column; gap: 8px; font-size: 15px">
+<div style="display: flex; gap: 12px"><span style="min-width: 150px; color: #8FB4F2; font-weight: 600">External analysis</span><span>Five Forces + environmental scanning</span></div>
+<div style="display: flex; gap: 12px"><span style="min-width: 150px; color: #8FB4F2; font-weight: 600">Internal analysis</span><span>Resources/VRIO + value chain + 7S</span></div>
+<div style="display: flex; gap: 12px"><span style="min-width: 150px; color: #6FD1CD; font-weight: 600">DT focus</span><span>SWOT strategies + sweet spot + gap</span></div>
+<div style="display: flex; gap: 12px"><span style="min-width: 150px; color: #F2A774; font-weight: 600">Recommendations</span><span>Strategic plan pyramid + generic strategy</span></div>
+<div style="display: flex; gap: 12px"><span style="min-width: 150px; color: #C3A6EA; font-weight: 600">4+ KPIs</span><span>Balanced Scorecard perspectives</span></div>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div style="font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700">Test yourself (answer before checking)</div>
+<div style="display: flex; flex-direction: column; gap: 10px; font-size: 15px">
+<div>1. What makes an <i>objective</i> different from a <i>goal</i>?</div>
+<div>2. Which tool turns internal + external findings into four kinds of strategy?</div>
+<div>3. A brand sells premium products to one small luxury segment. Which generic strategy?</div>
+<div>4. Your plan assumed low fuel prices; they doubled. Which control should catch it?</div>
+<div>5. Name the four Balanced Scorecard perspectives without looking.</div>
+</div>
+<div style="font-size: 13px; color: #A9ACB4">Source: MDT 901 Session 2 slides, Dr. Nkqubela Ruxwana, UOW Dubai.</div>
+</div>
+</div>
+
+</div>
+      </div></div>
+    </section>
+
+    <!-- QUIZ -->
+    <section id="panel-quiz" role="tabpanel" aria-labelledby="tab-quiz" hidden>
+      <div class="qbar">
+        <span class="score" id="scoreText">0 / 0</span>
+        <div class="meter" aria-hidden="true"><i class="g" id="mG"></i><i class="b" id="mB"></i></div>
+        <button class="btn primary" type="button" id="showResult">See result</button>
+        <button class="btn" type="button" id="resetQuiz">Restart</button>
+      </div>
+      <div id="resultBox" hidden></div>
+      <div class="filters" role="group" aria-label="Show questions">
+        <button type="button" data-f="all" aria-pressed="true">All</button>
+        <button type="button" data-f="open" aria-pressed="false">Unanswered</button>
+        <button type="button" data-f="wrong" aria-pressed="false">Wrong only</button>
+      </div>
+      <div class="qlist" id="qlist"></div>
+    </section>
+  </main>
+</div>
+
+<script>
+const STAGES={0:{n:"Foundations",c:"var(--accent)"},1:{n:"Plan & analyse",c:"var(--st1)"},2:{n:"Formulate",c:"var(--st2)"},3:{n:"Execute",c:"var(--st3)"},4:{n:"Evaluate & control",c:"var(--st4)"}};
+
+const SESSIONS=[{
+  id:"s2", num:"02", title:"Intro to Strategic Management",
+  course:"MDT 901 · Session 2", sub:"One route, four stations: analyse, formulate, execute, evaluate.",
+  quiz:[
+    {s:0,q:"What makes an objective different from a goal?",o:["An objective is long term; a goal is short term","An objective is precise and measurable, with a deadline","A goal is set by managers; an objective by the board","There is no difference"],a:1,e:"A goal is a general statement of aim. An objective adds a number and a deadline, so you can measure it."},
+    {s:0,q:"Which strategy level answers \"How do we compete?\"",o:["Corporate","Business","Functional","Operational"],a:1,e:"Corporate asks which businesses we are in; business level asks how we compete; functional asks how departments support it."},
+    {s:0,q:"According to the slides, what is the result of a good strategy?",o:["Lower costs","Competitive advantage","Higher share price","A larger team"],a:1,e:"Exploiting competencies, synergy, value and targeting customers leads to competitive advantage: your distinctive edge in meeting customer needs."},
+    {s:0,q:"In Wheelen's model, what is the correct order of the stages?",o:["Formulation → scanning → implementation → evaluation","Scanning → formulation → implementation → evaluation & control","Implementation → scanning → formulation → evaluation","Scanning → implementation → formulation → evaluation"],a:1,e:"Environmental scanning comes first, then formulation, implementation, and evaluation & control, with feedback to every stage."},
+    {s:1,q:"Porter's Five Forces is mainly used to judge…",o:["How attractive an industry is","Which employees to promote","The internal value chain","How to set the budget"],a:0,e:"Five Forces is an external tool. It looks at new entrants, suppliers, buyers, substitutes and rivalry to judge industry attractiveness."},
+    {s:1,q:"Which tool turns internal and external findings into four kinds of strategy?",o:["Value chain","Balanced Scorecard","SWOT matrix","McKinsey 7S"],a:2,e:"The SWOT matrix combines strengths/weaknesses with opportunities/threats into SO, WO, ST and WT strategies."},
+    {s:1,q:"A WO strategy means…",o:["Use strengths to seize opportunities","Use opportunities to fix weaknesses","Use strengths to avoid threats","Reduce weaknesses and avoid threats"],a:1,e:"W + O: you take advantage of an opportunity to overcome an internal weakness."},
+    {s:1,q:"When does a resource give sustainable competitive advantage under VRIO?",o:["When it is valuable","When it is valuable and rare","When it is valuable, rare, inimitable and the firm is organised to use it","When it is cheap to acquire"],a:2,e:"All four VRIO conditions must be met for a sustainable advantage."},
+    {s:1,q:"In Porter's value chain, which of these is a support activity?",o:["Outbound logistics","Procurement","Marketing & sales","Service"],a:1,e:"Support activities are infrastructure, HR, technology and procurement. The others listed are primary activities."},
+    {s:1,q:"Which of these is NOT one of the McKinsey 7S elements?",o:["Shared values","Skills","Speed","Systems"],a:2,e:"The 7S are strategy, structure, systems, style, staff, skills and shared values."},
+    {s:1,q:"The \"sweet spot\" (propitious niche) is where…",o:["Our costs are lowest","Our capabilities meet customer needs and competitors don't","The market is growing fastest","Regulation is weakest"],a:1,e:"It is the overlap of our capabilities and customer needs, outside what competitors offer."},
+    {s:2,q:"A brand sells premium products to one small luxury segment. Which generic strategy is this?",o:["Cost leadership","Differentiation","Cost focus","Differentiation focus"],a:3,e:"Narrow market (focus) + winning on uniqueness (differentiation) = differentiation focus."},
+    {s:2,q:"A carmaker buys the company that supplies its batteries. This is…",o:["Related diversification","Unrelated diversification","Vertical integration","Cost focus"],a:2,e:"Owning your suppliers or distributors is vertical integration, a corporate-level choice."},
+    {s:2,q:"In the strategic plan, which element sets the desired level plus a timeline?",o:["Mission","Initiatives","Measures","Targets"],a:3,e:"Measures are the indicators of success; targets set the desired level and timeline for each measure."},
+    {s:3,q:"Strategy implementation is carried out through…",o:["Mission → vision → goals","Programs → budgets → procedures","Scanning → SWOT → gap","Premise → surveillance → alert"],a:1,e:"In Wheelen's model, implementation turns strategy into programs, budgets and procedures."},
+    {s:4,q:"Your plan assumed low fuel prices; they doubled. Which control should catch this?",o:["Premise control","Implementation control","Strategic surveillance","Special alert control"],a:0,e:"Premise control checks whether the assumptions behind the plan are still true."},
+    {s:4,q:"Which control is a broad, general watch for anything changing around the organisation?",o:["Premise control","Implementation control","Strategic surveillance","Special alert control"],a:2,e:"Strategic surveillance is unfocused and broad. Premise control checks specific assumptions."},
+    {s:4,q:"Which set lists the four Balanced Scorecard perspectives?",o:["Financial, customer, internal process, learning & growth","Strengths, weaknesses, opportunities, threats","Financial, marketing, HR, operations","Vision, mission, goals, targets"],a:0,e:"The Balanced Scorecard balances financial and non-financial results across these four perspectives."}
+  ]
+}];
+
+const $=s=>document.querySelector(s);
+const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+let cur=null, answers={}, filter="all";
+
+/* ---- home ---- */
+function renderHome(){
+  const list=$("#sessionList"); list.innerHTML="";
+  SESSIONS.forEach(s=>{
+    const b=document.createElement("button");
+    b.className="s-card"; b.type="button";
+    b.innerHTML=`<span class="s-num">${s.num}</span><span class="eyebrow">${s.course}</span><h2>${s.title}</h2><p class="muted">${s.sub}</p>
+      <div class="mini-route" aria-hidden="true"><i style="background:var(--st1)"></i><b></b><i style="background:var(--st2)"></i><b></b><i style="background:var(--st3)"></i><b></b><i style="background:var(--st4)"></i></div>
+      <div class="s-meta"><span class="chip">Topic EN · AR</span><span class="chip">Infographic</span><span class="chip">${s.quiz.length} questions</span></div>`;
+    b.onclick=()=>openSession(s.id,"topic");
+    list.appendChild(b);
+  });
+  const e=document.createElement("div");
+  e.className="s-card empty";
+  e.innerHTML=`<span class="eyebrow">Next session</span><p>Share the next session's slides or NotebookLM source and it gets added here with the same three tabs.</p>`;
+  list.appendChild(e);
+}
+
+/* ---- session ---- */
+function openSession(id,tab){
+  cur=SESSIONS.find(s=>s.id===id); if(!cur) return;
+  $("#home").hidden=true; $("#session").hidden=false;
+  $("#sEyebrow").textContent=cur.course; $("#sTitle").textContent=cur.title; $("#sSub").textContent=cur.sub;
+  $("#quizCount").textContent=cur.quiz.length;
+  try{answers=JSON.parse(store.get("ans-"+id)||"{}")}catch(e){answers={}}
+  renderQuiz(); setTab(tab||"topic"); window.scrollTo(0,0);
+}
+function goHome(){ $("#session").hidden=true; $("#home").hidden=false; history.replaceState(null,"","#home"); window.scrollTo(0,0); }
+$("#backBtn").onclick=goHome;
+
+const TABS=["topic","info","quiz"];
+function setTab(t){
+  TABS.forEach(x=>{ const on=x===t; $("#tab-"+x).setAttribute("aria-selected",on); $("#tab-"+x).tabIndex=on?0:-1; $("#panel-"+x).hidden=!on; });
+  if(cur) history.replaceState(null,"","#"+cur.id+"-"+t);
+  if(t==="info") fitIg();
+}
+TABS.forEach((t,i)=>{
+  const el=$("#tab-"+t);
+  el.onclick=()=>setTab(t);
+  el.onkeydown=e=>{ if(e.key==="ArrowRight"||e.key==="ArrowLeft"){ const d=e.key==="ArrowRight"?1:-1; const n=TABS[(i+d+TABS.length)%TABS.length]; setTab(n); $("#tab-"+n).focus(); } };
+});
+
+/* ---- language, per section ---- */
+(function(){
+  const en=[...$("#topicEn").children], ar=[...$("#topicAr").children];
+  const out=document.createElement("article"); out.className="topic"; out.lang="en"; out.dir="ltr";
+  en.forEach((sec,i)=>{
+    const a=ar[i]; a.lang="ar"; a.dir="rtl"; a.hidden=true;
+    const w=document.createElement("div"); w.className="sw";
+    const bar=document.createElement("div"); bar.className="lang"; bar.setAttribute("role","group"); bar.setAttribute("aria-label","Section language");
+    bar.innerHTML='<button type="button" aria-pressed="true">English</button><button type="button" aria-pressed="false" lang="ar">العربية</button>';
+    const [bEn,bAr]=bar.children;
+    const set=l=>{ sec.hidden=l!=="en"; a.hidden=l!=="ar"; bEn.setAttribute("aria-pressed",l==="en"); bAr.setAttribute("aria-pressed",l==="ar"); };
+    bEn.onclick=()=>set("en"); bAr.onclick=()=>set("ar");
+    w.append(bar,sec,a); out.append(w);
+  });
+  $("#topicEn").replaceWith(out); $("#topicAr").remove();
+})();
+
+/* ---- quiz ---- */
+const L="ABCD";
+function renderQuiz(){
+  const box=$("#qlist"); box.innerHTML="";
+  cur.quiz.forEach((it,i)=>{
+    const st=STAGES[it.s]; const ans=answers[i];
+    const done=ans!==undefined, ok=done&&ans===it.a;
+    if(filter==="open"&&done) return;
+    if(filter==="wrong"&&!(done&&!ok)) return;
+    const c=document.createElement("div");
+    c.className="qc"+(done?(ok?" right":" wrong"):""); c.style.setProperty("--c",st.c); c.id="q"+i;
+    let h=`<div class="qtop"><span class="qn">${String(i+1).padStart(2,"0")}</span><div><div class="qstage">${st.n}</div><div class="qtext">${it.q}</div></div></div><div class="opts">`;
+    it.o.forEach((o,j)=>{
+      let cls="opt"; if(done){ if(j===it.a) cls+=" is-right"; else if(j===ans) cls+=" is-wrong"; }
+      h+=`<button type="button" class="${cls}" data-q="${i}" data-o="${j}" ${done?"disabled":""}><span class="k">${L[j]}</span><span>${o}</span></button>`;
+    });
+    h+=`</div>`;
+    if(done) h+=`<div class="fb ${ok?"r":"w"}"><b>${ok?"Correct.":"Not quite. Answer: "+L[it.a]+"."}</b>${it.e}</div>`;
+    c.innerHTML=h; box.appendChild(c);
+  });
+  if(!box.children.length) box.innerHTML=`<p class="muted">${filter==="wrong"?"No wrong answers to review.":"Every question is answered. Press See result."}</p>`;
+  updateScore();
+}
+$("#qlist").addEventListener("click",e=>{
+  const b=e.target.closest(".opt"); if(!b||b.disabled) return;
+  const qi=+b.dataset.q; answers[qi]=+b.dataset.o;
+  store.set("ans-"+cur.id,JSON.stringify(answers));
+  renderQuiz();
+  const card=$("#q"+qi); if(card) card.querySelector(".fb")?.scrollIntoView({block:"nearest",behavior:"smooth"});
+});
+function tally(){
+  let r=0,w=0; cur.quiz.forEach((it,i)=>{ if(answers[i]===undefined) return; answers[i]===it.a?r++:w++; });
+  return {r,w,t:cur.quiz.length};
+}
+function updateScore(){
+  const {r,w,t}=tally();
+  $("#scoreText").textContent=`${r} correct · ${r+w}/${t} answered`;
+  $("#mG").style.width=(r/t*100)+"%"; $("#mB").style.width=(w/t*100)+"%";
+}
+$("#showResult").onclick=()=>{
+  const {r,w,t}=tally(); const pct=Math.round(r/t*100);
+  const by={}; cur.quiz.forEach((it,i)=>{ by[it.s]=by[it.s]||{r:0,t:0}; by[it.s].t++; if(answers[i]===it.a) by[it.s].r++; });
+  const msg= r+w<t ? `You have ${t-r-w} unanswered. Unanswered questions count as wrong.` :
+    pct>=85?"Strong. You can explain this session; try teaching the four controls to someone.":
+    pct>=60?"Good base. Use \"Wrong only\" to review the gaps, then retry.":"Re-read the Topic tab stage by stage, then retry the quiz.";
+  let h=`<span class="eyebrow">Your result</span><div class="big">${r}/${t} · ${pct}%</div><p>${msg}</p><div class="bystage">`;
+  Object.keys(by).forEach(k=>{ h+=`<div style="--c:${STAGES[k].c}"><b>${by[k].r}/${by[k].t}</b>${STAGES[k].n}</div>`; });
+  h+=`</div>`;
+  const rb=$("#resultBox"); rb.className="result"; rb.innerHTML=h; rb.hidden=false;
+  rb.scrollIntoView({block:"start",behavior:"smooth"});
+};
+$("#resetQuiz").onclick=()=>{ answers={}; store.set("ans-"+cur.id,"{}"); $("#resultBox").hidden=true; setFilter("all"); };
+function setFilter(f){ filter=f; document.querySelectorAll(".filters button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.f===f)); renderQuiz(); }
+document.querySelectorAll(".filters button").forEach(b=>b.onclick=()=>setFilter(b.dataset.f));
+
+
+/* ---- infographic fit ---- */
+let igMode="fit";
+function fitIg(){
+  const f=$("#igFrame"), sc=$("#igScale"); if(!f||$("#panel-info").hidden) return;
+  if(igMode==="fit"){ const k=Math.min(1,f.clientWidth/1240); sc.style.transform=`scale(${k})`; f.style.height=(sc.offsetHeight*k)+"px"; f.classList.remove("actual"); }
+  else { sc.style.transform="none"; f.style.height=""; f.classList.add("actual"); }
+}
+function setIg(m){ igMode=m; $("#igFit").setAttribute("aria-pressed",m==="fit"); $("#igFull").setAttribute("aria-pressed",m!=="fit"); fitIg(); }
+$("#igFit").onclick=()=>setIg("fit"); $("#igFull").onclick=()=>setIg("full");
+window.addEventListener("resize",fitIg);
+if(document.fonts&&document.fonts.ready) document.fonts.ready.then(fitIg);
+
+/* ---- boot ---- */
+renderHome();
+(function(){
+  const h=location.hash.slice(1); const m=h.match(/^(s\d+)-(topic|info|quiz)$/);
+  if(m) openSession(m[1],m[2]);
+})();
+</script>
+
+</body>
+</html>
