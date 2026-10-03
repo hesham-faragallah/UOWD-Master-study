@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="MDT 901 study hub: bilingual topic notes, infographic and self-scoring quiz for each session.">
+<meta name="description" content="MDT 901 study hub: bilingual topic notes, infographic, self-scoring quiz and assignment for each session.">
 <style>html{color-scheme:light}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>MDT 901 Study Hub</title>
 
@@ -264,7 +264,7 @@ button{font:inherit;color:inherit}
     <div class="hero">
       <span class="eyebrow">Digital Transformation Strategy &amp; Industry 4.0</span>
       <h1>Pick a session to study</h1>
-      <p>Each session opens with three tabs: the topic explained in English and Arabic with real examples, the one-page infographic, and a quiz you can answer and score right away.</p>
+      <p>Each session opens with four tabs: the topic explained in English and Arabic with real examples, the one-page infographic, a quiz you can answer and score right away, and the assignment answer.</p>
     </div>
     <div class="sessions" id="sessionList"></div>
   </main>
@@ -281,6 +281,7 @@ button{font:inherit;color:inherit}
       <button class="tab" role="tab" id="tab-topic" aria-controls="panel-topic" aria-selected="true" type="button">Topic <span class="count">EN · عربي</span></button>
       <button class="tab" role="tab" id="tab-info" aria-controls="panel-info" aria-selected="false" type="button">Infographic</button>
       <button class="tab" role="tab" id="tab-quiz" aria-controls="panel-quiz" aria-selected="false" type="button">Quiz <span class="count" id="quizCount"></span></button>
+      <button class="tab" role="tab" id="tab-assign" aria-controls="panel-assign" aria-selected="false" type="button">Assignment</button>
     </div>
 
     <!-- TOPIC -->
@@ -967,6 +968,214 @@ button{font:inherit;color:inherit}
       </div></div>
     </section>
 
+    <!-- ASSIGNMENT -->
+    <section id="panel-assign" role="tabpanel" aria-labelledby="tab-assign" hidden>
+      <div class="a-brief">
+        <div class="a-facts">
+          <div><span class="eyebrow">Task</span><b>Assessment 2 · Review Article</b></div>
+          <div><span class="eyebrow">Type</span><b>Individual essay</b></div>
+          <div><span class="eyebrow">Weight</span><b>30% · 100 marks</b></div>
+          <div><span class="eyebrow">Length</span><b>2,000–2,500 words</b></div>
+          <div><span class="eyebrow">Due</span><b>18 Oct 2026, midnight UAE</b></div>
+          <div><span class="eyebrow">Late</span><b>Until 21 Oct, −20% per day</b></div>
+        </div>
+        <div class="a-rubric">
+          <div class="a-rrow a-rhead"><span>Criterion</span><span>Marks</span><span>Where this answer earns it</span></div>
+          <div class="a-rrow"><span>Breadth &amp; relevance of literature</span><span>20</span><span>Two recent peer-reviewed articles (2024, 2026), DT theory, a UITP survey and RTA's AI Strategy 2030</span></div>
+          <div class="a-rrow"><span>Depth of analysis</span><span>30</span><span>Sections 3 and 5: pros, cons and the Industry 4.0 link</span></div>
+          <div class="a-rrow"><span>Critical comparison</span><span>25</span><span>Section 4: similarities, differences, strengths, limits and synthesis</span></div>
+          <div class="a-rrow"><span>Academic writing &amp; referencing</span><span>15</span><span>Harvard style in text and in the reference list</span></div>
+          <div class="a-rrow"><span>Structure &amp; clarity</span><span>10</span><span>Follows the brief's suggested structure section by section</span></div>
+        </div>
+      </div>
+
+      <div class="a-warn">
+        <b>How to use this model answer.</b> The Arabic version is there to help you understand the logic; submit the English version. Read both articles yourself before you submit, then rewrite each section in your own voice and add your own examples. The course allows GenAI only where a task permits it and requires you to acknowledge how you used it, so check the Moodle rubric and add that statement. 
+      </div>
+
+      <div class="a-tools">
+        <div class="lang" role="group" aria-label="Essay language" id="essayLang">
+          <button type="button" data-l="en" aria-pressed="true">Whole essay in English</button>
+          <button type="button" data-l="ar" lang="ar" aria-pressed="false">المقال كاملًا بالعربية</button>
+        </div>
+        <span class="score" id="essayWords"></span>
+        <button class="btn" type="button" id="copyEn">Copy English</button>
+        <button class="btn" type="button" id="copyAr">نسخ العربية</button>
+        <a class="btn" href="MDT901_Assessment2_Review_Article_Hesham_Faragallah.docx" download>Download Word file</a>
+      </div>
+
+      <article class="essay" id="essay">
+        <div class="e-pair">
+          <div class="lang e-lang" role="group" aria-label="Section language"><button type="button" data-l="en" aria-pressed="true">English</button><button type="button" data-l="ar" lang="ar" aria-pressed="false">العربية</button></div>
+          <header class="e-title" lang="en"><span class="eyebrow">Title page</span><h2>Artificial Intelligence in Urban Public Transport: Promise, Practice and the Gap Between Them</h2><p class="e-sub">A review of an Industry 4.0 trend, with evidence from research, practitioners and Dubai</p><p class="muted">Hesham Faragallah · Student number: 1510587 · MDT 901 Digital Transformation Strategy &amp; Industry 4.0 · Dr. Nkqubela Ruxwana · Submitted: 4 October 2026</p></header>
+          <header class="e-title" lang="ar" dir="rtl" hidden><span class="eyebrow">صفحة العنوان</span><h2>الذكاء الاصطناعي في النقل العام الحضري: الوعود والتطبيق والفجوة بينهما</h2><p class="e-sub">مراجعة لأحد اتجاهات الثورة الصناعية الرابعة، مع أدلة من البحث العلمي والممارسين ومدينة دبي</p><p class="muted">هشام فرج الله · الرقم الجامعي: 1510587 · MDT 901 استراتيجية التحول الرقمي والثورة الصناعية الرابعة · د. نكقوبيلا روكسوانا · تاريخ التسليم: 4 أكتوبر 2026</p></header>
+        </div>
+        <div class="e-pair">
+          <div class="lang e-lang" role="group" aria-label="Section language"><button type="button" data-l="en" aria-pressed="true">English</button><button type="button" data-l="ar" lang="ar" aria-pressed="false">العربية</button></div>
+          <section class="e-sec" lang="en" data-target="150–200"><h3>Executive Summary</h3>
+<p>This report reviews how artificial intelligence (AI) is changing urban public transport. Public transport is a good industry to study because it moves millions of people every day and produces large amounts of data. The report first explains the basics of digital transformation and Industry 4.0. It then focuses on one trend: using AI to predict, monitor and improve transport services. Two recent articles are compared. The first is a systematic mapping study of 87 research papers on AI in public transport (Jevinger et al., 2024). The second is a survey of how transport professionals see AI (Qian et al., 2026). Dubai's Roads and Transport Authority (RTA) is used as a live industry example. The main finding is simple: everyone agrees that AI has strong potential, but very few solutions reach daily operation. The reasons are mostly organisational, not technical. They include poor data, limited AI knowledge, and open questions about privacy, ethics and fairness. The report recommends starting with clear, measurable use cases, building strong data foundations, training people, and checking every system for fairness.</p>
+          </section>
+          <section class="e-sec" lang="ar" dir="rtl" hidden><h3>الملخص التنفيذي</h3>
+<p>يراجع هذا التقرير كيف يغيّر الذكاء الاصطناعي النقل العام في المدن. النقل العام صناعة مناسبة للدراسة لأنه ينقل ملايين الأشخاص يوميًا وينتج كميات كبيرة من البيانات. يشرح التقرير أولًا أساسيات التحول الرقمي والثورة الصناعية الرابعة، ثم يركز على اتجاه واحد: استخدام الذكاء الاصطناعي للتنبؤ بخدمات النقل ومراقبتها وتحسينها. ويقارن بين مقالتين حديثتين. الأولى دراسة مسح منهجي لـ 87 بحثًا عن الذكاء الاصطناعي في النقل العام (Jevinger et al., 2024). والثانية استبيان عن نظرة العاملين في قطاع النقل إلى الذكاء الاصطناعي (Qian et al., 2026). ويستخدم التقرير هيئة الطرق والمواصلات في دبي مثالًا حيًا من الصناعة. النتيجة الرئيسية بسيطة: الجميع يتفق على أن للذكاء الاصطناعي إمكانات قوية، لكن عددًا قليلًا جدًا من الحلول يصل إلى التشغيل اليومي. والأسباب في معظمها تنظيمية وليست تقنية، مثل ضعف البيانات، ومحدودية المعرفة بالذكاء الاصطناعي، والأسئلة المفتوحة حول الخصوصية والأخلاقيات والعدالة. ويوصي التقرير بالبدء بحالات استخدام واضحة وقابلة للقياس، وبناء أساس قوي للبيانات، وتدريب الموظفين، وفحص كل نظام من حيث العدالة.</p>
+          </section>
+        </div>
+        <div class="e-pair">
+          <div class="lang e-lang" role="group" aria-label="Section language"><button type="button" data-l="en" aria-pressed="true">English</button><button type="button" data-l="ar" lang="ar" aria-pressed="false">العربية</button></div>
+          <section class="e-sec" lang="en" data-target="250–300"><h3>1. Introduction</h3>
+<p>Digital transformation is not the same as buying new technology. Vial (2019) explains it as a process in which digital technologies cause important changes to an organisation, with the aim of improving it. Verhoef et al. (2021) describe three steps. Digitisation turns paper information into digital data. Digitalisation uses digital tools to improve existing processes. Digital transformation goes further: it changes the business model and the way the organisation creates value. This change is happening inside the Fourth Industrial Revolution, or Industry 4.0. Schwab (2016) describes it as the joining of physical, digital and biological systems through technologies such as AI, the Internet of Things (IoT) and cloud computing.</p>
+<p>Urban public transport is a strong example of this change. The scale is large. In Dubai alone, public transport, shared mobility and taxis carried 802.1 million riders in 2025, about 2.2 million every day (Dubai Media Office, 2026). Every trip creates data: smart-card taps, vehicle locations, app searches and sensor readings. Operators must also reduce congestion and emissions while competing with private cars and ride-hailing. AI is the technology that can turn this data into better decisions. Passengers also expect the same speed and personal service from transport that they get from shopping and banking apps.</p>
+<p>This report has three objectives. First, it reviews the basics of digital transformation and Industry 4.0 in public transport. Second, it examines AI as a major trend in the industry. Third, it critically compares two recent articles on this trend. The report then discusses the implications for the industry and ends with recommendations.</p>
+          </section>
+          <section class="e-sec" lang="ar" dir="rtl" hidden><h3>1. المقدمة</h3>
+<p>التحول الرقمي ليس مجرد شراء تقنية جديدة. يشرحه Vial (2019) بأنه عملية تُحدث فيها التقنيات الرقمية تغييرات مهمة في المؤسسة بهدف تحسينها. ويصف Verhoef et al. (2021) ثلاث خطوات. الرقمنة (Digitisation) تحوّل المعلومات الورقية إلى بيانات رقمية. والتمكين الرقمي (Digitalisation) يستخدم الأدوات الرقمية لتحسين العمليات القائمة. أما التحول الرقمي فيذهب أبعد من ذلك، إذ يغيّر نموذج العمل وطريقة خلق القيمة. ويحدث هذا التغيير ضمن الثورة الصناعية الرابعة (Industry 4.0)، التي يصفها Schwab (2016) بأنها دمج الأنظمة المادية والرقمية والبيولوجية عبر تقنيات مثل الذكاء الاصطناعي وإنترنت الأشياء والحوسبة السحابية.</p>
+<p>النقل العام في المدن مثال قوي على هذا التغيير، فحجمه كبير. في دبي وحدها نقلت وسائل النقل العام والتنقل المشترك وسيارات الأجرة 802.1 مليون راكب في 2025، أي نحو 2.2 مليون راكب يوميًا (Dubai Media Office, 2026). وكل رحلة تنتج بيانات: لمسات البطاقة الذكية، ومواقع المركبات، وعمليات البحث في التطبيقات، وقراءات أجهزة الاستشعار. كما يجب على المشغلين تقليل الازدحام والانبعاثات مع منافسة السيارات الخاصة وتطبيقات طلب السيارات. والذكاء الاصطناعي هو التقنية القادرة على تحويل هذه البيانات إلى قرارات أفضل. ويتوقع الركاب أيضًا من خدمات النقل السرعة والخدمة الشخصية نفسها التي يجدونها في تطبيقات التسوق والبنوك.</p>
+<p>لهذا التقرير ثلاثة أهداف. أولًا، مراجعة أساسيات التحول الرقمي والثورة الصناعية الرابعة في النقل العام. ثانيًا، دراسة الذكاء الاصطناعي بوصفه اتجاهًا رئيسيًا في الصناعة. ثالثًا، المقارنة النقدية بين مقالتين حديثتين حول هذا الاتجاه. ثم يناقش التقرير الآثار على الصناعة ويختم بالتوصيات.</p>
+          </section>
+        </div>
+        <div class="e-pair">
+          <div class="lang e-lang" role="group" aria-label="Section language"><button type="button" data-l="en" aria-pressed="true">English</button><button type="button" data-l="ar" lang="ar" aria-pressed="false">العربية</button></div>
+          <section class="e-sec" lang="en" data-target="500–600"><h3>2. Literature Review</h3>
+<h4>Fundamentals of digital transformation</h4>
+<p>Vial (2019) offers a useful chain of cause and effect. New digital technologies create disruption, for example in customer expectations and competition. Organisations respond with a new strategy. This strategy changes how they create value. To deliver it, they must change their structure, culture and skills, and they often meet barriers such as resistance to change. Verhoef et al. (2021) add that transformation needs new resources, such as data and digital skills, and new capabilities, such as fast decision-making. The key lesson from both authors is that digital transformation is first a strategic and organisational challenge, and only second a technical one.</p>
+<p>The literature also warns about two common mistakes. The first is "technology push", where an organisation buys a tool first and looks for a problem later. The second is treating transformation as a one-time project. Both authors suggest the opposite: start from a strategic problem, such as unreliable services, and build the capability to keep improving over time. This idea matches the strategic management loop, where results are measured and fed back into the next plan.</p>
+<h4>Application to public transport</h4>
+<p>Public transport has already passed through the three steps of Verhoef et al. (2021). Paper tickets were digitised into smart cards, such as the nol card in Dubai. Processes were then digitalised through vehicle tracking and real-time arrival screens. The industry is now in the transformation step. Operators are moving from fixed timetables towards flexible services based on real demand. Mobility-as-a-Service (MaaS) apps are a clear sign of this. They let passengers plan, book and pay for metro, bus, taxi and other modes in one place. RTA's S'hail journey-planning app is one example of this direction.</p>
+<p>Several Industry 4.0 technologies work together in this system. IoT sensors on vehicles and stations report location, passenger numbers and equipment condition. Cloud platforms store and share the data. Big data analytics shows how people really travel. Cybersecurity protects ticketing and signalling, because an attack can stop a whole network. AI sits on top of all these technologies and uses their data to predict and decide. For this reason, this review chooses AI as its focus trend.</p>
+<h4>Industry context</h4>
+<p>Interest in AI is not new. In a UITP survey of 48 public transport organisations in Asia-Pacific, 62% were already involved in AI projects, but half of these projects were still trials (UITP, 2018). The main barriers were poor data quality, lack of AI skills, privacy concerns and weak support from top management. Today the trend has moved from trials to strategy. In 2025, Dubai's RTA launched an AI Strategy 2030 with 81 projects and initiatives. Its targets include cutting travel times by 20–30%, reducing costs by 10–20% through predictive maintenance, and raising customer satisfaction by 35%. RTA also reported more than 40 AI and big data applications already in use, such as predictive bus maintenance and passenger sentiment analysis (Tahawul Tech, 2025). This shows AI becoming a core part of transport strategy, not an IT side project.</p>
+          </section>
+          <section class="e-sec" lang="ar" dir="rtl" hidden><h3>2. مراجعة الأدبيات</h3>
+<h4>أساسيات التحول الرقمي</h4>
+<p>يقدم Vial (2019) سلسلة مفيدة من الأسباب والنتائج. التقنيات الرقمية الجديدة تُحدث اضطرابًا، مثلًا في توقعات العملاء وفي المنافسة. فترد المؤسسات باستراتيجية جديدة، وهذه الاستراتيجية تغيّر طريقة خلق القيمة. ولتنفيذها يجب أن تغيّر المؤسسة هيكلها وثقافتها ومهاراتها، وغالبًا تواجه عوائق مثل مقاومة التغيير. ويضيف Verhoef et al. (2021) أن التحول يحتاج إلى موارد جديدة مثل البيانات والمهارات الرقمية، وقدرات جديدة مثل سرعة اتخاذ القرار. والدرس الأهم من الكاتبين أن التحول الرقمي تحدٍّ استراتيجي وتنظيمي أولًا، ثم تقني ثانيًا.</p>
+<p>وتحذّر الأدبيات أيضًا من خطأين شائعين. الأول هو "دفع التقنية"، أي أن تشتري المؤسسة الأداة أولًا ثم تبحث لها عن مشكلة. والثاني هو التعامل مع التحول كمشروع لمرة واحدة. ويقترح الكاتبان العكس: ابدأ من مشكلة استراتيجية، مثل عدم انتظام الخدمة، وابنِ القدرة على التحسين المستمر. وهذه الفكرة تتوافق مع دورة الإدارة الاستراتيجية، حيث تُقاس النتائج وتعود لتغذي الخطة التالية.</p>
+<h4>التطبيق في النقل العام</h4>
+<p>مرّ النقل العام بالفعل بالخطوات الثلاث التي وصفها Verhoef et al. (2021). فقد تحولت التذاكر الورقية إلى بطاقات ذكية، مثل بطاقة نول في دبي. ثم جرى تحسين العمليات رقميًا عبر تتبع المركبات وشاشات مواعيد الوصول المباشرة. والصناعة الآن في مرحلة التحول، إذ ينتقل المشغلون من الجداول الثابتة إلى خدمات مرنة مبنية على الطلب الفعلي. وتطبيقات التنقل كخدمة (MaaS) علامة واضحة على ذلك، فهي تتيح للركاب التخطيط والحجز والدفع للمترو والحافلات وسيارات الأجرة ووسائل أخرى في مكان واحد. وتطبيق سهيل لتخطيط الرحلات التابع لهيئة الطرق والمواصلات مثال على هذا الاتجاه.</p>
+<p>تعمل عدة تقنيات من الثورة الصناعية الرابعة معًا في هذا النظام. أجهزة استشعار إنترنت الأشياء في المركبات والمحطات ترسل الموقع وعدد الركاب وحالة المعدات. والمنصات السحابية تخزّن البيانات وتشاركها. وتحليل البيانات الضخمة يكشف كيف يتنقل الناس فعلًا. والأمن السيبراني يحمي أنظمة التذاكر والإشارات، لأن أي هجوم قد يوقف شبكة كاملة. أما الذكاء الاصطناعي فيعمل فوق كل هذه التقنيات ويستخدم بياناتها للتنبؤ واتخاذ القرار. لهذا تختار هذه المراجعة الذكاء الاصطناعي اتجاهًا رئيسيًا لها.</p>
+<h4>سياق الصناعة</h4>
+<p>الاهتمام بالذكاء الاصطناعي ليس جديدًا. ففي استبيان أجراه الاتحاد الدولي للنقل العام (UITP) على 48 مؤسسة نقل في منطقة آسيا والمحيط الهادئ، كانت 62% منها تعمل على مشاريع ذكاء اصطناعي، لكن نصف هذه المشاريع كان ما يزال في مرحلة التجربة (UITP, 2018). وكانت أهم العوائق ضعف جودة البيانات، ونقص مهارات الذكاء الاصطناعي، ومخاوف الخصوصية، وضعف دعم الإدارة العليا. أما اليوم فقد انتقل هذا الاتجاه من التجارب إلى الاستراتيجية. ففي 2025 أطلقت هيئة الطرق والمواصلات في دبي استراتيجية الذكاء الاصطناعي 2030 التي تضم 81 مشروعًا ومبادرة. ومن أهدافها تقليل زمن الرحلات بنسبة 20–30%، وخفض التكاليف بنسبة 10–20% عبر الصيانة التنبؤية، ورفع رضا المتعاملين بنسبة 35%. كما ذكرت الهيئة أن لديها أكثر من 40 تطبيقًا للذكاء الاصطناعي والبيانات الضخمة قيد الاستخدام، مثل الصيانة التنبؤية للحافلات وتحليل مشاعر الركاب (Tahawul Tech, 2025). وهذا يبيّن أن الذكاء الاصطناعي أصبح جزءًا أساسيًا من استراتيجية النقل، وليس مشروعًا تقنيًا جانبيًا.</p>
+          </section>
+        </div>
+        <div class="e-pair">
+          <div class="lang e-lang" role="group" aria-label="Section language"><button type="button" data-l="en" aria-pressed="true">English</button><button type="button" data-l="ar" lang="ar" aria-pressed="false">العربية</button></div>
+          <section class="e-sec" lang="en" data-target="400–500"><h3>3. Selected Trend: AI in Public Transport</h3>
+<h4>Trend overview</h4>
+<p>AI in public transport can be grouped into five simple jobs. AI can <b>predict</b>, for example bus arrival times, passenger demand and crowding. It can <b>sense</b> the current situation, such as how full a train is. It can <b>decide</b> how to use resources, for example by improving timetables, staff rosters or the dispatch of an extra bus. It can <b>maintain</b> assets by spotting faults before a breakdown. Finally, it can <b>personalise</b> the journey, for example by suggesting the best door-to-door route in a MaaS app or answering questions through a chatbot.</p>
+<h4>Technological implications: pros and cons</h4>
+<p>The benefits reach three groups. Passengers get more reliable services and better information, such as live crowding levels. Operators save money because predictive maintenance keeps more vehicles in service and reduces emergency repairs. Cities can plan networks using real travel patterns instead of old surveys. However, there are real risks. AI needs large amounts of clean and connected data, but many operators still have data spread across separate systems. Travel data can reveal where a person lives and works, so privacy is a serious issue. Some AI models are a "black box", which makes them hard to explain to managers or the public. If services are designed only for smartphone users, older passengers, people of determination and people without digital access may be left behind. More connected systems also create more targets for cyber attacks.</p>
+<h4>Relevance to Industry 4.0</h4>
+<p>AI in public transport shows the main idea of Industry 4.0 very clearly. Sensors collect data, the cloud processes it, AI makes a decision, and the physical system acts on it, for example when an extra bus is sent to a busy stop. Decisions also move closer to real time: plans that were once reviewed every year can now change within the same day. In Vial's (2019) terms, this changes the way value is created. The operator moves from running a fixed timetable to offering a responsive mobility service. This is transformation, not only efficiency.</p>
+<p>A simple scenario shows how this works in practice. After a large event, sensors and smart-card taps show that one metro station is becoming crowded. An AI model predicts that the crowding will last for 40 minutes. The control room adds trains, nearby feeder buses are adjusted, and a MaaS app suggests other routes to passengers. Each step uses a different Industry 4.0 technology, but the value comes from connecting them.</p>
+          </section>
+          <section class="e-sec" lang="ar" dir="rtl" hidden><h3>3. الاتجاه المختار: الذكاء الاصطناعي في النقل العام</h3>
+<h4>نظرة عامة على الاتجاه</h4>
+<p>يمكن تقسيم استخدامات الذكاء الاصطناعي في النقل العام إلى خمس مهام بسيطة. يستطيع الذكاء الاصطناعي أن <b>يتنبأ</b>، مثل مواعيد وصول الحافلات والطلب على الرحلات والازدحام. وأن <b>يستشعر</b> الوضع الحالي، مثل مدى امتلاء القطار. وأن <b>يقرر</b> كيفية استخدام الموارد، مثل تحسين الجداول ومناوبات الموظفين أو إرسال حافلة إضافية. وأن <b>يصون</b> الأصول باكتشاف الأعطال قبل حدوثها. وأخيرًا أن <b>يخصّص</b> الرحلة، مثل اقتراح أفضل مسار من الباب إلى الباب في تطبيق MaaS أو الرد على الأسئلة عبر روبوت محادثة.</p>
+<h4>الآثار التقنية: الإيجابيات والسلبيات</h4>
+<p>تصل الفوائد إلى ثلاث فئات. الركاب يحصلون على خدمة أكثر انتظامًا ومعلومات أفضل، مثل مستوى الازدحام المباشر. والمشغلون يوفرون المال لأن الصيانة التنبؤية تُبقي عددًا أكبر من المركبات في الخدمة وتقلل الإصلاحات الطارئة. والمدن تستطيع تخطيط شبكاتها بناءً على أنماط التنقل الحقيقية بدلًا من الاستبيانات القديمة. لكن هناك مخاطر حقيقية. فالذكاء الاصطناعي يحتاج إلى كميات كبيرة من البيانات النظيفة والمترابطة، بينما ما زالت بيانات كثير من المشغلين موزعة على أنظمة منفصلة. وبيانات التنقل قد تكشف أين يسكن الشخص وأين يعمل، لذا فالخصوصية قضية جدية. وبعض نماذج الذكاء الاصطناعي "صندوق أسود" يصعب شرحه للمديرين أو للجمهور. وإذا صُممت الخدمات لمستخدمي الهواتف الذكية فقط، فقد يُترك كبار السن وأصحاب الهمم ومن لا يملكون وصولًا رقميًا خلف الركب. كما أن زيادة ترابط الأنظمة تخلق أهدافًا أكثر للهجمات السيبرانية.</p>
+<h4>العلاقة بالثورة الصناعية الرابعة</h4>
+<p>يوضح الذكاء الاصطناعي في النقل العام الفكرة الرئيسية للثورة الصناعية الرابعة بوضوح شديد. أجهزة الاستشعار تجمع البيانات، والسحابة تعالجها، والذكاء الاصطناعي يتخذ القرار، والنظام المادي ينفّذه، مثل إرسال حافلة إضافية إلى محطة مزدحمة. كما تقترب القرارات من الزمن الحقيقي: الخطط التي كانت تُراجع مرة في السنة يمكن أن تتغير الآن في اليوم نفسه. وبلغة Vial (2019)، هذا يغيّر طريقة خلق القيمة، إذ ينتقل المشغل من تشغيل جدول ثابت إلى تقديم خدمة تنقل مرنة. وهذا تحول حقيقي، وليس مجرد كفاءة.</p>
+<p>ويوضح سيناريو بسيط كيف يعمل ذلك عمليًا. بعد فعالية كبيرة، تُظهر أجهزة الاستشعار ولمسات البطاقات الذكية أن إحدى محطات المترو بدأت تزدحم. ويتنبأ نموذج ذكاء اصطناعي بأن الازدحام سيستمر 40 دقيقة. فتضيف غرفة التحكم قطارات، وتُعدّل الحافلات المغذية القريبة، ويقترح تطبيق MaaS مسارات بديلة على الركاب. كل خطوة تستخدم تقنية مختلفة من تقنيات الثورة الصناعية الرابعة، لكن القيمة تأتي من الربط بينها.</p>
+          </section>
+        </div>
+        <div class="e-pair">
+          <div class="lang e-lang" role="group" aria-label="Section language"><button type="button" data-l="en" aria-pressed="true">English</button><button type="button" data-l="ar" lang="ar" aria-pressed="false">العربية</button></div>
+          <section class="e-sec" lang="en" data-target="600–700"><h3>4. Article Review and Comparative Analysis</h3>
+<h4>Article 1: Jevinger et al. (2024)</h4>
+<p>Jevinger et al. (2024) carried out a systematic mapping study. They searched three databases (Scopus, IEEE Xplore and Web of Science) and analysed 87 peer-reviewed papers. They grouped each paper by AI method, purpose and type of transport. Prediction was the most common use of AI, followed by estimating the current situation and allocating resources. Machine learning appeared in 77% of the papers. Most research focused on buses and on improving the travel service, such as arrival-time prediction. Very few papers aimed mainly to save costs, raise revenue or automate operations. The authors also found that most solutions stayed at the research stage and named data quality and privacy as key challenges.</p>
+<h4>Article 2: Qian et al. (2026)</h4>
+<p>Qian et al. (2026) surveyed transport professionals in the United States and analysed 270 complete answers with latent class cluster analysis, a method that groups people with similar views. They found four groups: AI neutral, AI optimist, AI pessimist and AI sceptic. Most respondents believed AI can improve efficiency, reduce costs and improve the traveller experience. However, views on fairness were mixed. Many felt that AI ethics are not well understood in the transport sector and that AI could increase existing inequality. A person's group was linked to their age, education and level of AI knowledge.</p>
+<h4>Critical analysis</h4>
+<p>The two articles agree on three points. Both see the biggest value of AI in efficiency and the passenger experience. Both show a gap between promise and real use. Both suggest that the hardest problems are not technical but involve privacy, ethics and trust.</p>
+<p>The differences are more interesting. Jevinger et al. (2024) look at what researchers build; Qian et al. (2026) look at what practitioners believe. Putting them side by side reveals a mismatch. Practitioners expect AI to cut costs, but researchers rarely make cost saving their main goal. Research is therefore not fully aligned with the needs of the people who must pay for and use it. This may help explain why few solutions are deployed.</p>
+<p>Each article also has limits. Jevinger et al. (2024) use a clear and repeatable method and cover international research. However, they include only English-language academic papers. Many real projects, such as those run by operators like RTA, are reported in the news or not at all, so the study may make the implementation gap look larger than it is. It also counts studies without testing whether the solutions work. Qian et al. (2026) add the human side and the question of fairness, which the first article mostly ignores. Their segmentation is also practical, because it shows managers which staff groups need more training or reassurance before a new system is introduced. However, their data comes from one country and one moment in time, it reflects opinions rather than results, and it covers transport in general rather than public transport only. Importantly, neither article measures real outcomes, such as minutes saved or costs reduced. This is the evidence that decision-makers need most.</p>
+<h4>Synthesis</h4>
+<p>Together, the articles suggest that AI success depends on three layers: technology, organisation and society. Jevinger et al. (2024) show that the technology layer is well researched. Qian et al. (2026) show that the organisation and society layers are weaker, because people with less AI knowledge are less ready to adopt it and fairness is not well understood. This supports Vial (2019) and Verhoef et al. (2021), who argue that transformation is limited by skills, culture and governance. Dubai's strategy reflects this lesson, because it pairs AI projects with measurable targets and a governance framework (Tahawul Tech, 2025). The real test will be whether such targets are later measured and published.</p>
+          </section>
+          <section class="e-sec" lang="ar" dir="rtl" hidden><h3>4. مراجعة المقالات والتحليل المقارن</h3>
+<h4>المقالة الأولى: Jevinger et al. (2024)</h4>
+<p>أجرى Jevinger et al. (2024) دراسة مسح منهجي. بحثوا في ثلاث قواعد بيانات (Scopus وIEEE Xplore وWeb of Science) وحللوا 87 بحثًا محكّمًا. وصنفوا كل بحث حسب طريقة الذكاء الاصطناعي والغرض ونوع وسيلة النقل. وكان التنبؤ هو الاستخدام الأكثر شيوعًا، يليه تقدير الوضع الحالي ثم توزيع الموارد. وظهر التعلم الآلي في 77% من الأبحاث. وركزت معظم الأبحاث على الحافلات وعلى تحسين خدمة الرحلة، مثل التنبؤ بموعد الوصول. وكان عدد قليل جدًا من الأبحاث يهدف أساسًا إلى خفض التكاليف أو زيادة الإيرادات أو أتمتة العمليات. ووجد الباحثون أيضًا أن معظم الحلول بقيت في مرحلة البحث، وحددوا جودة البيانات والخصوصية كتحديات رئيسية.</p>
+<h4>المقالة الثانية: Qian et al. (2026)</h4>
+<p>أجرى Qian et al. (2026) استبيانًا على العاملين في قطاع النقل في الولايات المتحدة، وحللوا 270 إجابة مكتملة باستخدام تحليل التجمعات الكامنة، وهي طريقة تجمع الأشخاص ذوي الآراء المتشابهة. ووجدوا أربع مجموعات: المحايدون، والمتفائلون، والمتشائمون، والمتشككون تجاه الذكاء الاصطناعي. وكان معظم المشاركين يرون أن الذكاء الاصطناعي يمكن أن يحسّن الكفاءة ويخفض التكاليف ويحسّن تجربة المسافر. لكن الآراء حول العدالة كانت متباينة، وشعر كثيرون أن أخلاقيات الذكاء الاصطناعي غير مفهومة جيدًا في قطاع النقل، وأنه قد يزيد عدم المساواة القائم. وارتبطت مجموعة الشخص بعمره وتعليمه ومستوى معرفته بالذكاء الاصطناعي.</p>
+<h4>التحليل النقدي</h4>
+<p>تتفق المقالتان في ثلاث نقاط. كلتاهما ترى أن أكبر قيمة للذكاء الاصطناعي في الكفاءة وتجربة الراكب. وكلتاهما تُظهر فجوة بين الوعود والاستخدام الفعلي. وكلتاهما تشير إلى أن أصعب المشكلات ليست تقنية، بل تتعلق بالخصوصية والأخلاقيات والثقة.</p>
+<p>أما الاختلافات فهي الأكثر إثارة للاهتمام. Jevinger et al. (2024) ينظرون إلى ما يبنيه الباحثون، بينما ينظر Qian et al. (2026) إلى ما يعتقده الممارسون. ووضعهما جنبًا إلى جنب يكشف عدم تطابق: الممارسون يتوقعون أن يخفض الذكاء الاصطناعي التكاليف، لكن الباحثين نادرًا ما يجعلون خفض التكلفة هدفهم الرئيسي. أي أن البحث غير متوافق تمامًا مع احتياجات من سيدفعون ثمنه ويستخدمونه، وهذا قد يفسر قلة الحلول التي تصل إلى التطبيق.</p>
+<p>ولكل مقالة حدودها. يستخدم Jevinger et al. (2024) منهجًا واضحًا قابلًا للتكرار ويغطون الأبحاث الدولية، لكنهم يشملون الأبحاث الأكاديمية باللغة الإنجليزية فقط. وكثير من المشاريع الحقيقية، مثل تلك التي ينفذها مشغلون كهيئة الطرق والمواصلات، تُنشر في الأخبار أو لا تُنشر أصلًا، لذا قد تجعل الدراسة فجوة التطبيق تبدو أكبر من حقيقتها. كما أنها تعدّ الدراسات دون أن تختبر هل تنجح الحلول. ويضيف Qian et al. (2026) الجانب الإنساني وسؤال العدالة، وهو ما تتجاهله المقالة الأولى غالبًا. كما أن تقسيمهم للمجموعات عملي، لأنه يوضح للمديرين أي فئات من الموظفين تحتاج إلى تدريب أو طمأنة أكثر قبل إدخال نظام جديد. لكن بياناتهم من دولة واحدة ولحظة زمنية واحدة، وتعكس آراء لا نتائج، وتغطي النقل بشكل عام لا النقل العام وحده. والأهم أن أيًا من المقالتين لا يقيس نتائج حقيقية، مثل الدقائق الموفرة أو التكاليف المخفضة، وهذا هو الدليل الذي يحتاجه صناع القرار أكثر من غيره.</p>
+<h4>التركيب</h4>
+<p>معًا، تشير المقالتان إلى أن نجاح الذكاء الاصطناعي يعتمد على ثلاث طبقات: التقنية، والمؤسسة، والمجتمع. يبيّن Jevinger et al. (2024) أن طبقة التقنية مدروسة جيدًا. ويبيّن Qian et al. (2026) أن طبقتي المؤسسة والمجتمع أضعف، لأن الأشخاص الأقل معرفة بالذكاء الاصطناعي أقل استعدادًا لتبنيه، ولأن العدالة غير مفهومة جيدًا. وهذا يدعم رأي Vial (2019) وVerhoef et al. (2021) بأن التحول تحدّه المهارات والثقافة والحوكمة. وتعكس استراتيجية دبي هذا الدرس، فهي تربط مشاريع الذكاء الاصطناعي بأهداف قابلة للقياس وبإطار حوكمة (Tahawul Tech, 2025). والاختبار الحقيقي سيكون هل تُقاس هذه الأهداف لاحقًا وتُنشر نتائجها.</p>
+          </section>
+        </div>
+        <div class="e-pair">
+          <div class="lang e-lang" role="group" aria-label="Section language"><button type="button" data-l="en" aria-pressed="true">English</button><button type="button" data-l="ar" lang="ar" aria-pressed="false">العربية</button></div>
+          <section class="e-sec" lang="en" data-target="300–400"><h3>5. Implications for the Industry</h3>
+<h4>Strategic implications</h4>
+<p>Transport organisations should manage AI as a strategy, not as a technology purchase. Each AI project should support a clear objective and be measured with a balanced set of indicators: customer measures such as on-time performance and satisfaction, process measures such as fleet availability, financial measures such as maintenance cost, and learning measures such as staff AI skills. Data should be treated as a strategic asset, with shared standards across metro, bus, taxi and partner services. Operators should also co-develop solutions with suppliers and universities through small pilots with clear success criteria, and then scale what works. Leaders should also explain AI decisions to staff and passengers in simple language, because trust grows when people understand how a system works. This also builds internal knowledge, which Qian et al. (2026) link to more positive and realistic attitudes.</p>
+<h4>Opportunities and challenges</h4>
+<p>The main opportunities are more reliable services, live crowding information, lower maintenance costs, demand-responsive buses and integrated MaaS apps that make public transport a real alternative to the private car. AI can also support sustainability goals, because fuller vehicles and smarter routes reduce energy use per passenger. The main challenges are old systems that do not share data, privacy laws, a shortage of AI skills, slow procurement and the need to keep public trust. Fairness must be designed in from the start, so that services also work for people who do not use apps.</p>
+<h4>Future outlook</h4>
+<p>AI will likely move from predicting problems to recommending and then automating responses. Digital twins of whole networks, generative AI travel assistants and, later, autonomous vehicles will extend this trend. Regulation will shape how fast it happens. For example, the EU AI Act sets stricter rules for AI used to manage critical infrastructure, including road traffic (European Union, 2024). Operators that invest early in data governance and transparency will be able to scale AI more safely.</p>
+          </section>
+          <section class="e-sec" lang="ar" dir="rtl" hidden><h3>5. الآثار على الصناعة</h3>
+<h4>الآثار الاستراتيجية</h4>
+<p>يجب أن تدير مؤسسات النقل الذكاء الاصطناعي كاستراتيجية، لا كعملية شراء تقنية. فكل مشروع ذكاء اصطناعي يجب أن يخدم هدفًا واضحًا ويُقاس بمجموعة متوازنة من المؤشرات: مؤشرات العملاء مثل الالتزام بالمواعيد والرضا، ومؤشرات العمليات مثل جاهزية الأسطول، ومؤشرات مالية مثل تكلفة الصيانة، ومؤشرات التعلم مثل مهارات الموظفين في الذكاء الاصطناعي. ويجب التعامل مع البيانات كأصل استراتيجي، بمعايير مشتركة بين المترو والحافلات وسيارات الأجرة وخدمات الشركاء. وعلى المشغلين أيضًا تطوير الحلول بالشراكة مع الموردين والجامعات عبر تجارب صغيرة بمعايير نجاح واضحة، ثم توسيع ما ينجح. وعلى القادة أن يشرحوا قرارات الذكاء الاصطناعي للموظفين والركاب بلغة بسيطة، لأن الثقة تنمو عندما يفهم الناس كيف يعمل النظام. وهذا يبني المعرفة الداخلية أيضًا، وهي ما يربطه Qian et al. (2026) بمواقف أكثر إيجابية وواقعية.</p>
+<h4>الفرص والتحديات</h4>
+<p>أهم الفرص هي خدمات أكثر انتظامًا، ومعلومات مباشرة عن الازدحام، وتكاليف صيانة أقل، وحافلات تستجيب للطلب، وتطبيقات MaaS متكاملة تجعل النقل العام بديلًا حقيقيًا للسيارة الخاصة. كما يدعم الذكاء الاصطناعي أهداف الاستدامة، لأن المركبات الأكثر امتلاءً والمسارات الأذكى تقلل استهلاك الطاقة لكل راكب. أما أهم التحديات فهي الأنظمة القديمة التي لا تتبادل البيانات، وقوانين الخصوصية، ونقص مهارات الذكاء الاصطناعي، وبطء إجراءات الشراء، والحاجة إلى الحفاظ على ثقة الجمهور. ويجب تصميم العدالة من البداية، حتى تعمل الخدمات أيضًا لمن لا يستخدمون التطبيقات.</p>
+<h4>النظرة المستقبلية</h4>
+<p>من المرجح أن ينتقل الذكاء الاصطناعي من التنبؤ بالمشكلات إلى اقتراح الحلول ثم أتمتتها. وستوسّع التوائم الرقمية للشبكات الكاملة، ومساعدو السفر بالذكاء الاصطناعي التوليدي، ولاحقًا المركبات ذاتية القيادة، هذا الاتجاه. وستحدد الأنظمة والتشريعات سرعة حدوث ذلك. فمثلًا يفرض قانون الذكاء الاصطناعي الأوروبي قواعد أشد على الذكاء الاصطناعي المستخدم في إدارة البنية التحتية الحيوية، بما فيها حركة المرور (European Union, 2024). والمشغلون الذين يستثمرون مبكرًا في حوكمة البيانات والشفافية سيتمكنون من توسيع الذكاء الاصطناعي بأمان أكبر.</p>
+          </section>
+        </div>
+        <div class="e-pair">
+          <div class="lang e-lang" role="group" aria-label="Section language"><button type="button" data-l="en" aria-pressed="true">English</button><button type="button" data-l="ar" lang="ar" aria-pressed="false">العربية</button></div>
+          <section class="e-sec" lang="en" data-target="200–250"><h3>6. Conclusion</h3>
+<p>This review found that AI is the most wide-reaching Industry 4.0 trend in urban public transport, because it turns data from smart cards, sensors and apps into decisions. Research is strong in prediction and resource planning, and practitioners are mostly optimistic. However, both articles show a clear gap between promise and practice. The causes are mainly organisational: weak data foundations, limited AI knowledge, and unclear rules on privacy and fairness. Dubai's AI Strategy 2030 shows that leading operators are now responding at the strategic level. Overall, AI can change public transport from a fixed service that passengers must adapt to into a flexible service that adapts to passengers. Whether this happens depends on how well organisations manage data, people and trust.</p>
+<p>Five recommendations follow for industry players:</p>
+<ol>
+<li>Start with high-value prediction uses, such as arrival times, crowding and maintenance, and set clear KPIs for each one.</li>
+<li>Build shared data foundations and governance before investing in advanced models.</li>
+<li>Train staff and leaders in AI, not only the data team.</li>
+<li>Check every AI system for privacy, ethics and fairness, and keep non-digital service options.</li>
+<li>Measure and publish real results, so that research and practice can learn from each other.</li>
+</ol>
+          </section>
+          <section class="e-sec" lang="ar" dir="rtl" hidden><h3>6. الخاتمة</h3>
+<p>وجدت هذه المراجعة أن الذكاء الاصطناعي هو أوسع اتجاهات الثورة الصناعية الرابعة تأثيرًا في النقل العام الحضري، لأنه يحوّل بيانات البطاقات الذكية وأجهزة الاستشعار والتطبيقات إلى قرارات. والبحث العلمي قوي في التنبؤ وتخطيط الموارد، والممارسون متفائلون في الغالب. لكن المقالتين تُظهران فجوة واضحة بين الوعود والتطبيق. وأسبابها تنظيمية في الأساس: ضعف أسس البيانات، ومحدودية المعرفة بالذكاء الاصطناعي، وعدم وضوح قواعد الخصوصية والعدالة. وتُظهر استراتيجية دبي للذكاء الاصطناعي 2030 أن المشغلين الرائدين بدأوا يستجيبون على المستوى الاستراتيجي. وبشكل عام، يستطيع الذكاء الاصطناعي أن يحوّل النقل العام من خدمة ثابتة يتكيف معها الركاب إلى خدمة مرنة تتكيف مع الركاب. وتحقُّق ذلك يعتمد على مدى نجاح المؤسسات في إدارة البيانات والناس والثقة.</p>
+<p>وفيما يلي خمس توصيات للعاملين في الصناعة:</p>
+<ol>
+<li>البدء باستخدامات تنبؤ عالية القيمة، مثل مواعيد الوصول والازدحام والصيانة، مع تحديد مؤشرات أداء واضحة لكل منها.</li>
+<li>بناء أسس وحوكمة مشتركة للبيانات قبل الاستثمار في النماذج المتقدمة.</li>
+<li>تدريب الموظفين والقادة على الذكاء الاصطناعي، وليس فريق البيانات فقط.</li>
+<li>فحص كل نظام ذكاء اصطناعي من حيث الخصوصية والأخلاقيات والعدالة، مع الإبقاء على خيارات خدمة غير رقمية.</li>
+<li>قياس النتائج الحقيقية ونشرها، حتى يتعلم البحث والتطبيق من بعضهما.</li>
+</ol>
+          </section>
+        </div>
+        <section class="e-sec e-refs" lang="en">
+          <h3>7. References</h3>
+          <p class="note" lang="ar" dir="rtl">المراجع تبقى بالإنجليزية في النسختين لأنها تُكتب بأسلوب هارفارد.</p>
+          <ul class="refs">
+            <li>Dubai Media Office (2026) 'RTA records 802 million riders using public transport, shared mobility and taxis in 2025', <i>Dubai Media Office</i>, 15 February. Available at: <a href="https://www.mediaoffice.ae/en/news/2026/february/15-02/rta-records-802-riders-in-dubai-2025" target="_blank" rel="noopener">https://www.mediaoffice.ae/en/news/2026/february/15-02/rta-records-802-riders-in-dubai-2025</a> (Accessed: 2 October 2026).</li>
+            <li>European Union (2024) 'Regulation (EU) 2024/1689 of the European Parliament and of the Council of 13 June 2024 laying down harmonised rules on artificial intelligence (Artificial Intelligence Act)', <i>Official Journal of the European Union</i>, L series, 12 July. Available at: <a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener">https://eur-lex.europa.eu/eli/reg/2024/1689/oj</a> (Accessed: 2 October 2026).</li>
+            <li>Jevinger, Å., Zhao, C., Persson, J.A. and Davidsson, P. (2024) 'Artificial intelligence for improving public transport: a mapping study', <i>Public Transport</i>, 16(1), pp. 99–158. Available at: <a href="https://doi.org/10.1007/s12469-023-00334-7" target="_blank" rel="noopener">https://doi.org/10.1007/s12469-023-00334-7</a>.</li>
+            <li>Qian, Y., Polimetla, T., Sanchez, T.W. and Yan, X. (2026) 'How do transportation professionals perceive the impacts of AI applications in transportation? A latent class cluster analysis', <i>Transportation</i>, 53(5), pp. 2933–2958. Available at: <a href="https://doi.org/10.1007/s11116-025-10588-8" target="_blank" rel="noopener">https://doi.org/10.1007/s11116-025-10588-8</a>.</li>
+            <li>Schwab, K. (2016) <i>The fourth industrial revolution</i>. Geneva: World Economic Forum. Available at: <a href="https://www3.weforum.org/docs/WEF_The_Fourth_Industrial_Revolution.pdf" target="_blank" rel="noopener">https://www3.weforum.org/docs/WEF_The_Fourth_Industrial_Revolution.pdf</a> (Accessed: 2 October 2026).</li>
+            <li>Tahawul Tech (2025) 'RTA launches AI Strategy 2030 featuring 81 projects and initiatives', <i>Tahawul Tech</i>. Available at: <a href="https://www.tahawultech.com/news/rta-launches-ai-strategy-2030-featuring-81-projects-and-initiatives/" target="_blank" rel="noopener">https://www.tahawultech.com/news/rta-launches-ai-strategy-2030-featuring-81-projects-and-initiatives/</a> (Accessed: 2 October 2026).</li>
+            <li>UITP (2018) <i>Artificial intelligence in mass public transport: Asia-Pacific report (executive summary)</i>. Singapore: UITP Asia-Pacific Centre for Transport Excellence. Available at: <a href="https://www.uitp.org/wp-content/uploads/sites/7/2025/04/AI_PT_ExecutiveSummary_UITP_APCTE.pdf" target="_blank" rel="noopener">https://www.uitp.org/wp-content/uploads/sites/7/2025/04/AI_PT_ExecutiveSummary_UITP_APCTE.pdf</a> (Accessed: 2 October 2026).</li>
+            <li>Verhoef, P.C., Broekhuizen, T., Bart, Y., Bhattacharya, A., Qi Dong, J., Fabian, N. and Haenlein, M. (2021) 'Digital transformation: a multidisciplinary reflection and research agenda', <i>Journal of Business Research</i>, 122, pp. 889–901. Available at: <a href="https://doi.org/10.1016/j.jbusres.2019.09.022" target="_blank" rel="noopener">https://doi.org/10.1016/j.jbusres.2019.09.022</a>.</li>
+            <li>Vial, G. (2019) 'Understanding digital transformation: a review and a research agenda', <i>The Journal of Strategic Information Systems</i>, 28(2), pp. 118–144. Available at: <a href="https://doi.org/10.1016/j.jsis.2019.01.003" target="_blank" rel="noopener">https://doi.org/10.1016/j.jsis.2019.01.003</a>.</li>
+          </ul>
+        </section>
+      </article>
+
+      <div class="a-warn a-check">
+        <b>Before you submit</b>
+        <ul>
+          <li>Open the sources and confirm every figure quoted: 87 studies, 77%, 270 responses, four segments, 802.1 million riders, and the RTA targets (81 initiatives, 20–30%, 10–20%, 35%).</li>
+          <li>Tahawul Tech is a news source. If you can, replace it with RTA's own announcement on rta.ae, which is stronger evidence.</li>
+          <li>Vial's (2019) definition is paraphrased. If you prefer to quote it, copy the exact wording from p. 118 and add quotation marks.</li>
+          <li>Swap in one example from your own industry experience in section 3 or 5. It shows depth and makes the essay yours.</li>
+          <li>Add the GenAI acknowledgement statement required by the course.</li>
+        </ul>
+      </div>
+    </section>
+
     <!-- QUIZ -->
     <section id="panel-quiz" role="tabpanel" aria-labelledby="tab-quiz" hidden>
       <div class="qbar">
@@ -1026,7 +1235,7 @@ function renderHome(){
     b.className="s-card"; b.type="button";
     b.innerHTML=`<span class="s-num">${s.num}</span><span class="eyebrow">${s.course}</span><h2>${s.title}</h2><p class="muted">${s.sub}</p>
       <div class="mini-route" aria-hidden="true"><i style="background:var(--st1)"></i><b></b><i style="background:var(--st2)"></i><b></b><i style="background:var(--st3)"></i><b></b><i style="background:var(--st4)"></i></div>
-      <div class="s-meta"><span class="chip">Topic EN · AR</span><span class="chip">Infographic</span><span class="chip">${s.quiz.length} questions</span></div>`;
+      <div class="s-meta"><span class="chip">Topic EN · AR</span><span class="chip">Infographic</span><span class="chip">${s.quiz.length} questions</span><span class="chip">Assignment</span></div>`;
     b.onclick=()=>openSession(s.id,"topic");
     list.appendChild(b);
   });
@@ -1048,7 +1257,7 @@ function openSession(id,tab){
 function goHome(){ $("#session").hidden=true; $("#home").hidden=false; history.replaceState(null,"","#home"); window.scrollTo(0,0); }
 $("#backBtn").onclick=goHome;
 
-const TABS=["topic","info","quiz"];
+const TABS=["topic","info","quiz","assign"];
 function setTab(t){
   TABS.forEach(x=>{ const on=x===t; $("#tab-"+x).setAttribute("aria-selected",on); $("#tab-"+x).tabIndex=on?0:-1; $("#panel-"+x).hidden=!on; });
   if(cur) history.replaceState(null,"","#"+cur.id+"-"+t);
@@ -1145,10 +1354,43 @@ $("#igFit").onclick=()=>setIg("fit"); $("#igFull").onclick=()=>setIg("full");
 window.addEventListener("resize",fitIg);
 if(document.fonts&&document.fonts.ready) document.fonts.ready.then(fitIg);
 
+/* ---- assignment: language, word counts, copy ---- */
+(function(){
+  const setPair=(p,l)=>{ p.querySelectorAll(":scope > [lang]").forEach(x=>x.hidden=x.getAttribute("lang")!==l); p.querySelectorAll(".e-lang button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===l)); };
+  document.querySelectorAll("#essay .e-pair").forEach(p=>p.querySelectorAll(".e-lang button").forEach(b=>b.onclick=()=>setPair(p,b.dataset.l)));
+  document.querySelectorAll("#essayLang button").forEach(b=>b.onclick=()=>{
+    document.querySelectorAll("#essayLang button").forEach(x=>x.setAttribute("aria-pressed",x===b));
+    document.querySelectorAll("#essay .e-pair").forEach(p=>setPair(p,b.dataset.l));
+  });
+  const wc=el=>{ const c=el.cloneNode(true); c.querySelectorAll("h3,h4").forEach(h=>h.remove()); return (c.textContent.trim().match(/\S+/g)||[]).length; };
+  let tot=0;
+  document.querySelectorAll('#essay .e-sec[lang="en"][data-target]').forEach(sec=>{
+    const n=wc(sec); tot+=n; const t=sec.dataset.target;
+    const [lo,hi]=t.split("–").map(Number); const ok=n>=lo*0.95&&n<=hi;
+    const b=document.createElement("span"); b.className="wc"+(ok?" ok":""); b.textContent=`${n} words · brief ${t}`;
+    sec.querySelector("h3").appendChild(b);
+  });
+  $("#essayWords").textContent=`English: ${tot.toLocaleString()} words (limit 2,000–2,500, references excluded)`;
+  const clean=el=>{ const c=el.cloneNode(true); c.querySelectorAll(".wc,.note").forEach(x=>x.remove()); return c.textContent.replace(/[ \t]+\n/g,"\n").replace(/\n{3,}/g,"\n\n").trim(); };
+  const collect=l=>{
+    const out=[];
+    document.querySelectorAll(`#essay .e-title[lang="${l}"], #essay .e-sec[lang="${l}"]:not(.e-refs)`).forEach(el=>out.push(clean(el)));
+    out.push(clean($("#essay .e-refs")));
+    return out.join("\n\n");
+  };
+  const copy=async(btn,l,label)=>{
+    try{ await navigator.clipboard.writeText(collect(l)); btn.textContent=l==="ar"?"تم النسخ":"Copied"; }
+    catch(e){ btn.textContent=l==="ar"?"تعذّر النسخ، حدد النص يدويًا":"Copy blocked. Select the text manually"; }
+    setTimeout(()=>btn.textContent=label,2500);
+  };
+  $("#copyEn").onclick=()=>copy($("#copyEn"),"en","Copy English");
+  $("#copyAr").onclick=()=>copy($("#copyAr"),"ar","نسخ العربية");
+})();
+
 /* ---- boot ---- */
 renderHome();
 (function(){
-  const h=location.hash.slice(1); const m=h.match(/^(s\d+)-(topic|info|quiz)$/);
+  const h=location.hash.slice(1); const m=h.match(/^(s\d+)-(topic|info|quiz|assign)$/);
   if(m) openSession(m[1],m[2]);
 })();
 </script>
