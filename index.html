@@ -301,6 +301,40 @@ button{font:inherit;color:inherit}
   .rq-tr b{font-size:15px}
 }
 
+/* ---------- course resources ---------- */
+.rx-paper{display:grid;gap:8px;padding:16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.rx-title{font:600 16px var(--f-display);display:grid;gap:4px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.rx-title span,.rx-steps b+span{font:500 11px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.rx-row{display:grid;grid-template-columns:170px 1fr;gap:12px;padding:10px 12px;border-inline-start:5px solid var(--c);background:var(--bg);border-radius:6px}
+.rx-row b{color:var(--c)} .rx-row p{margin:0;font-size:14.5px}
+.rx-split{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.rx-plus,.rx-minus{padding:12px 14px;border-radius:8px;font-size:14px}
+.rx-plus{background:var(--good-soft)} .rx-minus{background:var(--bad-soft)}
+.rx-plus>b{color:var(--good)} .rx-minus>b{color:var(--bad)}
+.rx-plus ul,.rx-minus ul{margin:6px 0 0;padding-inline-start:18px;display:grid;gap:4px}
+.rx-table{display:grid;border:1px solid var(--line);border-radius:var(--r);overflow:auto;background:var(--surface)}
+.rx-tr{display:grid;grid-template-columns:44px repeat(6,minmax(110px,1fr));gap:10px;padding:10px 12px;border-top:1px solid var(--line);font-size:13.5px;min-width:760px}
+.rx-tr:first-child{border-top:0}
+.rx-th{background:var(--sunk);font:600 11.5px var(--f-mono);letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.rx-empty{color:var(--muted)}
+.rx-matrix{display:grid;border:1px solid var(--line);border-radius:var(--r);overflow:auto;background:var(--surface)}
+.rx-mr{display:grid;grid-template-columns:50px repeat(4,minmax(90px,1fr));gap:8px;padding:8px 12px;border-top:1px solid var(--line);align-items:center;font-size:13.5px;min-width:480px}
+.rx-mr:first-child{border-top:0}
+.rx-mr i{font-style:normal;font:700 13px var(--f-mono);justify-self:center;width:30px;height:30px;border-radius:50%;display:grid;place-items:center}
+.rx-mr i.y{background:var(--good-soft);color:var(--good)} .rx-mr i.n{background:var(--bad-soft);color:var(--bad)} .rx-mr i.p{background:#FBEBD3;color:var(--st2)}
+.rx-mr.rx-th span:not(:first-child){text-align:center}
+.rx-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;counter-reset:rx}
+.rx-steps li{counter-increment:rx;display:grid;gap:4px;align-content:start;padding:12px;background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:var(--r)}
+.rx-steps li::before{content:counter(rx);font:800 22px/1 var(--f-display);color:var(--c)}
+.rx-steps b+span{text-transform:none;letter-spacing:0;font:400 13px var(--f-body)}
+.rx-themes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
+.rx-themes article{display:grid;gap:8px;align-content:start;padding:14px;background:var(--surface);border:1px solid var(--line);border-inline-start:5px solid var(--c);border-radius:var(--r)}
+.rx-themes b{color:var(--c)} .rx-themes p{margin:0;font-size:14px}
+.rx-themes q{display:block;font-style:italic;font-size:14px;padding:8px 10px;background:var(--bg);border-radius:6px;quotes:"“" "”"}
+[dir="rtl"] .eyebrow{letter-spacing:0;font-family:var(--f-ar);text-transform:none}
+[dir="rtl"] .rx-th,[dir="rtl"] .rx-title span{letter-spacing:0;font-family:var(--f-ar)}
+@media (max-width:640px){.rx-row{grid-template-columns:1fr;gap:2px}.rx-split{grid-template-columns:1fr}}
+
 /* ---------- courses on home ---------- */
 .course{display:grid;gap:12px;margin-top:26px}
 .course-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;border-top:2px solid var(--line);padding-top:14px}
@@ -1276,6 +1310,46 @@ button{font:inherit;color:inherit}
           </ul>
         </section>
 
+        <section class="rx">
+          <span class="eyebrow">New course resource · Example of paper analysis</span>
+          <h2>Worked example: analysing one paper</h2>
+          <p>This is the model your summaries in Step 4 should follow. The course resource analyses one paper under six fixed headings. Use the same headings for every paper you review.</p>
+          <div class="rx-paper">
+            <div class="rx-title"><span>Paper</span>"Impact of Social Media Usage on Adolescent Well-Being: A Longitudinal Study"</div>
+            <div class="rx-row" style="--c:var(--st1)"><b>Problem addressed</b><p>Growing concern that more social media use is linked to worse mental health, self-esteem and well-being in teenagers.</p></div>
+            <div class="rx-row" style="--c:var(--st2)"><b>Methodology</b><p>Longitudinal study over 2 years · 1,000 adolescents aged 13–18 · self-report questionnaires on usage · standardised psychological scales for self-esteem, depression and anxiety · demographic data.</p></div>
+            <div class="rx-row" style="--c:var(--st3)"><b>Results</b><p>Statistically significant correlation between more use and lower self-esteem; moderate but significant link with depression and anxiety. Effect size varied with individual differences and usage patterns.</p></div>
+            <div class="rx-row" style="--c:var(--st4)"><b>Findings / conclusions</b><p>Evidence of a negative impact. Parents, educators and policymakers should promote healthy online behaviour; future research should study the mechanisms and possible interventions.</p></div>
+            <div class="rx-split">
+              <div class="rx-plus"><b>Strengths</b><ul><li><b>Longitudinal design:</b> shows change over time</li><li><b>Large sample (1,000):</b> better generalisability</li><li><b>Standardised scales:</b> stronger validity</li></ul></div>
+              <div class="rx-minus"><b>Limitations</b><ul><li><b>Self-report data:</b> possible response bias</li><li><b>Correlational:</b> cannot prove cause and effect</li><li><b>2 years only:</b> long-term effects not captured</li></ul></div>
+            </div>
+          </div>
+          <p class="callout"><b>Connect it to earlier chapters:</b> "longitudinal" is a time horizon (CH4), "standardised scales" relate to validity (CH6), and "correlational, not causal" is the type-of-investigation trap (CH4). A good paper analysis uses the language of the whole course.</p>
+        </section>
+
+        <section class="rx">
+          <span class="eyebrow">New course resource · Literature review template</span>
+          <h2>The literature review template</h2>
+          <p>The course gives you a two-part template. Fill Part A for each paper as you read, then use Part B to compare all the papers and find the gap.</p>
+          <h3>Part A · One card per reference</h3>
+          <div class="rx-table" role="table" aria-label="Literature review template, part A">
+            <div class="rx-tr rx-th" role="row"><span role="columnheader">Ref.</span><span role="columnheader">Bibliographic citation</span><span role="columnheader">Problem addressed</span><span role="columnheader">Methodology used</span><span role="columnheader">Results</span><span role="columnheader">Findings</span><span role="columnheader">Gaps &amp; limitations</span></div>
+            <div class="rx-tr" role="row"><b role="cell">1</b><span role="cell">Author (Year) Title. Journal.</span><span role="cell">Social media and teen well-being</span><span role="cell">Longitudinal survey, n = 1,000</span><span role="cell">Use ↔ lower self-esteem</span><span role="cell">Negative impact</span><span role="cell">Self-report; correlational</span></div>
+            <div class="rx-tr rx-empty" role="row"><b role="cell">2</b><span role="cell">…</span><span role="cell">…</span><span role="cell">…</span><span role="cell">…</span><span role="cell">…</span><span role="cell">…</span></div>
+          </div>
+          <p class="note">The template also asks you to write your <b>research question(s)</b> at the top, so every paper is judged against them.</p>
+          <h3>Part B · Comparison matrix</h3>
+          <p>You define 4–6 criteria that matter for your topic, then mark each paper <b>Y</b> (yes), <b>N</b> (no) or <b>P</b> (partly). The columns full of N and P show the gap.</p>
+          <div class="rx-matrix" role="table" aria-label="Comparison matrix example">
+            <div class="rx-mr rx-th" role="row"><span role="columnheader">Ref.</span><span role="columnheader">Longitudinal</span><span role="columnheader">Causal design</span><span role="columnheader">Objective usage data</span><span role="columnheader">Middle East sample</span></div>
+            <div class="rx-mr" role="row"><b role="cell">1</b><i class="y" role="cell">Y</i><i class="n" role="cell">N</i><i class="n" role="cell">N</i><i class="n" role="cell">N</i></div>
+            <div class="rx-mr" role="row"><b role="cell">2</b><i class="n" role="cell">N</i><i class="p" role="cell">P</i><i class="y" role="cell">Y</i><i class="n" role="cell">N</i></div>
+            <div class="rx-mr" role="row"><b role="cell">3</b><i class="y" role="cell">Y</i><i class="n" role="cell">N</i><i class="p" role="cell">P</i><i class="n" role="cell">N</i></div>
+          </div>
+          <p class="callout"><b>Reading the matrix:</b> no study uses a Middle East sample and none has a fully causal design. That is your gap, and it becomes your contribution in the conclusion. <span class="note">(The criteria and marks here are my illustration; choose criteria that fit your own topic.)</span></p>
+        </section>
+
         <section>
           <h2>See it in a real project</h2>
           <p class="note">My example, not from the slides: a literature review on AI chatbots in government services.</p>
@@ -1367,6 +1441,46 @@ button{font:inherit;color:inherit}
             <li><b>برامج إدارة المراجع:</b> EndNote أو Mendeley. النشاط الصفي يطلب منك تثبيت Mendeley واستخدامه لكل المراجع.</li>
             <li><b>المراجعة المنهجية (Systematic Review):</b> ملخص كامل وشامل لكل الدراسات المتعلقة بسؤال معين، مثل "استخدام وسائل التواصل في التعليم الطبي: مراجعة منهجية".</li>
           </ul>
+        </section>
+
+        <section class="rx">
+          <span class="eyebrow">مرجع جديد للمادة · مثال على تحليل ورقة بحثية</span>
+          <h2>مثال تطبيقي: تحليل ورقة بحثية واحدة</h2>
+          <p>هذا هو النموذج الذي يجب أن تتبعه ملخصاتك في الخطوة 4. مرجع المادة يحلل ورقة واحدة تحت ستة عناوين ثابتة. استخدم العناوين نفسها لكل ورقة تراجعها.</p>
+          <div class="rx-paper">
+            <div class="rx-title"><span>الورقة</span>"أثر استخدام وسائل التواصل الاجتماعي على رفاه المراهقين: دراسة طولية"</div>
+            <div class="rx-row" style="--c:var(--st1)"><b>المشكلة المطروحة</b><p>قلق متزايد من أن زيادة استخدام وسائل التواصل ترتبط بتراجع الصحة النفسية وتقدير الذات والرفاه لدى المراهقين.</p></div>
+            <div class="rx-row" style="--c:var(--st2)"><b>المنهجية</b><p>دراسة طولية على مدى سنتين · 1,000 مراهق بين 13 و18 عامًا · استبيانات تقرير ذاتي عن الاستخدام · مقاييس نفسية معيارية لتقدير الذات والاكتئاب والقلق · بيانات ديموغرافية.</p></div>
+            <div class="rx-row" style="--c:var(--st3)"><b>النتائج</b><p>ارتباط دال إحصائيًا بين زيادة الاستخدام وانخفاض تقدير الذات، وارتباط متوسط لكنه دال بالاكتئاب والقلق. حجم الأثر اختلف حسب الفروق الفردية وأنماط الاستخدام.</p></div>
+            <div class="rx-row" style="--c:var(--st4)"><b>الاستنتاجات</b><p>توجد أدلة على أثر سلبي. على الآباء والمعلمين وصناع القرار تعزيز السلوك الرقمي الصحي، وعلى البحوث القادمة دراسة الآليات والتدخلات الممكنة.</p></div>
+            <div class="rx-split">
+              <div class="rx-plus"><b>نقاط القوة</b><ul><li><b>تصميم طولي:</b> يُظهر التغير عبر الزمن</li><li><b>عينة كبيرة (1,000):</b> قابلية تعميم أفضل</li><li><b>مقاييس معيارية:</b> صدق أقوى</li></ul></div>
+              <div class="rx-minus"><b>نقاط القصور</b><ul><li><b>بيانات تقرير ذاتي:</b> احتمال تحيز في الإجابات</li><li><b>دراسة ارتباطية:</b> لا تثبت السبب والنتيجة</li><li><b>سنتان فقط:</b> لا تلتقط الآثار طويلة المدى</li></ul></div>
+            </div>
+          </div>
+          <p class="callout"><b>اربطها بالفصول السابقة:</b> "طولية" إطار زمني (الفصل 4)، و"المقاييس المعيارية" مرتبطة بالصدق (الفصل 6)، و"ارتباطية لا سببية" هو فخ نوع الدراسة (الفصل 4). التحليل الجيد يستخدم لغة المادة كلها.</p>
+        </section>
+
+        <section class="rx">
+          <span class="eyebrow">مرجع جديد للمادة · نموذج مراجعة الأدبيات</span>
+          <h2>نموذج مراجعة الأدبيات</h2>
+          <p>تعطيك المادة نموذجًا من جزأين. املأ الجزء (أ) لكل ورقة أثناء القراءة، ثم استخدم الجزء (ب) لمقارنة كل الأوراق واكتشاف الفجوة.</p>
+          <h3>الجزء (أ) · بطاقة لكل مرجع</h3>
+          <div class="rx-table" role="table" aria-label="نموذج مراجعة الأدبيات، الجزء أ">
+            <div class="rx-tr rx-th" role="row"><span role="columnheader">رقم</span><span role="columnheader">التوثيق</span><span role="columnheader">المشكلة</span><span role="columnheader">المنهجية</span><span role="columnheader">النتائج</span><span role="columnheader">الاستنتاجات</span><span role="columnheader">الفجوات والقصور</span></div>
+            <div class="rx-tr" role="row"><b role="cell">1</b><span role="cell">المؤلف (السنة) العنوان. المجلة.</span><span role="cell">التواصل الاجتماعي ورفاه المراهقين</span><span role="cell">استبيان طولي، 1,000 مشارك</span><span role="cell">الاستخدام ↔ تقدير ذات أقل</span><span role="cell">أثر سلبي</span><span role="cell">تقرير ذاتي، ارتباطية</span></div>
+            <div class="rx-tr rx-empty" role="row"><b role="cell">2</b><span role="cell">…</span><span role="cell">…</span><span role="cell">…</span><span role="cell">…</span><span role="cell">…</span><span role="cell">…</span></div>
+          </div>
+          <p class="note">يطلب النموذج أيضًا كتابة <b>سؤال (أسئلة) البحث</b> في الأعلى، حتى تُقيَّم كل ورقة على أساسها.</p>
+          <h3>الجزء (ب) · مصفوفة المقارنة</h3>
+          <p>تحدد أنت 4–6 معايير مهمة لموضوعك، ثم تضع لكل ورقة <b>Y</b> (نعم) أو <b>N</b> (لا) أو <b>P</b> (جزئيًا). الأعمدة المليئة بـ N وP تكشف الفجوة.</p>
+          <div class="rx-matrix" role="table" aria-label="مثال مصفوفة المقارنة">
+            <div class="rx-mr rx-th" role="row"><span role="columnheader">رقم</span><span role="columnheader">طولية</span><span role="columnheader">تصميم سببي</span><span role="columnheader">بيانات استخدام موضوعية</span><span role="columnheader">عينة من الشرق الأوسط</span></div>
+            <div class="rx-mr" role="row"><b role="cell">1</b><i class="y" role="cell">Y</i><i class="n" role="cell">N</i><i class="n" role="cell">N</i><i class="n" role="cell">N</i></div>
+            <div class="rx-mr" role="row"><b role="cell">2</b><i class="n" role="cell">N</i><i class="p" role="cell">P</i><i class="y" role="cell">Y</i><i class="n" role="cell">N</i></div>
+            <div class="rx-mr" role="row"><b role="cell">3</b><i class="y" role="cell">Y</i><i class="n" role="cell">N</i><i class="p" role="cell">P</i><i class="n" role="cell">N</i></div>
+          </div>
+          <p class="callout"><b>قراءة المصفوفة:</b> لا توجد دراسة بعينة من الشرق الأوسط، ولا دراسة بتصميم سببي كامل. هذه هي فجوتك، وتصبح مساهمتك في الخاتمة. <span class="note">(المعايير والعلامات هنا توضيح من عندي، اختر معايير تناسب موضوعك.)</span></p>
         </section>
 
         <section>
@@ -1690,6 +1804,46 @@ button{font:inherit;color:inherit}
           <p><b>Software:</b> NVivo, ATLAS.ti, MAXQDA, NUD*IST, HyperResearch. They help with coding, annotation, search and word frequency.</p>
         </section>
 
+        <section class="rx">
+          <span class="eyebrow">New course resource · Sample thematic analysis results</span>
+          <h2>Worked example: thematic analysis of shopping interviews</h2>
+          <p>The course shares real results from a qualitative study of how consumers shop (in stores and online, on platforms like Amazon, Noon, Namshi and Talabat). It shows what a finished thematic analysis looks like.</p>
+          <h3>The six steps they followed</h3>
+          <ol class="rx-steps">
+            <li style="--c:var(--st1)"><b>Familiarisation</b><span>Read transcripts; word frequency query and word cloud</span></li>
+            <li style="--c:var(--st1)"><b>Coding</b><span>Code each participant's answers (e.g. Participant 1, Participant 4)</span></li>
+            <li style="--c:var(--st2)"><b>Generate themes</b><span>Group codes into a codes hierarchy</span></li>
+            <li style="--c:var(--st3)"><b>Review themes</b><span>Check themes against the coded data</span></li>
+            <li style="--c:var(--st3)"><b>Define themes</b><span>Name each theme and its sub-themes</span></li>
+            <li style="--c:var(--st4)"><b>Write-up</b><span>Summary table: theme → sub-themes → quotes</span></li>
+          </ol>
+          <p class="note">These match the 5 analysis steps in the slides (organise → focus → code → categories → interpret). The resource simply splits "categories" into generate, review and define.</p>
+          <h3>The four themes they found</h3>
+          <div class="rx-themes">
+            <article style="--c:var(--st1)">
+              <b>1 · Likes and dislikes of existing commerce systems</b>
+              <p>Retailer positives (trust, returns, loyalty, fast response) · store positives (touch the product, family outing) · online positives (variety, reviews, categories) · online challenges (late or cancelled orders, wrong size)</p>
+              <q>For me it is very efficient, it saves a lot of time.</q>
+            </article>
+            <article style="--c:var(--st2)">
+              <b>2 · Expectations and purchase factors</b>
+              <p>Expectations (after-sale support, promotions, warranties) · purchase factors (technical specs, value for money, quality, peer influence)</p>
+              <q>When I go to brick-and-mortar I end up with higher than the budget that I had in mind.</q>
+            </article>
+            <article style="--c:var(--st3)">
+              <b>3 · Important shopping features</b>
+              <p>Efficient search with sorting and filtering · card payment · price monitoring and alerts · free delivery and returns · shopping lists · trusted reviews</p>
+              <q>This is very important, especially the sorting… and filtering as well.</q>
+            </article>
+            <article style="--c:var(--st4)">
+              <b>4 · Consumer behaviour</b>
+              <p>Buying habits · showrooming (check online price while in store) · wait-and-see technology adoption · brand loyalty · 70% online / 30% store · search on mobile, buy on PC</p>
+              <q>I can search for it on the mobile, but I'm buying from the PC.</q>
+            </article>
+          </div>
+          <p class="callout"><b>Why it is a good model:</b> every theme has sub-themes, and every sub-theme is backed by a participant's own words. That chain (theme → sub-theme → quote) is what makes qualitative findings convincing. In the slides' mixed-methods example, these themes then became the input for the Phase 2 survey.</p>
+        </section>
+
         <section>
           <h2>See it in a real project</h2>
           <p class="note">My example, not from the slides: why patients avoid a hospital's booking app.</p>
@@ -1802,6 +1956,46 @@ button{font:inherit;color:inherit}
           <div class="stage" style="--c:var(--st4)"><span class="stage-tag"><i>4</i>الفئات (الموضوعات)</span><p>ادمج الرموز في فئات وصِف كيف ترتبط. مثال الشرائح: "تحديث دليل القواعد، تغيير الجدول، روتين جديد" ← <b>التكيّف</b>.</p></div>
           <div class="stage" style="--c:var(--accent)"><span class="stage-tag"><i>5</i>التفسير</span><p>استخرج الدروس الرئيسية، والتسلسل بين الفئات، وارسم شكلًا يلخصها. نتيجة الشرائح: تكيّف مستمر، يدعمه البحث عن المعلومات وحل المشكلات.</p></div>
           <p><b>البرامج:</b> NVivo وATLAS.ti وMAXQDA وNUD*IST وHyperResearch. تساعد في الترميز والتعليقات والبحث وتكرار الكلمات.</p>
+        </section>
+
+        <section class="rx">
+          <span class="eyebrow">مرجع جديد للمادة · نموذج نتائج التحليل الموضوعي</span>
+          <h2>مثال تطبيقي: تحليل موضوعي لمقابلات التسوق</h2>
+          <p>تشارك المادة نتائج حقيقية من دراسة نوعية عن طريقة تسوق المستهلكين (في المتاجر وعبر الإنترنت، على منصات مثل أمازون ونون ونمشي وطلبات). وهي توضح شكل التحليل الموضوعي المكتمل.</p>
+          <h3>الخطوات الست التي اتبعوها</h3>
+          <ol class="rx-steps">
+            <li style="--c:var(--st1)"><b>التعرف على البيانات</b><span>قراءة النصوص، واستعلام تكرار الكلمات وسحابة الكلمات</span></li>
+            <li style="--c:var(--st1)"><b>الترميز</b><span>ترميز إجابات كل مشارك (مثل المشارك 1 والمشارك 4)</span></li>
+            <li style="--c:var(--st2)"><b>توليد الموضوعات</b><span>تجميع الرموز في تسلسل هرمي</span></li>
+            <li style="--c:var(--st3)"><b>مراجعة الموضوعات</b><span>التحقق من الموضوعات مقابل البيانات المرمّزة</span></li>
+            <li style="--c:var(--st3)"><b>تعريف الموضوعات</b><span>تسمية كل موضوع وموضوعاته الفرعية</span></li>
+            <li style="--c:var(--st4)"><b>الكتابة</b><span>جدول ملخص: موضوع ← موضوعات فرعية ← اقتباسات</span></li>
+          </ol>
+          <p class="note">تتوافق هذه مع خطوات التحليل الخمس في الشرائح (تنظيم ← تركيز ← ترميز ← فئات ← تفسير). المرجع فقط يقسم "الفئات" إلى توليد ومراجعة وتعريف.</p>
+          <h3>الموضوعات الأربعة التي وجدوها</h3>
+          <div class="rx-themes">
+            <article style="--c:var(--st1)">
+              <b>1 · ما يعجبهم وما لا يعجبهم في أنظمة التجارة الحالية</b>
+              <p>إيجابيات التجار (الثقة، الإرجاع، برامج الولاء، سرعة الرد) · إيجابيات المتجر (لمس المنتج، نزهة عائلية) · إيجابيات التسوق الإلكتروني (التنوع، التقييمات، التصنيف) · تحدياته (تأخر أو إلغاء الطلبات، المقاس غير المناسب)</p>
+              <q dir="ltr">For me it is very efficient, it saves a lot of time.</q>
+            </article>
+            <article style="--c:var(--st2)">
+              <b>2 · التوقعات وعوامل قرار الشراء</b>
+              <p>التوقعات (دعم ما بعد البيع، العروض، الضمان) · عوامل الشراء (المواصفات التقنية، القيمة مقابل السعر، الجودة، تأثير الآخرين)</p>
+              <q dir="ltr">When I go to brick-and-mortar I end up with higher than the budget that I had in mind.</q>
+            </article>
+            <article style="--c:var(--st3)">
+              <b>3 · مزايا التسوق المهمة</b>
+              <p>بحث فعال مع الترتيب والتصفية · الدفع بالبطاقة · مراقبة الأسعار والتنبيهات · توصيل وإرجاع مجاني · قوائم التسوق · تقييمات موثوقة</p>
+              <q dir="ltr">This is very important, especially the sorting… and filtering as well.</q>
+            </article>
+            <article style="--c:var(--st4)">
+              <b>4 · سلوك المستهلك</b>
+              <p>عادات الشراء · مقارنة السعر عبر الإنترنت أثناء الوجود في المتجر · التريث قبل تبني التقنية · الولاء للعلامة التجارية · 70% إلكتروني و30% متجر · البحث بالجوال والشراء بالحاسوب</p>
+              <q dir="ltr">I can search for it on the mobile, but I'm buying from the PC.</q>
+            </article>
+          </div>
+          <p class="callout"><b>لماذا هو نموذج جيد:</b> لكل موضوع موضوعات فرعية، وكل موضوع فرعي مدعوم بكلمات المشارك نفسه. هذه السلسلة (موضوع ← موضوع فرعي ← اقتباس) هي ما يجعل النتائج النوعية مقنعة. وفي مثال المنهج المختلط في الشرائح، أصبحت هذه الموضوعات مدخلًا لاستبيان المرحلة الثانية.</p>
         </section>
 
         <section>
@@ -2899,6 +3093,13 @@ button{font:inherit;color:inherit}
             <div class="card"><h3>Systematic review</h3><p>A complete, exhaustive summary of all studies relevant to one question.</p></div>
           </div>
         </div>
+        <div class="ig-sec" style="--c:var(--st1)">
+          <div class="ig-head"><span class="n">06</span><div><h2>Course template &amp; model paper</h2><p>From the new course resources.</p></div></div>
+          <div class="grid">
+            <div class="card"><h3>Paper analysis · 6 headings</h3><div class="flow"><span>Problem</span><em>→</em><span>Method</span><em>→</em><span>Results</span><em>→</em><span>Findings</span><em>→</em><span>Strengths</span><em>+</em><span>Limitations</span></div><p class="note">Model: social media &amp; teen well-being, 2-year longitudinal, n = 1,000.</p></div>
+            <div class="card"><h3>Template · 2 parts</h3><div class="q2"><div><b>Part A</b>One row per reference: citation, problem, method, results, findings, gaps</div><div><b>Part B</b>Criteria matrix: Y / N / P per paper → the gap</div></div></div>
+          </div>
+        </div>
       </div>
       <div class="sv" data-s="r4" hidden>
         <div class="route" aria-label="Research design decisions">
@@ -2982,6 +3183,13 @@ button{font:inherit;color:inherit}
           <div class="grid">
             <div class="card"><h3>Slide example</h3><div class="report"><div><b>Adaptation</b><span>Rule book, schedule, routines</span></div><div><b>Seeking info</b><span>Colleagues, journals, meetings</span></div><div><b>Problem solving</b><span>Fix fast, alarm system</span></div></div></div>
             <div class="card"><h3>Software</h3><div class="pills"><span class="core">NVivo</span><span>ATLAS.ti</span><span>MAXQDA</span><span>HyperResearch</span></div></div>
+          </div>
+        </div>
+        <div class="ig-sec" style="--c:var(--accent)">
+          <div class="ig-head"><span class="n">05</span><div><h2>Worked example: shopping study</h2><p>From the new course resource.</p></div></div>
+          <div class="grid">
+            <div class="card"><h3>6 steps</h3><div class="flow"><span>Familiarise</span><em>→</em><span>Code</span><em>→</em><span>Generate themes</span><em>→</em><span>Review</span><em>→</em><span>Define</span><em>→</em><span>Write up</span></div><p class="note">Tools: word frequency, word cloud, codes hierarchy.</p></div>
+            <div class="card"><h3>4 themes</h3><div class="pills"><span class="core">Likes &amp; dislikes</span><span class="core">Purchase factors</span><span class="core">Key features</span><span class="core">Behaviour</span></div><p class="note">Theme → sub-themes → participant quotes.</p></div>
           </div>
         </div>
       </div>
@@ -3310,7 +3518,7 @@ button{font:inherit;color:inherit}
         <div class="a-soon">
           <span class="eyebrow">Assessment</span>
           <h2>Literature review · 30% · due Session 3</h2>
-          <p>Use this chapter as your guide. Practice now: find 5 papers from the last 5 years on your topic in Google Scholar, add them to Mendeley, write a 1-paragraph summary of each, and build a comparison table (study, method, finding, limitation). The model answer will be added once the brief is shared.</p>
+          <p>Use this chapter as your guide. Practice now with the course template: find 5 papers from the last 5 years on your topic in Google Scholar and add them to Mendeley. Fill Part A for each paper (citation, problem, method, results, findings, gaps), analysing it the way the model paper is analysed in the Topic tab. Then pick 4–6 criteria and fill the Part B matrix with Y / N / P to find your gap. The model answer will be added once the brief is shared.</p>
           <p class="note">Model answer coming soon</p>
         </div>
       </div>
@@ -3449,7 +3657,10 @@ const SESSIONS=[{
     {s:2,q:"Which structure compares what qualitative and quantitative studies found?",o:["Chronological","Thematic","Methodological","Theoretical"],a:2,e:"A methodological structure compares results that come from different approaches."},
     {s:2,q:"What do the slides recommend including in the conclusion?",o:["A new hypothesis test","A comparison table of existing solutions and their gaps","The full text of each paper","Raw data"],a:1,e:"The table shows existing solutions and limitations in one figure, then you state your contribution."},
     {s:3,q:"Which statement about referencing styles is correct?",o:["Mix APA and IEEE for variety","Pick one style and use it consistently","Only use footnotes","Style does not matter"],a:1,e:"You cannot mix styles; check whether a style is mandated."},
-    {s:3,q:"Which tool does the in-class activity ask you to install?",o:["SPSS","NVivo","Mendeley","SmartPLS"],a:2,e:"Mendeley (or EndNote) manages your literature and references."}
+    {s:3,q:"Which tool does the in-class activity ask you to install?",o:["SPSS","NVivo","Mendeley","SmartPLS"],a:2,e:"Mendeley (or EndNote) manages your literature and references."},
+    {s:1,q:"In the course's model paper analysis, which is listed as a LIMITATION?",o:["Longitudinal design","Large sample of 1,000","Self-report data that may be biased","Standardised psychological scales"],a:2,e:"Self-report data, correlational design and a 2-year time frame are the limitations; the other three are strengths."},
+    {s:1,q:"The model paper found a significant link between social media use and lower self-esteem. Why can't it claim social media CAUSES lower self-esteem?",o:["The sample was too small","The design is correlational, not causal","It used qualitative data","It was not peer reviewed"],a:1,e:"A correlational study shows variables move together; it cannot rule out other factors."},
+    {s:3,q:"In Part B of the course literature review template, what do Y, N and P mean?",o:["Year, Name, Page","Yes, No, Partly against your chosen criteria","Young, New, Popular","Yield, Null, Positive"],a:1,e:"You define your own criteria and mark each paper Yes, No or Partly; columns with many N/P reveal the gap."}
   ]
 },{
   id:"r4", num:"04", courseKey:"904", title:"Research Design & Methodology",
@@ -3487,7 +3698,9 @@ const SESSIONS=[{
     {s:2,q:"Using several data sources in a case study to confirm validity is called…",o:["Snowballing","Triangulation","Coding","Stratification"],a:1,e:"Triangulation can use multiple data, investigators, theories or methods (Yin; Snow and Anderson)."},
     {s:3,q:"In qualitative analysis, what is coding?",o:["Writing software","Labelling relevant words, phrases or sections of the data","Converting answers to numbers for SPSS","Encrypting transcripts"],a:1,e:"Codes are labels; they are later grouped into categories."},
     {s:3,q:"\"Updating rule book, changing schedule, new routines\" were grouped into which category in the slides?",o:["Problem solving","Seeking information","Adaptation","Resistance"],a:2,e:"Grouping related codes into a category (theme) is step 4."},
-    {s:3,q:"Which software is for qualitative data analysis?",o:["SPSS","SmartPLS","NVivo","AMOS"],a:2,e:"NVivo, ATLAS.ti and MAXQDA are qualitative tools; SPSS, SmartPLS and AMOS are quantitative."}
+    {s:3,q:"Which software is for qualitative data analysis?",o:["SPSS","SmartPLS","NVivo","AMOS"],a:2,e:"NVivo, ATLAS.ti and MAXQDA are qualitative tools; SPSS, SmartPLS and AMOS are quantitative."},
+    {s:3,q:"In the course's sample thematic analysis, what comes right after coding?",o:["Write-up","Generating themes","Familiarisation","Running a t-test"],a:1,e:"Familiarisation → coding → generating themes → reviewing → defining → write-up."},
+    {s:3,q:"In the shopping study, \"I can search for it on the mobile, but I'm buying from the PC\" supports which theme?",o:["Likes and dislikes of commerce systems","Purchase factors","Important shopping features","Consumer behaviour"],a:3,e:"It is a sub-theme of consumer behaviour: preferred access device."}
   ]
 },{
   id:"r6", num:"06", courseKey:"904", title:"Quantitative Research",
