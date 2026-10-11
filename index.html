@@ -348,6 +348,10 @@ button{font:inherit;color:inherit}
 .vd figcaption a:hover{text-decoration:underline}
 [dir="rtl"] .vd-tag{letter-spacing:0;font-family:var(--f-ar)}
 
+.ig-img{margin:0 0 28px;display:grid;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.ig-img img{display:block;width:100%;height:auto;background:#F6F0E6}
+.ig-img figcaption{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:10px 14px;font-size:13px;color:var(--muted)}
+.ig-img figcaption a{color:var(--accent);font-weight:600;text-decoration:none}
 /* ---------- courses on home ---------- */
 .course{display:grid;gap:12px;margin-top:26px}
 .course-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;border-top:2px solid var(--line);padding-top:14px}
@@ -3085,6 +3089,12 @@ button{font:inherit;color:inherit}
         </div>
       </div>
       <div class="sv" data-s="r3" hidden>
+        <figure class="ig-img">
+          <a href="lr-infographic.avif" target="_blank" rel="noopener" aria-label="Open the infographic full size">
+            <img src="lr-infographic.avif" width="1400" height="781" alt="Hand-drawn infographic: Mastering the literature review — purpose and workflow. Left: core purpose and objectives (frame the problem and position research; uncover critical research gaps). Right: workflow in three stages (search, find and select credible sources; read, summarise and group themes; structure, compare and conclude)." loading="lazy" decoding="async">
+          </a>
+          <figcaption><span>Visual summary · from your NotebookLM</span><a href="lr-infographic.avif" target="_blank" rel="noopener">Open full size ↗</a></figcaption>
+        </figure>
         <div class="route" aria-label="Literature review in four moves">
           <div class="stop" style="--c:var(--st1)"><span class="dot">S</span><h3>Search</h3><p>Keywords, Scholar, last 5 years</p></div>
           <div class="stop" style="--c:var(--st2)"><span class="dot">R</span><h3>Read &amp; summarise</h3><p>Problem, method, results, limits</p></div>
