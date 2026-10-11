@@ -335,6 +335,19 @@ button{font:inherit;color:inherit}
 [dir="rtl"] .rx-th,[dir="rtl"] .rx-title span{letter-spacing:0;font-family:var(--f-ar)}
 @media (max-width:640px){.rx-row{grid-template-columns:1fr;gap:2px}.rx-split{grid-template-columns:1fr}}
 
+/* ---------- assignment brief ---------- */
+.brief{display:grid;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;margin-bottom:20px}
+.brief h2{margin:0}
+.brief-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin:0}
+.brief-facts div{background:var(--bg);border-radius:10px;padding:10px 12px}
+.brief-facts dt{font:600 11px var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.brief-facts dd{margin:2px 0 0;font-weight:600}
+.brief-actions{display:flex;gap:10px;flex-wrap:wrap}
+.brief-btn{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:999px;background:var(--accent);color:#fff;font-weight:600;text-decoration:none;border:1px solid var(--accent)}
+.brief-btn.ghost{background:transparent;color:var(--accent)}
+.brief-pdf{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--sunk)}
+.brief-pdf iframe{display:block;width:100%;height:min(80vh,900px);border:0}
+@media (max-width:560px){.brief-pdf iframe{height:70vh}}
 /* ---------- when-to-use ---------- */
 .when{margin:4px 0 16px;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-inline-start:4px solid var(--accent);border-radius:var(--r)}
 .when p{margin:6px 0 8px}
@@ -1276,7 +1289,7 @@ button{font:inherit;color:inherit}
         <section>
           <span class="eyebrow">Core idea</span>
           <p class="lead">A literature review is a systematic and thorough search of published and unpublished work on your problem. It does two jobs: it synthesises what is already known, and it shows the gap that motivates your own research.</p>
-          <p>This chapter matters directly for your <b>literature review assessment (30%, due Session 3)</b>. Treat it as the instruction manual for that assignment.</p>
+          <p>This chapter matters directly for your <b>literature review assessment (30%, due Session 4 · 25 Oct 2026)</b>. Treat it as the instruction manual for that assignment.</p>
         </section>
 
         <section>
@@ -1443,7 +1456,7 @@ button{font:inherit;color:inherit}
         <section>
           <span class="eyebrow">الفكرة الأساسية</span>
           <p class="lead">مراجعة الأدبيات (Literature Review) بحث منهجي وشامل في الأعمال المنشورة وغير المنشورة حول مشكلتك. ولها وظيفتان: تجمع ما هو معروف وتربطه ببعضه، وتُظهر الفجوة التي تبرر بحثك أنت.</p>
-          <p>هذا الفصل مرتبط مباشرة بـ<b>تكليف مراجعة الأدبيات (30%، موعده الجلسة 3)</b>. تعامل معه كدليل تعليمات لهذا التكليف.</p>
+          <p>هذا الفصل مرتبط مباشرة بـ<b>تكليف مراجعة الأدبيات (30%، موعده الجلسة 4 · 25 أكتوبر 2026)</b>. تعامل معه كدليل تعليمات لهذا التكليف.</p>
         </section>
 
         <section>
@@ -3607,7 +3620,7 @@ button{font:inherit;color:inherit}
       <div class="sv" data-s="r1" hidden>
         <div class="a-soon">
           <span class="eyebrow">Next assessment</span>
-          <h2>Literature review · 30% · due Session 3</h2>
+          <h2>Literature review · 30% · due 25 Oct 2026</h2>
           <p>The model answer for this assessment will be added here once the brief is shared, with the same English and Arabic versions and a Word download.</p>
           <p class="note">Coming soon</p>
         </div>
@@ -3621,9 +3634,25 @@ button{font:inherit;color:inherit}
         </div>
       </div>
       <div class="sv" data-s="r3" hidden>
+        <article class="brief">
+          <span class="eyebrow">Official brief · from your lecturer</span>
+          <h2>Assignment 1 · Literature Review</h2>
+          <dl class="brief-facts">
+            <div><dt>Weighting</dt><dd>30% · 100 marks</dd></div>
+            <div><dt>Type</dt><dd>Individual</dd></div>
+            <div><dt>Due</dt><dd>25 Oct 2026 · midnight UAE</dd></div>
+            <div><dt>Minimum</dt><dd>6 scholarly articles</dd></div>
+          </dl>
+          <div class="brief-actions">
+            <a class="brief-btn" href="Assignment_1_-_LR.pdf" target="_blank" rel="noopener">Open PDF ↗</a>
+            <a class="brief-btn ghost" href="Assignment_1_-_LR.pdf" download>Download</a>
+          </div>
+          <div class="brief-pdf"><iframe src="Assignment_1_-_LR.pdf#view=FitH" title="MDT904 Assignment 1 – Literature Review brief (PDF)" loading="lazy"></iframe></div>
+          <p class="note">If the PDF does not show on your phone, use "Open PDF". Note: the Chapter 1 course outline lists this assessment under Session 3, but this brief sets <b>Session 4 · 25 October 2026</b>. Follow the brief.</p>
+        </article>
         <div class="a-soon">
           <span class="eyebrow">Assessment</span>
-          <h2>Literature review · 30% · due Session 3</h2>
+          <h2>Literature review · 30% · due 25 Oct 2026</h2>
           <p>Use this chapter as your guide. Practice now with the course template: find 5 papers from the last 5 years on your topic in Google Scholar and add them to Mendeley. Fill Part A for each paper (citation, problem, method, results, findings, gaps), analysing it the way the model paper is analysed in the Topic tab. Then pick 4–6 criteria and fill the Part B matrix with Y / N / P to find your gap. The model answer will be added once the brief is shared.</p>
           <p class="note">Model answer coming soon</p>
         </div>
