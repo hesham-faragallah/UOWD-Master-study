@@ -335,6 +335,21 @@ button{font:inherit;color:inherit}
 [dir="rtl"] .rx-th,[dir="rtl"] .rx-title span{letter-spacing:0;font-family:var(--f-ar)}
 @media (max-width:640px){.rx-row{grid-template-columns:1fr;gap:2px}.rx-split{grid-template-columns:1fr}}
 
+/* ---------- when-to-use ---------- */
+.when{margin:4px 0 16px;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-inline-start:4px solid var(--accent);border-radius:var(--r)}
+.when p{margin:6px 0 8px}
+.when ul,.when ol{margin:0;padding-inline-start:20px;display:grid;gap:4px}
+.when-tag{display:inline-block;font:600 12px var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--accent)}
+[dir="rtl"] .when-tag{letter-spacing:0;font-family:var(--f-ar);text-transform:none}
+.lmap{display:grid;gap:6px;margin:14px 0 8px}
+.lm-steps,.lm-row{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.lm-steps span{display:grid;justify-items:center;gap:2px;padding:6px 2px;background:var(--surface);border:1px solid var(--line);border-radius:8px;font-size:11px;line-height:1.2;color:var(--muted);text-align:center;overflow-wrap:anywhere}
+.lm-steps b{font:600 15px var(--f-mono);color:var(--ink)}
+.lm-row{row-gap:6px;margin-top:6px}
+.lm-span{display:block;height:10px;border-radius:5px;background:var(--c)}
+.lm-cap{grid-column:1/-1;display:grid;gap:2px;padding:8px 12px;border-radius:8px;background:color-mix(in srgb,var(--c) 10%,var(--surface));border-inline-start:4px solid var(--c);font-size:14px;line-height:1.4}
+.lm-cap b{color:var(--c)}
+@media (max-width:560px){.lm-steps span{font-size:0;gap:0}.lm-steps b{font-size:14px}}
 /* ---------- videos ---------- */
 .vd-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
 .vd{margin:0;display:grid;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
@@ -1297,7 +1312,22 @@ button{font:inherit;color:inherit}
         </section>
 
         <section>
+          <span class="eyebrow">How it fits together</span>
+          <h2>Where the next three parts fit in the 7 steps</h2>
+          <p>The next three sections are <b>not extra steps</b>. They are tools you use <b>inside</b> the 7 steps. This map shows when each one comes in.</p>
+          <div class="lmap" role="img" aria-label="Map of when each part is used across the 7 steps">
+            <div class="lm-steps"><span><b>1</b>Search</span><span><b>2</b>Find</span><span><b>3</b>Read</span><span><b>4</b>Summarise</span><span><b>5</b>Group</span><span><b>6</b>Write</span><span><b>7</b>Conclude</span></div>
+            <div class="lm-row" style="--c:var(--st1)"><i class="lm-span" style="grid-column:1/8"></i><div class="lm-cap"><b>References and tools</b><span>Steps 1 → 7: start before you search, finish with a final check</span></div></div>
+            <div class="lm-row" style="--c:var(--st3)"><i class="lm-span" style="grid-column:5/7"></i><div class="lm-cap"><b>Four ways to structure</b><span>Steps 5 → 6: choose when your groups are ready, apply to your headings</span></div></div>
+            <div class="lm-row" style="--c:var(--st4)"><i class="lm-span" style="grid-column:6/8"></i><div class="lm-cap"><b>Putting the pieces together</b><span>Steps 6 → 7: write the body, then the conclusion, then the introduction</span></div></div>
+          </div>
+          <p class="note">This mapping is my study guidance, built on the 7 steps from the slides.</p>
+        </section>
+
+        <section>
           <h2>Four ways to structure the body</h2>
+          <div class="when"><span class="when-tag">When</span><p><b>End of Step 5 → Step 6.</b> Choose the structure once your papers are grouped. Then use it in Step 6 to set your section headings and their order. Quick test to choose:</p><ul><li>Your groups are topics or factors → <b>Thematic</b></li><li>The field changed a lot over the years → <b>Chronological</b></li><li>Studies disagree because they used different methods → <b>Methodological</b></li><li>Your topic depends on competing theories or models → <b>Theoretical</b></li></ul></div>
+          <p class="note">Tip (my advice): thematic is usually the safest main structure for a course review. Inside each theme you can still go in time order, like the slide example below.</p>
           <div class="terms">
             <div class="term"><b>Chronological</b>Trace the topic over time. Avoid a "laundry list"; explain turning points and why they happened.</div>
             <div class="term"><b>Thematic</b>Subsections by recurring themes. Example: migrant health → policy, language barriers, culture, legal status, economic access.</div>
@@ -1309,6 +1339,7 @@ button{font:inherit;color:inherit}
 
         <section>
           <h2>Putting the pieces together</h2>
+          <div class="when"><span class="when-tag">When</span><p><b>Steps 6 and 7.</b> The parts appear in the order introduction → body → conclusion, but it is easier to <b>write</b> them in this order:</p><ol><li><b>Body</b> in Step 6: one section per group, using the structure you chose.</li><li><b>Conclusion</b> in Step 7: key findings, the comparison table, the gap and your contribution.</li><li><b>Introduction</b> last: now you know exactly what the review covers, so it is quick to write.</li></ol></div>
           <div class="terms">
             <div class="term"><b>Introduction</b>State the focus and purpose. Slide example: "This chapter provides a critical summary of the existing literature on business intelligence and its business value…"</div>
             <div class="term"><b>Body</b>Summarise and synthesise, analyse and interpret, critically evaluate strengths and weaknesses, and use clear paragraphs with transitions ("In contrast", "Apart from this"…).</div>
@@ -1319,12 +1350,14 @@ button{font:inherit;color:inherit}
 
         <section>
           <h2>References and tools</h2>
+          <div class="when"><span class="when-tag">When</span><p><b>From Step 1 until you submit.</b> Don't leave references to the end; fixing them later takes hours.</p><ol><li><b>Before Step 1:</b> install Mendeley and pick the style your lecturer asks for (e.g. APA).</li><li><b>Steps 1–2:</b> save every useful paper into Mendeley the moment you find it.</li><li><b>Steps 3–4:</b> keep your notes and summary attached to each reference.</li><li><b>Step 6:</b> insert in-text citations with Mendeley's Word add-in; the reference list builds itself.</li><li><b>Before submitting:</b> check every citation is in the list and the style is consistent.</li></ol></div>
           <ul>
             <li><b>Referencing</b> acknowledges sources, adds credibility, helps readers find them and avoids plagiarism.</li>
             <li><b>Styles:</b> APA, IEEE, Vancouver and others. Pick one, use it consistently, never mix, and follow any style your professor requires.</li>
             <li><b>Reference managers:</b> EndNote or Mendeley. The in-class activity asks you to install Mendeley and use it for all references.</li>
             <li><b>Systematic literature review:</b> a complete, exhaustive summary of all studies relevant to a question, for example "Social media use in medical education: a systematic review".</li>
           </ul>
+          <p class="note">A <b>systematic</b> review is a different type. Do it only if your brief asks for one: it changes Step 1 to an exhaustive search with no 5-year limit.</p>
         </section>
 
         <section class="rx">
@@ -1446,7 +1479,22 @@ button{font:inherit;color:inherit}
         </section>
 
         <section>
+          <span class="eyebrow">كيف تترابط الأجزاء</span>
+          <h2>أين تقع الأجزاء الثلاثة التالية في الخطوات السبع</h2>
+          <p>الأقسام الثلاثة التالية <b>ليست خطوات إضافية</b>. إنها أدوات تستخدمها <b>داخل</b> الخطوات السبع. توضح هذه الخريطة متى يبدأ كل منها.</p>
+          <div class="lmap" role="img" aria-label="خريطة توضح متى يُستخدم كل جزء خلال الخطوات السبع">
+            <div class="lm-steps"><span><b>1</b>البحث</span><span><b>2</b>الحصول</span><span><b>3</b>القراءة</span><span><b>4</b>التلخيص</span><span><b>5</b>التجميع</span><span><b>6</b>الكتابة</span><span><b>7</b>الخلاصة</span></div>
+            <div class="lm-row" style="--c:var(--st1)"><i class="lm-span" style="grid-column:1/8"></i><div class="lm-cap"><b>المراجع والأدوات</b><span>الخطوات 1 ← 7: ابدأ قبل البحث، وانتهِ بمراجعة أخيرة</span></div></div>
+            <div class="lm-row" style="--c:var(--st3)"><i class="lm-span" style="grid-column:5/7"></i><div class="lm-cap"><b>أربع طرق للتنظيم</b><span>الخطوتان 5 ← 6: اختر عندما تجهز مجموعاتك، وطبّقها على عناوينك</span></div></div>
+            <div class="lm-row" style="--c:var(--st4)"><i class="lm-span" style="grid-column:6/8"></i><div class="lm-cap"><b>تجميع الأجزاء معًا</b><span>الخطوتان 6 ← 7: اكتب المتن، ثم الخاتمة، ثم المقدمة</span></div></div>
+          </div>
+          <p class="note">هذا الربط توجيه دراسي من عندي، مبني على الخطوات السبع في الشرائح.</p>
+        </section>
+
+        <section>
           <h2>أربع طرق لتنظيم متن المراجعة</h2>
+          <div class="when"><span class="when-tag">متى</span><p><b>نهاية الخطوة 5 ← الخطوة 6.</b> اختر طريقة التنظيم بعد أن تجمع أوراقك في مجموعات. ثم استخدمها في الخطوة 6 لتحديد عناوين الأقسام وترتيبها. اختبار سريع للاختيار:</p><ul><li>مجموعاتك موضوعات أو عوامل ← <b>موضوعي</b></li><li>المجال تغيّر كثيرًا عبر السنين ← <b>زمني</b></li><li>الدراسات تختلف لأنها استخدمت مناهج مختلفة ← <b>منهجي</b></li><li>موضوعك يعتمد على نظريات أو نماذج متنافسة ← <b>نظري</b></li></ul></div>
+          <p class="note">نصيحة (من عندي): التنظيم الموضوعي غالبًا هو الخيار الأكثر أمانًا كهيكل رئيسي لمراجعة المادة. وداخل كل موضوع يمكنك الترتيب زمنيًا، كما في مثال الشرائح أدناه.</p>
           <div class="terms">
             <div class="term"><b>زمني</b>تتبّع تطور الموضوع عبر الزمن. تجنّب "قائمة الغسيل"، واشرح نقاط التحول وأسبابها.</div>
             <div class="term"><b>موضوعي</b>أقسام حسب الموضوعات المتكررة. مثال: صحة المهاجرين ← السياسات، وحواجز اللغة، والثقافة، والوضع القانوني، والقدرة الاقتصادية.</div>
@@ -1458,6 +1506,7 @@ button{font:inherit;color:inherit}
 
         <section>
           <h2>تجميع الأجزاء معًا</h2>
+          <div class="when"><span class="when-tag">متى</span><p><b>الخطوتان 6 و7.</b> تظهر الأجزاء بترتيب المقدمة ← المتن ← الخاتمة، لكن <b>كتابتها</b> أسهل بهذا الترتيب:</p><ol><li><b>المتن</b> في الخطوة 6: قسم لكل مجموعة، بطريقة التنظيم التي اخترتها.</li><li><b>الخاتمة</b> في الخطوة 7: أهم النتائج، وجدول المقارنة، والفجوة، ومساهمتك.</li><li><b>المقدمة</b> في النهاية: الآن تعرف بالضبط ما تغطيه المراجعة، فتكتبها بسرعة.</li></ol></div>
           <div class="terms">
             <div class="term"><b>المقدمة</b>حدد التركيز والغرض. مثال الشرائح: "يقدم هذا الفصل ملخصًا نقديًا للأدبيات الحالية حول ذكاء الأعمال وقيمته للأعمال..."</div>
             <div class="term"><b>المتن</b>لخّص وركّب، وحلّل وفسّر، وقيّم نقاط القوة والضعف نقديًا، واكتب فقرات واضحة بروابط انتقالية ("في المقابل"، "إضافة إلى ذلك"...).</div>
@@ -1468,12 +1517,14 @@ button{font:inherit;color:inherit}
 
         <section>
           <h2>المراجع والأدوات</h2>
+          <div class="when"><span class="when-tag">متى</span><p><b>من الخطوة 1 حتى التسليم.</b> لا تؤجل المراجع إلى النهاية، فإصلاحها لاحقًا يستغرق ساعات.</p><ol><li><b>قبل الخطوة 1:</b> ثبّت Mendeley واختر النمط الذي يطلبه المحاضر (مثل APA).</li><li><b>الخطوتان 1–2:</b> احفظ كل ورقة مفيدة في Mendeley فور العثور عليها.</li><li><b>الخطوتان 3–4:</b> اربط ملاحظاتك وملخصك بكل مرجع.</li><li><b>الخطوة 6:</b> أدرج الاستشهادات داخل النص عبر إضافة Mendeley في Word، وستُبنى قائمة المراجع تلقائيًا.</li><li><b>قبل التسليم:</b> تأكد أن كل استشهاد موجود في القائمة وأن النمط موحّد.</li></ol></div>
           <ul>
             <li><b>التوثيق</b> يعترف بالمصادر، ويضيف مصداقية، ويساعد القارئ على إيجادها، ويمنع الانتحال.</li>
             <li><b>الأنماط:</b> APA وIEEE وVancouver وغيرها. اختر واحدًا والتزم به، ولا تخلط بينها، واتبع النمط الذي يطلبه الأستاذ.</li>
             <li><b>برامج إدارة المراجع:</b> EndNote أو Mendeley. النشاط الصفي يطلب منك تثبيت Mendeley واستخدامه لكل المراجع.</li>
             <li><b>المراجعة المنهجية (Systematic Review):</b> ملخص كامل وشامل لكل الدراسات المتعلقة بسؤال معين، مثل "استخدام وسائل التواصل في التعليم الطبي: مراجعة منهجية".</li>
           </ul>
+          <p class="note">المراجعة <b>المنهجية</b> نوع مختلف. قم بها فقط إذا طلبها التكليف: فهي تغيّر الخطوة 1 إلى بحث شامل بلا حد الخمس سنوات.</p>
         </section>
 
         <section class="rx">
