@@ -335,6 +335,19 @@ button{font:inherit;color:inherit}
 [dir="rtl"] .rx-th,[dir="rtl"] .rx-title span{letter-spacing:0;font-family:var(--f-ar)}
 @media (max-width:640px){.rx-row{grid-template-columns:1fr;gap:2px}.rx-split{grid-template-columns:1fr}}
 
+/* ---------- videos ---------- */
+.vd-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.vd{margin:0;display:grid;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.vd-frame{position:relative;aspect-ratio:16/9;background:#0b1418}
+.vd-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vd figcaption{display:grid;gap:4px;padding:12px 14px}
+.vd figcaption b{font-size:14.5px;line-height:1.4}
+.vd-tag{justify-self:start;font:600 11px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:99px;background:var(--accent-soft);color:var(--accent)}
+.vd-meta{font-size:13px;color:var(--muted)}
+.vd figcaption a{font-size:13.5px;color:var(--accent);font-weight:600;text-decoration:none}
+.vd figcaption a:hover{text-decoration:underline}
+[dir="rtl"] .vd-tag{letter-spacing:0;font-family:var(--f-ar)}
+
 /* ---------- courses on home ---------- */
 .course{display:grid;gap:12px;margin-top:26px}
 .course-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;border-top:2px solid var(--line);padding-top:14px}
@@ -1372,6 +1385,22 @@ button{font:inherit;color:inherit}
           </ul>
           <p class="note">Source: MDT 904 CH3 "Literature Review", UOW Dubai. Extra notes marked as my example.</p>
         </section>
+        <section class="vds">
+          <span class="eyebrow">Watch to reinforce</span>
+          <h2>Video guides</h2>
+          <p>Two short videos that walk through the same process. Watch them after reading this topic, then compare their steps with the 7 steps above.</p>
+          <div class="vd-grid">
+            <figure class="vd">
+              <div class="vd-frame"><iframe src="https://www.youtube-nocookie.com/embed/zIYC6zG265E" title="How to Write a Literature Review: 3 Minute Step-by-step Guide" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+              <figcaption><span class="vd-tag">Quick overview</span><b>How to Write a Literature Review: 3 Minute Step-by-step Guide</b><span class="vd-meta">Scribbr · 3 min · English</span><a href="https://www.youtube.com/watch?v=zIYC6zG265E" target="_blank" rel="noopener">Open on YouTube ↗</a></figcaption>
+            </figure>
+            <figure class="vd">
+              <div class="vd-frame"><iframe src="https://www.youtube-nocookie.com/embed/12fiewz_UQ8" title="How to write literature reviews — طريقة مراجعة الأدبيات بثلاث خطوات سهلة وبسيطة" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+              <figcaption><span class="vd-tag">Explained in Arabic</span><b>How to write literature reviews — طريقة مراجعة الأدبيات بثلاث خطوات سهلة وبسيطة</b><span class="vd-meta">Liqa Athamneh · Arabic</span><a href="https://www.youtube.com/watch?v=12fiewz_UQ8" target="_blank" rel="noopener">Open on YouTube ↗</a></figcaption>
+            </figure>
+          </div>
+          <p class="note">External videos, not part of the official course slides. Where they differ from the slides, follow the slides and your lecturer.</p>
+        </section>
       </article>
       <article class="topic" id="topicArR3" lang="ar" dir="rtl" hidden>
         <section>
@@ -1504,6 +1533,22 @@ button{font:inherit;color:inherit}
             <li>الختام دون ذكر الفجوة ومساهمتك.</li>
           </ul>
           <p class="note">المصدر: MDT 904 الفصل 3 "مراجعة الأدبيات"، جامعة ولونغونغ دبي. الإضافات موضّحة كمثال من عندي.</p>
+        </section>
+        <section class="vds">
+          <span class="eyebrow">شاهد لتثبيت الفهم</span>
+          <h2>فيديوهات مساعدة</h2>
+          <p>فيديوهان قصيران يشرحان العملية نفسها. شاهدهما بعد قراءة الموضوع، ثم قارن خطواتهما بالخطوات السبع أعلاه.</p>
+          <div class="vd-grid">
+            <figure class="vd">
+              <div class="vd-frame"><iframe src="https://www.youtube-nocookie.com/embed/zIYC6zG265E" title="How to Write a Literature Review: 3 Minute Step-by-step Guide" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+              <figcaption><span class="vd-tag">نظرة سريعة</span><b>How to Write a Literature Review: 3 Minute Step-by-step Guide</b><span class="vd-meta">Scribbr · 3 min · English</span><a href="https://www.youtube.com/watch?v=zIYC6zG265E" target="_blank" rel="noopener">افتح على يوتيوب ↗</a></figcaption>
+            </figure>
+            <figure class="vd">
+              <div class="vd-frame"><iframe src="https://www.youtube-nocookie.com/embed/12fiewz_UQ8" title="How to write literature reviews — طريقة مراجعة الأدبيات بثلاث خطوات سهلة وبسيطة" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+              <figcaption><span class="vd-tag">شرح بالعربية</span><b>How to write literature reviews — طريقة مراجعة الأدبيات بثلاث خطوات سهلة وبسيطة</b><span class="vd-meta">Liqa Athamneh · Arabic</span><a href="https://www.youtube.com/watch?v=12fiewz_UQ8" target="_blank" rel="noopener">افتح على يوتيوب ↗</a></figcaption>
+            </figure>
+          </div>
+          <p class="note">فيديوهات خارجية وليست جزءًا من شرائح المادة الرسمية. إذا اختلفت عن الشرائح، اتبع الشرائح وتوجيهات المحاضر.</p>
         </section>
       </article>
       </div>
